@@ -39,11 +39,11 @@ class MY_Loader extends MX_Loader
      *
      * @return array
      */
-    public function blade($blade,$vars=null)
+    public function blade($blade,$vars=null,$render=false)
     {
       $blade_path=$this->blade->_find_blade($blade);
       $this->_ci_views[$blade_path]=$vars;
-      return $this->blade->render($blade,$vars);
+      return $this->blade->render($blade,$vars,$render);
     }
 
     /**

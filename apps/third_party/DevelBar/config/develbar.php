@@ -8,7 +8,7 @@
 | This option allows you to enable the developer's Toolbar
 |
 */
-$config['enable_develbar'] = strtolower(getenv('APP_DEBUG'))=='true';
+$config['enable_develbar'] = strtolower(APP_DEBUG)=='true';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-date_default_timezone_set('Asia/Jakarta');
+// date_default_timezone_set('Asia/Jakarta');
+// setlocale(LC_ALL, 'IND');
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ date_default_timezone_set('Asia/Jakarta');
 |
 */
 
-$config['base_url'] = getenv('APP_URL')?getenv('APP_URL'):BASE_URL;
+$config['base_url'] = BASE_URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,13 +37,18 @@ $config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
-| APPLICATION ASSETS FOLDER
+| Blade template magic variable
 |--------------------------------------------------------------------------
 |
-| See http://php.net/htmlspecialchars for a list of supported charsets.
+| use @url will turn into BASE_URL etc 
 |
 */
-$config['assets'] = 'assets';
+$config['blade'] = [
+  '@url'=>BASE_URL,
+  '@asset'=>BASE_URL.'/public/assets',
+  '@css'=>BASE_URL.'/public/assets/css',
+  '@js'=>BASE_URL.'/public/assets/js',
+];
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -345,7 +351,7 @@ $config['cache_query_string'] = FALSE;
 | http://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = getenv('APP_KEY');
+$config['encryption_key'] = APP_KEY;
 
 /*
 |--------------------------------------------------------------------------

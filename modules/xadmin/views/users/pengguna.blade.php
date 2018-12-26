@@ -1,62 +1,41 @@
-@if(!read_modul('users'))
-  {{forbidden_access()}}
-@else
-  <div data-toolbar>
-    <button type="button" class="btn btn-primary new" title="Create New">
-      <i class="fas fa-plus"> </i> New
-    </button>
-    @if(delete_modul('users'))
-    <button type="button" class="btn btn-danger remove" title="Delete Selections" disabled>
-      <i class="fas fa-eraser"> </i> Delete
-    </button>
-    @endif
-  </div>
-  <div class="card card-body collapse mb-5" data-form></div>
-  <table class="table table-no-bordered" data-table="@_path/view/data"></table>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#" class="reload-tab" data-title="Pengguna" data-url="@url/xadmin/users/pengguna/view/" data-get="">Pengguna</a>
+    </li>
+  </ol>
+</nav>
+<div data-toolbar>
+  <button type="button" class="btn btn-primary" data-action="form" data-title="Tambah Data" data-url="@_path/form">
+    <i class="fas fa-plus"> </i> Tambah
+  </button>
+</div>
+<div class="card card-body collapse mb-5" data-form></div>
+<table class="table" data-table="@_path" data-get="" data-module="table,form" data-access="@_access">
+  <thead>
+    <tr>
+      <th data-field="state" data-checkbox="true"></th>
+      <th data-field="id" data-visible="false">ID</th>
+      <th data-field="username" data-title="Username" data-sortable="true">
+      <th data-field="instansi" data-format="<b>{instansi}</b>" data-sortable="true">Instansi</th>
+      <th data-field="email" data-sortable="true">Email</th>
+      <th data-field="groups.0.nama_grup">Grup</th>
+      <th data-title="Action" data-events="action" data-formatter='
+        <button class="btn btn-sm btn-info writable" data-action="form"
+          data-title="Ubah Data"
+          data-url="{_path}/form/" data-get="id={id}">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+        <button class="btn btn-sm btn-danger deletable" data-action="modal"
+          data-title="Hapus Data"
+          data-body="Apakah anda yakin menghapus data `<b>{title}</b>`"
+          data-footer="<button data-url=`{_path}/remove` data-data=`id={id}` class=`btn btn-danger` type=`submit`>Delete</button>" >
+          <i class="fas fa-times"></i>
+        </button>
+      ' data-width="120" >
+    </tr>
+  </thead>
+</table>
 
-  <script>
-  var path="@_path";
-  var title="Data Pengguna";
-  var columns=[
-    {'field':'state','checkbox':true},
-    {'title':'ID','field':'id','sortable':true,'visible':false},
-    {'title':'Username','field':'username','sortable':true},
-    {'title':'Email','field':'email','sortable':true},
-    {'title':'Grup','field':'groups.nama_grup'},
-    {'title':'Action','width':100,'events':'action','formatter':
-      @if(write_modul('users'))
-        '<button class="btn btn-sm btn-info edit" title="Edit">'+
-        '  <i class="fas fa-pencil-alt"></i>'+
-        '</button> '
-      @endif
-      @if(delete_modul('users'))
-       +'<button class="btn btn-sm btn-danger delete" title="Delete">'+
-        '  <i class="fas fa-times"></i>'+
-        '</button> '
-      @endif
-    }
-  ];
-
-  var action= {
-    'click .new': (e) => {
-      loadForm('New User','@_path/form/');
-    },
-    'click .remove': (e) => {
-      loadModal(
-        title='Delete user',
-        body ='Are you sure you want to delete data "'+getSelections()+'"?',
-        footer='<button type="submit" class="btn btn-danger" data-url="@_path/remove/" data-data="id='+getSelections()+'">Delete</button>');
-    },
-    'click .edit': (e, value, row) => {
-      loadForm('Edit user','@_path/form/'+row.id);
-    },
-    'click .delete': (e, value, row)=>{
-      loadModal(
-        title='Delete user',
-        body ='Are you sure you want to delete data "'+row.id+'"?',
-        footer='<button type="submit" class="btn btn-danger" data-url="@_path/remove/" data-data="id='+row.id+'">Delete</button>');
-    }
-  };
-
-  </script>
-@endif
+<script>
+</script>

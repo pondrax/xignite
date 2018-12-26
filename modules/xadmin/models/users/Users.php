@@ -12,14 +12,14 @@ class Users extends MY_Model{
     'groups'=>[
       'model'=>'xadmin/users/groups',
       'foreign_key'=>'id',
-      'local_key'=>'grup_id'
+      'local_key'=>'id_grup'
     ]
   ];
   
   public $rules=[
     'insert'=>[
-      ['field'=>'username','rules'=>'trim|alpha_numeric|required'],
-      ['field'=>'email','rules'=>'trim|required|valid_email|is_unique[users.email]']
+      ['field'=>'username','label'=>'Username','rules'=>'trim|alpha_numeric|required'],
+      ['field'=>'email','label'=>'Email','rules'=>'trim|required|valid_email|is_unique[users.email]']
     ],
     'update'=>[
       ['field'=>'username','rules'=>'trim|alpha_numeric|required'],
@@ -36,10 +36,16 @@ class Users extends MY_Model{
   
   public static function verify_password($pass,$where){
     $data=self::select('id,password')->one($where);
-    if(count($data)&&password_verify($pass,$data->password)){
-      return $data->id;
-    }else{
-      return false;
+    //debug($data);
+    if($data){
+        if(isset($data->password)&&password_verify($pass,$data->password)){
+          return $data->id;
+        }else{
+          return false;
+        }
+    }
+    else{
+        return false;
     }
   }
 }

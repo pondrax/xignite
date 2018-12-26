@@ -85,17 +85,10 @@ class Blade
 
     public function __construct()
     {
-        $this->profiling = strtolower(getenv('APP_PROFILING'))=='true';
+        $this->profiling = strtolower(APP_PROFILING)=='true';
         if(!$this->profiling){
           $this->load->driver('cache');          
         }
-        //auto public search
-        $this->url=rtrim(base_url(),'/');
-        $asset=$this->config->item('assets');
-        $this->asset= str_replace('public/public','public',$this->url.'/public/').$asset;
-        $this->css  = $this->asset.'/css';
-        $this->js   = $this->asset.'/js';
-        $this->img  = $this->asset.'/images';
     }
 
 
@@ -214,7 +207,21 @@ class Blade
 
         return $content;
     }
+    function startsWith($haystack, $needle)
+    {
+         $length = strlen($needle);
+         return (substr($haystack, 0, $length) === $needle);
+    }
 
+    function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
+    }
     /**
      * Find the full path to a view file. Shows an error if file not found.
      *
@@ -223,15 +230,17 @@ class Blade
      */
     public function _find_blade($view)
     {
+        if($this->endsWith($view,'.html')||$this->endsWith($view,'.blade.php')){
+          $this->blade_ext='';
+        }
         // Default location
         $full_path = APPPATH . 'views/' . $view . $this->blade_ext;
-
+        
         // Modular Separation / Modular Extensions has been detected
         if (method_exists($this->router, 'fetch_module'))
         {
             $module = $this->router->fetch_module();
             list($path, $_view) = Modules::find($view . $this->blade_ext, $module, 'views/');
-
             if ($path)
             {
                 $full_path = $path . $_view;
@@ -241,7 +250,7 @@ class Blade
         // File not found
         if ( ! is_file($full_path))
         {
-            show_error('[Blade] Unable to find view: ' . $view);
+            show_error('[Blade] Unable to find view: ' . $view. $this->blade_ext);
         }
         // $rootpath=str_replace("../","",APPPATH);
         // return str_replace($rootpath,'',$full_path);
@@ -719,23 +728,14 @@ class Blade
     
     protected function _compile_assets($value)
     {
-        return str_replace(array(
-            '@url',
-            '@asset',
-            '@css',
-            '@js',
-          ), array(
-            '<?php echo $this->url; ?>',
-            '<?php echo $this->asset; ?>',
-            '<?php echo $this->css; ?>',
-            '<?php echo $this->js; ?>',
-          ), $value);
+      $blade=$this->config->item('blade');
+      return str_replace(array_keys($blade),array_values($blade),$value);
     }
     protected function _compile_magic_var($value)
     {
-        $pattern = '/\s*@_(\w+)\s*/';
+        $pattern = '/\@_(\w+)(\s*)/';
 
-        return preg_replace($pattern, '<?=$$1?>', $value);
+        return preg_replace($pattern, '<?=isset($$1)?$$1."$2":"";?>', $value);
     }
     
     protected function _compile_declare_var($value)

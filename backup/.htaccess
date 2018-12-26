@@ -1,0 +1,24 @@
+# Disable index view
+Options -MultiViews -Indexes
+
+# Hide a specific file
+<Files .env>
+Order allow,deny
+Deny from all
+</Files>
+
+RewriteEngine On
+#enable this to route to public folder
+#RewriteRule ^(.*)$ public/?$1 [L]
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^lkpj\.jatimprov\.go\.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.lkpj\.jatimprov\.go\.id$
+RewriteRule ^(.*)$ "https\:\/\/lkpj\.jatimprov\.go\.id\/$1" [R=301,L]
+
