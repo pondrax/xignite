@@ -10,6 +10,7 @@ let UI={
         let module=UI.tab.active().find('[data-module]').data('module').split(',');
         $.each(module,function(i,v){
             console.log(v);
+          UI.module.name.push(v);
           eval('Module.'+v+'.load()');
         })
       }
@@ -613,7 +614,9 @@ let Module={
              ,'alert-warning',false);
         }else{
           Module.form.setProp().form.collapse('hide');
-          Module.table.refresh();
+          if(UI.module.name.includes('table')){
+            Module.table.refresh();
+          }            
           UI.message.load('<h6><strong>Success</strong>. Data tersimpan.</h6>','alert-success',true);
         }
       }).fail(function(response){
@@ -740,6 +743,7 @@ let Module={
   editor:{
     load:function(){
       head.load(path.js+'/lib/ace/ace.js');
+      head.load(path.js+'/lib/ace/ext-modelist.js');
       head.load(path.js+'/lib/ace/ext-language_tools.js');
       head(function(){
         Module.editor.init()
@@ -749,12 +753,13 @@ let Module={
       let id=UI.tab.active().attr('id');
       UI.tab.active().find('[data-module]').attr('id','editor-'+id);
       
-      let editor = ace.edit("editor-"+id);
-      // editor.setTheme("ace/theme/xignite");
+      let editor = ace.edit("editor-"+id),
+          modelist = ace.require("ace/ext/modelist"),
+          filepath=UI.tab.active().find('[name=path]').val(),
+          mode=modelist.getModeForPath(filepath).mode;
+          
       editor.setTheme("ace/theme/monokai");
-       editor.session.setMode("ace/mode/php_laravel_blade");
-      //editor.session.setMode("ace/mode/php");
-      //editor.setShowInvisibles(true);
+      editor.session.setMode(mode);
       editor.setDisplayIndentGuides(true);
       editor.getSession().setUseWrapMode(true);  
       // enable autocompletion and snippets
@@ -770,6 +775,16 @@ let Module={
         editor.execCommand("startAutocomplete")
         }
       })
+      UI.tab.active().find('[data-theme]').on('change',function(){
+        editor.setTheme("ace/theme/"+$(this).val());
+      });
+      let form=UI.tab.active().find('form');
+      form.on('submit',function(e){
+        e.preventDefault();
+        UI.tab.active().find('[name=content]').val(editor.getValue());
+        // console.log(editor.getValue());
+        Module.form.submit(form.attr('action'),form.serialize());
+      });
     }
   }
 }

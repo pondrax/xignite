@@ -33,7 +33,6 @@
         <span class="text-danger">{{APP_NAME}}</span>
       </h1>
       <br>
-      @include('code/home')
       <p class="py-2">Akses menu modul pada sidebar di sisi kiri</p>
     </div>
   </div>

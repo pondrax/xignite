@@ -9,9 +9,11 @@ class Code_controller extends CI_Controller {
       echo "Forbidden";
       exit;
     }
+    $this->load->helper('file');
     $this->data=[
       'assets'=>base_url('modules/xengine/assets'),
-      'templates'=>base_url('modules/xengine/templates')
+      'templates'=>base_url('modules/xengine/templates'),
+      'modulepath'=>base_url('xengine/code')
     ];
   }
   
@@ -20,10 +22,19 @@ class Code_controller extends CI_Controller {
     $this->load->blade('xengine/code/main',$this->data);
   }
   public function view(){
-    $this->data['path']=$this->input->get('path','');
+    $this->data['path']=str_replace(FCPATH,'',realpath($this->input->get('path','')));
     $this->data['content']=file_get_contents($this->input->get('path'));
+    $this->data['file_type']=get_mime_by_extension($this->data['path']);
     $this->load->blade('xengine/code/editor',$this->data);
   }
+  public function save(){
+    // d($this->input->post());
+    $path=$this->input->post('path');
+    $content=$this->input->post('content');
+    file_put_contents($path,$content);
+    jsonify('success');
+  }
+  
   public function glob_all2($dir,$target='',$first=true){
     // debug($target);
     if($first){
@@ -40,7 +51,7 @@ class Code_controller extends CI_Controller {
     
     foreach(array_unique(array_merge($dirs, $files)) as $d){
       // debug(basename($d));
-      if(is_dir($d) && !in_array(basename($d),['.','..'])){
+      if(is_dir($d) && !in_array(basename($d),['.','..','.git'])){
         $path=str_replace(realpath(FCPATH),'',$d);
         $id='xplor'.str_replace('/','-',$path);
         // debug($id);
@@ -67,3 +78,4 @@ class Code_controller extends CI_Controller {
     return $files;
   }
 }
+
