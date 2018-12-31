@@ -831,13 +831,15 @@ let Module={
         $(this).closest('.draggable').remove();
       }).on('dragstart','.draggable',function(e){
         e.stopPropagation();
+        //console.log(this)
+        // console.log(e.ctrlKey)
         $transfer=$(this);
       }).on('drop', '.widget-droparea,.droppable',function(e) {
         e.preventDefault();
         e.stopPropagation();
         let $el=$transfer, $clone=$el.clone();
-        //console.log($el)
-        if($el.hasClass('copy')){
+        console.log(this)
+        if($el.hasClass('copy')|| e.ctrlKey){
           $(this).append($clone);
         }else{
           $(this).append($el);
