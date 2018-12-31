@@ -11,13 +11,16 @@ class Xengine_controller extends CI_Controller {
     ini_set('max_execution_time', 0);
     $this->data=[
       'assets'=>base_url('modules/xengine/assets'),
-      'templates'=>base_url('modules/xengine/templates')
+      'templates'=>base_url('modules/xengine/templates'),
+      'modulepath'=>base_url('xengine/')
     ];
   }
   
   public function index(){
-    $data=$this->data;
-    $this->load->blade('xengine',$data);
+    $this->load->blade('xengine/ui/main',$this->data);
+  }
+  public function view_builder(){
+    $this->load->blade('xengine/ui/view_builder',$this->data);
   }
   public function make_controller(){
     $data=$this->data;

@@ -6,7 +6,7 @@ let UI={
   //Module loader
   module:{
     load:function(){
-      if(UI.tab.active().find('[data-module]').data('module')!=undefined){
+      if(UI.tab.active().find('[data-module]').data('module')!==undefined){
         let module=UI.tab.active().find('[data-module]').data('module').split(',');
         $.each(module,function(i,v){
             console.log(v);
@@ -20,12 +20,12 @@ let UI={
   //UI Progress bar
   message:{
     load:function(title,state,autoclose){
-      var state=state||'alert-info',
-          title=title||'<div class="lds-ellipsis">'+
+      state=state||'alert-info',
+      title=title||'<div class="lds-ellipsis">'+
                        '  <div></div><div></div><div></div><div></div>'+
                        '</div>'+
-                       '<strong>Loading, please wait...</strong>',
-          str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; max-height:300px; max-width:500px; overflow-y:auto">'+
+                       '<strong>Loading, please wait...</strong>';
+      let str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; max-height:300px; max-width:500px; overflow-y:auto">'+
               '  <a href="#" class="close" data-dismiss="alert">&times;</a>'+title+
               '</div>';
               
@@ -128,7 +128,7 @@ let UI={
   },
   setAccess:function(access){
     console.log(access);
-    if(access!=''){
+    if(access!==''){
       access=access.split(',');
       for (var i in access){
         UI.tab.active().find('.'+access[i]).removeClass(access[i]);
@@ -751,6 +751,7 @@ let Module={
     },
     init:function(){
       let id=UI.tab.active().attr('id');
+      let form=UI.tab.active().find('form');
       UI.tab.active().find('[data-module]').attr('id','editor-'+id);
       
       let editor = ace.edit("editor-"+id),
@@ -770,6 +771,14 @@ let Module={
         enableSnippets: true,
         enableLiveAutocompletion: false
       });
+      editor.commands.addCommand({
+        name: 'save',
+        bindKey: {win: "Ctrl-S", "mac": "Cmd-S"},
+        exec: function(editor) {
+          // console.log("saving", editor.session.getValue())
+          form.submit();
+        }
+      })
       editor.commands.on("afterExec", function(e){
         if (e.command.name == "insertstring"&&/^[\w.]$/.test(e.args)) {
         editor.execCommand("startAutocomplete")
@@ -778,13 +787,69 @@ let Module={
       UI.tab.active().find('[data-theme]').on('change',function(){
         editor.setTheme("ace/theme/"+$(this).val());
       });
-      let form=UI.tab.active().find('form');
       form.on('submit',function(e){
         e.preventDefault();
         UI.tab.active().find('[name=content]').val(editor.getValue());
         // console.log(editor.getValue());
         Module.form.submit(form.attr('action'),form.serialize());
       });
+    }
+  },
+  builder:{
+    load:function(){
+      head(Module.builder.init)
+    },
+    init:function(){
+      let $tab=UI.tab.active(),
+          $transfer;
+      
+      $tab.find('.draggable').each(function(){
+        $(this).attr('draggable',true).addClass('copy');
+        if($(this).find('.handler .info').length<1){
+          $(this).find('.handler').append('<small class="info ml-2"></small>'
+                                         +'<span class="close float-right">&times;</span>')
+        }
+      });
+      
+      $tab.find('.main-widget').on('mouseover','.draggable',function(e){
+        e.stopPropagation()
+        $(this).addClass('highlight');
+      }).on('mouseout','.draggable',function(){
+        $('.highlight').removeClass('highlight');
+        $('.drop-preview').removeClass('drop-preview');
+      }).on('click','.close',function(){
+        $(this).closest('.draggable').remove();
+      }).on('dragstart','.draggable',function(e){
+        e.stopPropagation();
+        $transfer=$(this);
+      }).on('drop', '.widget-droparea,.droppable',function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let $el=$transfer, $clone=$el.clone();
+        //console.log($el)
+        if($el.hasClass('copy')){
+          $(this).append($clone);
+        }else{
+          $(this).append($el);
+        }
+        $tab.find('.widget-droparea .draggable').each(function(){
+          $this=$(this);
+          $this.removeClass('copy').addClass('droppable');
+          tagname=$this.prop('tagName').toLowerCase();
+          idname=''||$this.prop('id')
+          classname=''||'.'+$this.attr('class').replace(/\s+/g,'.')
+                   .replace(/.draggable|.highlight|.droppable|.drop-preview|.copy/g,'')
+          $this.find('.info').html('<span class="text-primary">'+tagname+'</span>'
+                                    +'<span class="text-info">'+idname+'</span>'
+                                    +'<span class="text-danger">'+classname+'</span>');
+        })
+        return false;
+      }).on('dragover', false)
+      .on('dragenter', '.widget-droparea,.droppable',function(e){
+        e.stopPropagation();
+        $('.drop-preview').removeClass('drop-preview');
+        $(this).addClass('drop-preview');
+      })
     }
   }
 }
