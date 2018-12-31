@@ -9,6 +9,16 @@
   <link type="text/css" rel="stylesheet" href="@_assets/css/lib/font-awesome.css">
   <link type="text/css" rel="stylesheet" href="@_assets/css/ui.css">
   <script src="@_assets/js/lib/head.min.js"></script>
+</head>
+<body>
+  <div class="row no-gutters" style="height:100vh">
+    <div id="sidebar" class="collapse show bg-light shadow">
+      @include('ui/sidebar')
+    </div>
+    <div id="content">
+      @include('ui/content')
+    </div>
+  </div>
   <script>
     let path={
       asset:'@_assets',
@@ -24,15 +34,5 @@
       UI.init();
     });
   </script>
-</head>
-<body>
-  <div class="row no-gutters" style="height:100vh">
-    <div id="sidebar" class="collapse show bg-light shadow">
-      @include('ui/sidebar')
-    </div>
-    <div id="content">
-      @include('ui/content')
-    </div>
-  </div>
 </body>
 </html>

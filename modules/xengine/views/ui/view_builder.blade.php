@@ -1,7 +1,15 @@
 <style>
+.widget-items,
+.widget-droparea{
+  min-height: 100%;
+  overflow-y: scroll;
+}
 .widget-items .close,
 .widget-droparea .close{
   display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .widget-items .draggable,
 .widget-droparea .draggable{
@@ -31,10 +39,13 @@
   left:10px;
   right: 10px;
 }
+.widget-result{
+  width:100%;
+  min-height: 200px;
+}
 </style>
-<div class="row no-gutters main-widget" style="height:calc(100vh - 120px)" data-module="builder">
-  <div class="col-3 ml-2 widget-items">
-    
+<div class="row no-gutters main-widget" style="height:calc(100vh - 120px)" >
+  <div class="col-3 widget-items">
     <div class="row draggable">
       <div class="handler">Row</div>
       <div class="col draggable">
@@ -47,13 +58,24 @@
         <div class="handler">Col</div>
       </div>
     </div>
-    <div class="row draggable">
-      <div class="handler">Row</div>
-    </div>
-    <div class="col draggable">
-      <div class="handler">Col</div>
+    <div class="col-12 draggable">
+      <div class="handler">Col Separator</div>
     </div>
   </div>
-  <div class="col border p-1 ml-2 widget-droparea">
+  <div class="col">
+    <div class="p-1 widget-droparea" style="height:100%"></div>
+    
+    <form style="height:calc(100% - 60px);" action="{{$modulepath}}/save">
+      <div class="row no-gutters p-1">
+        <input class="col form-control mr-1 px-1" name="path" value="{{$path|''}}">
+        <select class="col-2 form-control mr-1" data-theme>
+          <option>monokai</option>
+          <option>xignite</option>
+        </select>
+        <textarea name="content" style="display:none"></textarea>
+        <button class="col-2 btn btn-danger">Simpan</button>
+      </div>
+      <pre id="editor" class="code-editor widget-result" data-module="builder,editor">Test</pre>
+    </form>d
   </div>
 </div>

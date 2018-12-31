@@ -6,14 +6,16 @@ let UI={
   //Module loader
   module:{
     load:function(){
-      if(UI.tab.active().find('[data-module]').data('module')!==undefined){
-        let module=UI.tab.active().find('[data-module]').data('module').split(',');
-        $.each(module,function(i,v){
-            console.log(v);
-          UI.module.name.push(v);
-          eval('Module.'+v+'.load()');
-        })
-      }
+      UI.tab.active().find('[data-module]').each(function(){
+        if($(this).data('module')!==undefined){
+          let module=$(this).data('module').split(',');
+          $.each(module,function(i,v){
+              console.log(v);
+            UI.module.name.push(v);
+            eval('Module.'+v+'.load()');
+          })
+        }
+      })
     },
     name:[]
   },
@@ -164,7 +166,7 @@ let Module={
     },
     init:function(){
       this.setProp();
-      console.log(this.table.data('table'));
+      // console.log(this.table.data('table'));
       this.table.bootstrapTable({
         height:this.getHeight(),
         pageSize: this.getHeight()>700?20:10, 
@@ -744,7 +746,9 @@ let Module={
     load:function(){
       head.load(path.js+'/lib/ace/ace.js');
       head.load(path.js+'/lib/ace/ext-modelist.js');
+      head.load(path.js+'/lib/ace/ext-beautify.js');
       head.load(path.js+'/lib/ace/ext-language_tools.js');
+      this.editor=[];
       head(function(){
         Module.editor.init()
       });
@@ -757,7 +761,11 @@ let Module={
       let editor = ace.edit("editor-"+id),
           modelist = ace.require("ace/ext/modelist"),
           filepath=UI.tab.active().find('[name=path]').val(),
-          mode=modelist.getModeForPath(filepath).mode;
+          mode='ace/mode/html';
+      if(filepath!==''){
+        mode=modelist.getModeForPath(filepath).mode;
+      console.log(filepath)
+      }
           
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode(mode);
@@ -793,6 +801,14 @@ let Module={
         // console.log(editor.getValue());
         Module.form.submit(form.attr('action'),form.serialize());
       });
+      this.editor[UI.tab.active().attr('id')]=editor;
+    },
+    setValue:function(str){
+      let editor=this.editor[UI.tab.active().attr('id')];
+      // console.log(editor)
+      var beautify = ace.require("ace/ext/beautify"); 
+      editor.getSession().setValue(str);
+      beautify.beautify(editor.session);
     }
   },
   builder:{
@@ -803,13 +819,7 @@ let Module={
       let $tab=UI.tab.active(),
           $transfer;
       
-      $tab.find('.draggable').each(function(){
-        $(this).attr('draggable',true).addClass('copy');
-        if($(this).find('.handler .info').length<1){
-          $(this).find('.handler').append('<small class="info ml-2"></small>'
-                                         +'<span class="close float-right">&times;</span>')
-        }
-      });
+      $tab.find('.draggable').attr('draggable',true).addClass('copy')
       
       $tab.find('.main-widget').on('mouseover','.draggable',function(e){
         e.stopPropagation()
@@ -839,9 +849,10 @@ let Module={
           idname=''||$this.prop('id')
           classname=''||'.'+$this.attr('class').replace(/\s+/g,'.')
                    .replace(/.draggable|.highlight|.droppable|.drop-preview|.copy/g,'')
-          $this.find('.info').html('<span class="text-primary">'+tagname+'</span>'
+          $this.find('.handler').html('<small><span class="text-primary">'+tagname+'</span>'
                                     +'<span class="text-info">'+idname+'</span>'
-                                    +'<span class="text-danger">'+classname+'</span>');
+                                    +'<span class="text-danger">'+classname+'</span></small>'
+                                    +'<span class="close">&times;</span>');
         })
         return false;
       }).on('dragover', false)
@@ -849,7 +860,13 @@ let Module={
         e.stopPropagation();
         $('.drop-preview').removeClass('drop-preview');
         $(this).addClass('drop-preview');
-      })
+      }).on('DOMSubtreeModified','.widget-droparea', function() {
+        $el=$(this).clone();
+        $el.find('.draggable').removeAttr('draggable')
+           .removeClass('draggable highlight droppable drop-preview copy');
+        $el.find('.handler').remove()
+        Module.editor.setValue($el.html())
+      });
     }
   }
 }
