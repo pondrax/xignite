@@ -817,7 +817,7 @@ let Module={
     },
     init:function(){
       let $tab=UI.tab.active(),
-          $transfer;
+          $transfer=[];
       
       $tab.find('.draggable').attr('draggable',true).addClass('copy')
       
@@ -831,27 +831,34 @@ let Module={
         $(this).closest('.draggable').remove();
       }).on('dragstart','.draggable',function(e){
         e.stopPropagation();
-        //console.log(this)
-        // console.log(e.ctrlKey)
-        $transfer=$(this);
+        $transfer[0]=$(this);
+        console.log('drag',this)
+        e.originalEvent.dataTransfer.setData("Text",0);
       }).on('drop', '.widget-droparea,.droppable',function(e) {
         e.preventDefault();
         e.stopPropagation();
-        let $el=$transfer, $clone=$el.clone();
+        
+        let $el=$($transfer[e.originalEvent.dataTransfer.getData("Text")]), $clone=$el.clone();
         console.log(this)
         if($el.hasClass('copy')|| e.ctrlKey){
           $(this).append($clone);
         }else{
           $(this).append($el);
         }
+        
         $tab.find('.widget-droparea .draggable').each(function(){
-          $this=$(this);
-          $this.removeClass('copy').addClass('droppable');
+          let $this=$(this),$handler=$this.find('.handler');
+          $this.removeClass('copy');
+          if($this.hasClass('block')){
+            $this=$this.find('.handler').siblings();
+          }else{
+            $this.addClass('droppable');
+          }
           tagname=$this.prop('tagName').toLowerCase();
           idname=''||$this.prop('id')
           classname=''||'.'+$this.attr('class').replace(/\s+/g,'.')
                    .replace(/.draggable|.highlight|.droppable|.drop-preview|.copy/g,'')
-          $this.find('.handler').html('<small><span class="text-primary">'+tagname+'</span>'
+          $handler.html('<small><span class="text-primary">'+tagname+'</span>'
                                     +'<span class="text-info">'+idname+'</span>'
                                     +'<span class="text-danger">'+classname+'</span></small>'
                                     +'<span class="close">&times;</span>');
@@ -862,13 +869,40 @@ let Module={
         e.stopPropagation();
         $('.drop-preview').removeClass('drop-preview');
         $(this).addClass('drop-preview');
-      }).on('DOMSubtreeModified','.widget-droparea', function() {
-        $el=$(this).clone();
+      })
+      // var target = $tab.find('.main-widget')
+      // create an observer instance
+      let droparea         = $tab.find(".main-widget .widget-droparea");
+      //var MutationObserver    = window.MutationObserver || window.WebKitMutationObserver;
+      let myObserver          = new MutationObserver (function(mutations){
+        // console.log(droparea.html())
+        let $el=droparea.clone();
         $el.find('.draggable').removeAttr('draggable')
-           .removeClass('draggable highlight droppable drop-preview copy');
+          .removeClass('draggable highlight droppable drop-preview copy grid');
+          // console.log($drag.attr('class'))
+        $el.find('.block>*').unwrap()
         $el.find('.handler').remove()
-        Module.editor.setValue($el.html())
+        Module.editor.setValue($el.html().replace(/^\s*\n/gm,''))
       });
+      droparea.each ( function () {
+        myObserver.observe (this, {childList: true, characterData: true, attributes: true});
+      } );
+      // var observer = new MutationObserver(function(mutations) {
+      //   console.log(target.text());   
+      // });
+      // configuration of the observer:
+      // var config = { attributes: true, childList: true, characterData: true };
+      // pass in the target node, as well as the observer options
+      // observer.observe(target, config);
+      // .on('DOMNodeInserted','.widget-droparea', function() {
+      //   let $el=$(this).clone();
+      //   $el.find('.draggable').removeAttr('draggable')
+      //     .removeClass('draggable highlight droppable drop-preview copy grid');
+      //     // console.log($drag.attr('class'))
+      //   $el.find('.block>*').unwrap()
+      //   $el.find('.handler').remove()
+      //   Module.editor.setValue($el.html().replace(/^\s*\n/gm,''))
+      // });
     }
   }
 }
