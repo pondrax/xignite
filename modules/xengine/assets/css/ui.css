@@ -204,7 +204,8 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 
 
 .widget-items,
-.widget-droparea{
+.widget-droparea,
+.widget-preview{
   min-height: 100%;
   overflow-y: scroll;
 }
@@ -220,10 +221,10 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
   border: 1px solid rgb(200,200,200);
   margin:  0;
   padding: 15px 10px 12px !important;
-  min-height:40px;
+  /*min-height:40px;*/
   position: relative;
 }
-.widget-items .draggable{
+.widget-group> .draggable{
   margin-bottom:10px;
 }
 .widget-items .draggable.highlight,
@@ -249,4 +250,7 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 .widget-result{
   width:100%;
   min-height: 200px;
+}
+.main-widget label.form-label{
+  margin-bottom: 0;
 }

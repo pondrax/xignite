@@ -74,11 +74,12 @@ let UI={
     },
     load:function(){
       let main=$('#main'),
-          nav=main.find('.nav-tabs'),
+          nav=main.children('.nav-tabs'),
           content=main.find('.tab-content'),
           tab = 'tab'+UI.string.random(10000),
           href=$(this).data('href'),
           title=$(this).text();
+          console.log($(this).text())
       content.append('<div class="tab-pane" id="'+tab+'" style="height:100%;overflow:auto"></div>');
       nav.append(
         '<li class="nav-item">'+
@@ -851,6 +852,7 @@ let Module={
           $this.removeClass('copy');
           if($this.hasClass('block')){
             $this=$this.find('.handler').siblings();
+            $this.attr('contenteditable',true)
           }else{
             $this.addClass('droppable');
           }
@@ -864,17 +866,14 @@ let Module={
                                     +'<span class="close">&times;</span>');
         })
         return false;
-      }).on('dragover', false)
-      .on('dragenter', '.widget-droparea,.droppable',function(e){
+      }).on('dragenter', '.widget-droparea,.droppable',function(e){
         e.stopPropagation();
         $('.drop-preview').removeClass('drop-preview');
         $(this).addClass('drop-preview');
-      })
-      // var target = $tab.find('.main-widget')
-      // create an observer instance
-      let droparea         = $tab.find(".main-widget .widget-droparea");
-      //var MutationObserver    = window.MutationObserver || window.WebKitMutationObserver;
-      let myObserver          = new MutationObserver (function(mutations){
+      }).on('dragover', false)
+      
+      let droparea = $tab.find(".main-widget .widget-droparea");
+      let myObserver = new MutationObserver (function(mutations){
         // console.log(droparea.html())
         let $el=droparea.clone();
         $el.find('.draggable').removeAttr('draggable')
@@ -882,27 +881,13 @@ let Module={
           // console.log($drag.attr('class'))
         $el.find('.block>*').unwrap()
         $el.find('.handler').remove()
-        Module.editor.setValue($el.html().replace(/^\s*\n/gm,''))
+        let html=$el.html().replace(/^\s*\n/gm,'');
+        Module.editor.setValue(html)
+        $tab.find('.widget-preview').html(html);
       });
       droparea.each ( function () {
         myObserver.observe (this, {childList: true, characterData: true, attributes: true});
-      } );
-      // var observer = new MutationObserver(function(mutations) {
-      //   console.log(target.text());   
-      // });
-      // configuration of the observer:
-      // var config = { attributes: true, childList: true, characterData: true };
-      // pass in the target node, as well as the observer options
-      // observer.observe(target, config);
-      // .on('DOMNodeInserted','.widget-droparea', function() {
-      //   let $el=$(this).clone();
-      //   $el.find('.draggable').removeAttr('draggable')
-      //     .removeClass('draggable highlight droppable drop-preview copy grid');
-      //     // console.log($drag.attr('class'))
-      //   $el.find('.block>*').unwrap()
-      //   $el.find('.handler').remove()
-      //   Module.editor.setValue($el.html().replace(/^\s*\n/gm,''))
-      // });
+      });
     }
   }
 }
