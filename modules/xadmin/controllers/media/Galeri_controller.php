@@ -50,7 +50,7 @@ class Galeri_controller extends MX_Controller {
   
   public function update(){
     $data=post_upload($this->data['upload_config'],true);
-    d($data);
+    // d($data);
     if(!$data[0]['id']){
       jsonify(Media::insert_batch($data));
     }else{

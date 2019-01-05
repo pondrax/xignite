@@ -20,19 +20,21 @@ class Api_controller extends MX_Controller {
         $logged=Users::select('id,id_grup,username')
             ->groups(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
             ->one($login_id);
-        d(['status'=>'success','message'=>jwt::encode($logged,$this->secret_key)]);
+        $logged->last_generate=strtotime(date('Ymd'));
+        jsonify(['status'=>'success','message'=>jwt::encode($logged,$this->secret_key)]);
       }
       else{
-        d(['status'=>'error','message'=>(object)['username'=>'Username or Password invalid']]);
+        jsonify(['status'=>'error','message'=>(object)['username'=>'Username or Password invalid']]);
       }
     }else{
-      d(['status'=>'error','message'=>(object)$this->form_validation->error_array()]);
+      jsonify(['status'=>'error','message'=>(object)$this->form_validation->error_array()]);
     }
   }
   
   public function module(){
     $token=apache_request_headers()['app_token'];
     $logged=jwt::decode($token,$this->secret_key);
+    d($logged);
     if(!$logged){
       http_response_code(403);
       jsonify(['status'=>'error','message'=>'Token Expired']);
