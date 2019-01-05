@@ -26,6 +26,7 @@ function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
   $post=$ci->input->post();
   $uploaded=$ci->input->upload_all($config,true);
+  $post=isset($post[0])?$post:[$post];
   foreach($uploaded as $key=>$name){
     foreach($name as $i=>$value){
       if($value){
@@ -40,9 +41,9 @@ function post_upload($config,$remove=false,$prefix="old_"){
       unset($post[$i][$prefix.$key]);
     }
   }
-  $data=isset($post[0])?$post:[$post];
+  // $data=$post;
   // debug($data);
-  return $data;
+  return $post;
 }
 
 function path_to_link($path){
@@ -120,9 +121,16 @@ function mark_end($class='test'){
   echo $ci->benchmark->elapsed_time($class,$class.'_end').' detik<br>';
 }
 function logged($redirect=false,$path=''){
-  $ci = &get_instance();
-  $ci->load->library('session');
-  $logged=$ci->session->userdata('logged');
+  $ci = &get_instance();  
+  $ci->load->helper('jwt_helper');
+  $secret_key=$ci->config->item('api_secret_key');
+  if(isset(apache_request_headers()['app_token'])){
+    $token=apache_request_headers()['app_token'];
+    $logged=jwt::decode($token,$secret_key);
+  }else{
+    $ci->load->library('session');
+    $logged=$ci->session->userdata('logged');
+  }
   if($logged){
     return $logged;
   }

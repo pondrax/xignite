@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$exceptions = array('xadmin','xengine','xweb','welcome');
+$exceptions = array('xadmin','xengine','xweb','welcome','api','pdf','profiler');
 
 $route['default_controller'] = 'xadmin';
 $route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xadmin/$1';

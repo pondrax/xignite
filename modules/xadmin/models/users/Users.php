@@ -36,7 +36,7 @@ class Users extends MY_Model{
   
   public static function verify_password($pass,$where){
     $data=self::select('id,password')->one($where);
-    //debug($data);
+    // debug($pass);
     if($data){
         if(isset($data->password)&&password_verify($pass,$data->password)){
           return $data->id;

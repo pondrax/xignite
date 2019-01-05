@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengguna_controller extends CI_Controller {
+class Pengguna_controller extends MX_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('xadmin/users/users');
@@ -20,7 +20,7 @@ class Pengguna_controller extends CI_Controller {
     // debug($deleted_filter);
     $data=$this->data;
     if($json){
-      $data=Users::select('id,id_grup,instansi,username,email')
+      $data=Users::select('id,grup_id,username,email')
           ->groups(['select'=>'id,nama_grup'])
           ->table(null,$deleted_filter);
       jsonify($data);

@@ -34,9 +34,13 @@ class MY_Input extends CI_Input{
     if ($ci->upload->do_upload($name)){
       $data=$ci->upload->data();
       if($get_link){
+        if(isset($data['link_path'])){
+          // return $data[$name]=$data['link_path'];
+          return [0=>$data['link_path']];
+        }else{
         foreach($data as $i=>$d){
           $data[$i]=$d['link_path'];
-        }
+        }}
       }
       return $data;
     }

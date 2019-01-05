@@ -20,12 +20,12 @@
       <div class="form-group col draggable">
         <div class="handler">Form group</div>
         <div class="block draggable">
-          <div class="handler">Label</div>
-          <label class="form-label" data-toggle="popover" data-content="coba">Label</label>
+          <div class="handler" data-content="coba">Label</div>
+          <label class="form-label">Label</label>
         </div>
         <div class="block draggable">
-          <div class="handler">Input</div>
-          <input type="text" class="form-control" placeholder="Input name" data-toggle="popover" data-content="coba">
+          <div class="handler" data-content="coba">Input</div>
+          <input type="text" class="form-control" placeholder="Input name">
         </div>
       </div>
     </div>

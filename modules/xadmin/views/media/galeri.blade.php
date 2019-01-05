@@ -1,10 +1,3 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="#" class="reload-tab" data-title="Pengguna" data-url="@url/xadmin/users/pengguna/view/" data-get="">Pengguna</a>
-    </li>
-  </ol>
-</nav>
 <div data-toolbar>
   <button type="button" class="btn btn-primary" data-action="form" data-title="Tambah Data" data-url="@_path/form">
     <i class="fas fa-plus"> </i> Tambah
@@ -14,12 +7,18 @@
 <table class="table" data-table="@_path" data-get="" data-module="table,form" data-access="@_access">
   <thead>
     <tr>
-      <th data-field="state" data-checkbox="true"></th>
-      <th data-field="id" data-visible="false">ID</th>
-      <th data-field="username" data-title="Username" data-sortable="true">
-      <th data-field="email" data-sortable="true">Email</th>
-      <th data-field="groups.0.nama_grup">Grup</th>
+      <th data-field="state" data-checkbox="true">
+      <th data-field="id" data-title="ID" data-format="{id}" data-visible="false">
+      <th data-field="title" data-title="Judul" data-format="{title}" data-sortable="true">
+      <th data-field="description" data-title="Deskripsi" data-format="{description}" data-sortable="true">
+      <th data-field="url" data-title="Media" data-format="<embed src=`{url}` class=`w-100`></embed>" data-width="400" data-sortable="true">
       <th data-title="Action" data-events="action" data-formatter='
+        <button class="btn btn-sm btn-success writable" data-action="modal"
+          data-title="Publikasikan Data"
+          data-body="Apakah anda yakin ingin mempublikasikan data `<b>{title}</b>`"
+          data-footer="<button data-url=`{_path}/update` data-data=`id={id}&status={status}` class=`btn btn-success` type=`submit`>Publikasikan</button>" >
+          <i class="fas fa-check"></i>
+        </button>
         <button class="btn btn-sm btn-info writable" data-action="form"
           data-title="Ubah Data"
           data-url="{_path}/form/" data-get="id={id}">

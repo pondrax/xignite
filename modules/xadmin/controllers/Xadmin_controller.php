@@ -4,11 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Xadmin_controller extends CI_Controller {
   function __construct() {
     parent::__construct();
-    $this->load->model('xadmin/iku/iku');
-    $this->load->model('xadmin/iku/capaian');
     $this->load->model('xadmin/users/users');
     $this->load->model('xadmin/users/modul');
-    $this->load->model('xadmin/master/periode');
     $this->load->library('form_validation');
     $this->data=[
       'path'=>base_url('xadmin/auth'),
@@ -24,9 +21,6 @@ class Xadmin_controller extends CI_Controller {
   }
   public function home(){
     logged(true,'xadmin/auth');
-    $this->data['data_iku']=Iku::all();
-    $this->data['data_capaian']=Capaian::all();
-    $this->data['daftar_periode']=Periode::select('id as value,tahun as text')->all();
     $this->load->blade('ui/main',$this->data);    
   }
   public function auth($mode='login'){
@@ -86,7 +80,7 @@ class Xadmin_controller extends CI_Controller {
   public function set_year($year=18){
     $logged=logged();
     $logged->id_tahun=$year;
-    $logged->tahun=Periode::select('tahun')->one($year)->tahun;
+    // $logged->tahun=Periode::select('tahun')->one($year)->tahun;
     $this->session->set_userdata(['logged'=>$logged]);
     // jsonify($logged);
   }

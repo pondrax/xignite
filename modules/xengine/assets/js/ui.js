@@ -78,8 +78,12 @@ let UI={
           content=main.find('.tab-content'),
           tab = 'tab'+UI.string.random(10000),
           href=$(this).data('href'),
-          title=$(this).text();
-          console.log($(this).text())
+          title=$(this).text().replace(/\s+/g,' '),
+          duplicatetab=nav.find('.nav-link:contains('+title+')');
+      if(duplicatetab.length>0){
+        $(duplicatetab.attr('href')).remove()
+        duplicatetab.parent().remove()
+      }
       content.append('<div class="tab-pane" id="'+tab+'" style="height:100%;overflow:auto"></div>');
       nav.append(
         '<li class="nav-item">'+
@@ -814,7 +818,7 @@ let Module={
   },
   builder:{
     load:function(){
-      head(Module.builder.init)
+      head(function(){Module.builder.init()})
     },
     init:function(){
       let $tab=UI.tab.active(),
@@ -864,6 +868,7 @@ let Module={
                                     +'<span class="text-info">'+idname+'</span>'
                                     +'<span class="text-danger">'+classname+'</span></small>'
                                     +'<span class="close">&times;</span>');
+          $handler.popover()
         })
         return false;
       }).on('dragenter', '.widget-droparea,.droppable',function(e){
@@ -876,7 +881,7 @@ let Module={
       let myObserver = new MutationObserver (function(mutations){
         // console.log(droparea.html())
         let $el=droparea.clone();
-        $el.find('.draggable').removeAttr('draggable')
+        $el.find('.draggable').removeAttr('draggable').removeAttr('contenteditable')
           .removeClass('draggable highlight droppable drop-preview copy grid');
           // console.log($drag.attr('class'))
         $el.find('.block>*').unwrap()
