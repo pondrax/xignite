@@ -6,28 +6,25 @@ let UI={
   //Module loader
   module:{
     load:function(){
-      UI.tab.active().find('[data-module]').each(function(){
-        if($(this).data('module')!==undefined){
-          let module=$(this).data('module').split(',');
-          $.each(module,function(i,v){
-              console.log(v);
-            UI.module.name.push(v);
-            eval('Module.'+v+'.load()');
-          })
-        }
-      })
+      if(UI.tab.active().find('[data-module]').data('module')!=undefined){
+        let module=UI.tab.active().find('[data-module]').data('module').split(',');
+        $.each(module,function(i,v){
+            console.log(v);
+          eval('Module.'+v+'.load()');
+        })
+      }
     },
     name:[]
   },
   //UI Progress bar
   message:{
     load:function(title,state,autoclose){
-      state=state||'alert-info',
-      title=title||'<div class="lds-ellipsis">'+
+      var state=state||'alert-info',
+          title=title||'<div class="lds-ellipsis">'+
                        '  <div></div><div></div><div></div><div></div>'+
                        '</div>'+
-                       '<strong>Loading, please wait...</strong>';
-      let str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; max-height:300px; max-width:500px; overflow-y:auto">'+
+                       '<strong>Loading, please wait...</strong>',
+          str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; max-height:300px; max-width:500px; overflow-y:auto">'+
               '  <a href="#" class="close" data-dismiss="alert">&times;</a>'+title+
               '</div>';
               
@@ -74,18 +71,12 @@ let UI={
     },
     load:function(){
       let main=$('#main'),
-          nav=main.find('.nav-main-tabs'),
+          nav=main.find('.nav-tabs'),
           content=main.find('.tab-content'),
           tab = 'tab'+UI.string.random(10000),
           href=$(this).data('href'),
-          title=$(this).text().replace(/\s+/g,' '),
-          duplicatetab=nav.find('.nav-link:contains('+title+')');
-      // console.log(main,nav,content);
-      if(duplicatetab.length>0){
-        $(duplicatetab.attr('href')).remove()
-        duplicatetab.parent().remove()
-      }
-      content.append('<div class="tab-pane" id="'+tab+'" style="height:100%;overflow:auto"></div>');
+          title=$(this).text();
+      content.append('<div class="tab-pane p-4" id="'+tab+'"></div>');
       nav.append(
         '<li class="nav-item">'+
         '  <a class="nav-link" data-toggle="tab" href="#'+tab+'">'+
@@ -136,7 +127,7 @@ let UI={
   },
   setAccess:function(access){
     console.log(access);
-    if(access!==''){
+    if(access!=''){
       access=access.split(',');
       for (var i in access){
         UI.tab.active().find('.'+access[i]).removeClass(access[i]);
@@ -155,7 +146,6 @@ let Module={
       head.load(path.js+'/lib/bootstrap-table.min.js');
       head.load(path.js+'/lib/bootstrap-table-locale-id.js');
       head.load(path.js+'/lib/bootstrap-table-export.js');
-      head.load(path.js+'/lib/bootstrap-table-auto-refresh.js');
       // head.load(path.js+'/lib/bootstrap-table-group-by.js');
       head.load(path.js+'/lib/tableExport.min.js');
       UI.module.name.push('table');
@@ -173,7 +163,7 @@ let Module={
     },
     init:function(){
       this.setProp();
-      // console.log(this.table.data('table'));
+      console.log(this.table.data('table'));
       this.table.bootstrapTable({
         height:this.getHeight(),
         pageSize: this.getHeight()>700?20:10, 
@@ -623,9 +613,7 @@ let Module={
              ,'alert-warning',false);
         }else{
           Module.form.setProp().form.collapse('hide');
-          if(UI.module.name.includes('table')){
-            Module.table.refresh();
-          }            
+          Module.table.refresh();
           UI.message.load('<h6><strong>Success</strong>. Data tersimpan.</h6>','alert-success',true);
         }
       }).fail(function(response){
@@ -748,155 +736,5 @@ let Module={
     console.log(el);
     Module.form.submit(el,'');
     window.location.reload();
-  },
-  editor:{
-    load:function(){
-      head.load(path.js+'/lib/ace/ace.js');
-      head.load(path.js+'/lib/ace/ext-modelist.js');
-      head.load(path.js+'/lib/ace/ext-beautify.js');
-      head.load(path.js+'/lib/ace/ext-language_tools.js');
-      this.editor=[];
-      head(function(){
-        Module.editor.init()
-      });
-    },
-    init:function(){
-      let id=UI.tab.active().attr('id');
-      let form=UI.tab.active().find('form');
-      UI.tab.active().find('[data-module]').attr('id','editor-'+id);
-      
-      let editor = ace.edit("editor-"+id),
-          modelist = ace.require("ace/ext/modelist"),
-          filepath=UI.tab.active().find('[name=path]').val(),
-          mode='ace/mode/html';
-      if(filepath!==''){
-        mode=modelist.getModeForPath(filepath).mode;
-      console.log(filepath)
-      }
-          
-      editor.setTheme("ace/theme/monokai");
-      editor.session.setMode(mode);
-      editor.setDisplayIndentGuides(true);
-      editor.getSession().setUseWrapMode(true);  
-      // enable autocompletion and snippets
-      editor.setOptions({
-        tabSize: 2,
-        useSoftTabs: true,
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        enableLiveAutocompletion: false
-      });
-      editor.commands.addCommand({
-        name: 'save',
-        bindKey: {win: "Ctrl-S", "mac": "Cmd-S"},
-        exec: function(editor) {
-          // console.log("saving", editor.session.getValue())
-          form.submit();
-        }
-      })
-      editor.commands.on("afterExec", function(e){
-        if (e.command.name == "insertstring"&&/^[\w.]$/.test(e.args)) {
-        editor.execCommand("startAutocomplete")
-        }
-      })
-      UI.tab.active().find('[data-theme]').on('change',function(){
-        editor.setTheme("ace/theme/"+$(this).val());
-      });
-      form.on('submit',function(e){
-        e.preventDefault();
-        UI.tab.active().find('[name=content]').val(editor.getValue());
-        // console.log(editor.getValue());
-        Module.form.submit(form.attr('action'),form.serialize());
-      });
-      this.editor[UI.tab.active().attr('id')]=editor;
-    },
-    setValue:function(str){
-      let editor=this.editor[UI.tab.active().attr('id')];
-      // console.log(editor)
-      var beautify = ace.require("ace/ext/beautify"); 
-      editor.getSession().setValue(str);
-      beautify.beautify(editor.session);
-    }
-  },
-  builder:{
-    load:function(){
-      head(function(){Module.builder.init()})
-    },
-    init:function(){
-      let $tab=UI.tab.active(),
-          $transfer=[];
-      
-      $tab.find('.draggable').attr('draggable',true).addClass('copy')
-      
-      $tab.find('.main-widget').on('mouseover','.draggable',function(e){
-        e.stopPropagation()
-        $(this).addClass('highlight');
-      }).on('mouseout','.draggable',function(){
-        $('.highlight').removeClass('highlight');
-        $('.drop-preview').removeClass('drop-preview');
-      }).on('click','.close',function(){
-        $(this).closest('.draggable').remove();
-      }).on('dragstart','.draggable',function(e){
-        e.stopPropagation();
-        $transfer[0]=$(this);
-        console.log('drag',this)
-        e.originalEvent.dataTransfer.setData("Text",0);
-      }).on('drop', '.widget-droparea,.droppable',function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        let $el=$($transfer[e.originalEvent.dataTransfer.getData("Text")]), $clone=$el.clone();
-        console.log(this)
-        if($el.hasClass('copy')|| e.ctrlKey){
-          $(this).append($clone);
-        }else{
-          $(this).append($el);
-        }
-        
-        $tab.find('.widget-droparea .draggable').each(function(){
-          let $this=$(this),$handler=$this.find('.handler');
-          $this.removeClass('copy');
-          if($this.hasClass('block')){
-            $this=$this.find('.handler').siblings();
-            $this.attr('contenteditable',true)
-          }else{
-            $this.addClass('droppable');
-          }
-          tagname=$this.prop('tagName').toLowerCase();
-          idname=''||$this.prop('id')
-          classname=''||'.'+$this.attr('class').replace(/\s+/g,'.')
-                   .replace(/.draggable|.highlight|.droppable|.drop-preview|.copy/g,'')
-          $handler.html('<small><span class="text-primary">'+tagname+'</span>'
-                                    +'<span class="text-info">'+idname+'</span>'
-                                    +'<span class="text-danger">'+classname+'</span></small>'
-                                    +'<span class="close">&times;</span>');
-          $handler.popover()
-        })
-        return false;
-      }).on('dragenter', '.widget-droparea,.droppable',function(e){
-        e.stopPropagation();
-        $('.drop-preview').removeClass('drop-preview');
-        $(this).addClass('drop-preview');
-      }).on('dragover', false)
-      
-      let droparea = $tab.find(".main-widget .widget-droparea");
-      let myObserver = new MutationObserver (function(mutations){
-        // console.log(droparea.html())
-        // console.log('changed');
-        let $el=droparea.clone();
-        $el.find('.draggable').removeAttr('draggable')
-          .removeClass('draggable highlight droppable drop-preview copy grid');
-          // console.log($drag.attr('class'))
-        
-        $el.find('.block>*').removeAttr('contenteditable').unwrap()
-        $el.find('.handler').remove()
-        let html=$el.html().replace(/^\s*\n/gm,'');
-        Module.editor.setValue(html)
-        $tab.find('.widget-preview').html(html);
-      });
-      droparea.each ( function () {
-        myObserver.observe (this, {childList: true, characterData: true, attributes: true,subtree:true});
-      });
-    }
   }
 }

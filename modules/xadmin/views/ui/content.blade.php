@@ -1,4 +1,4 @@
-<div id="main">
+<div id="main" class="d-flex flex-column">
   <div id="loader"></div>
   <nav class="navbar navbar-expand-lg mb-2 shadow-sm">
     <button type="button" class="btn btn-primary mr-3" data-toggle="collapse" data-target="#sidebar">
@@ -21,19 +21,57 @@
       </ul>
     </div>
   </nav>
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs app-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
     </li>
   </ul>
-  <div class="tab-content" style="height:calc(100% - 110px)">
-    <div class="tab-pane container active py-4" id="home">
-      <h1>Selamat datang di aplikasi 
-        <span class="text-danger">{{APP_NAME}}</span>
-      </h1>
-      <br>
-      @include('ui/home')
-      <p class="py-2">Akses menu modul pada sidebar di sisi kiri</p>
+  <div class="app-content" style="flex:1" data-simplebar>
+    <div class="tab-content" style="height:100%">
+      <div class="tab-pane container active py-4" id="home">
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        <h1>Selamat datang di aplikasi 
+          <span class="text-danger">{{APP_NAME}}</span>
+        </h1>
+        <br>
+        @include('ui/home')
+        <p class="py-2">Akses menu modul pada sidebar di sisi kiri</p>
+      </div>
     </div>
   </div>
 </div>

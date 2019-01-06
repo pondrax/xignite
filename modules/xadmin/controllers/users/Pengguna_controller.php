@@ -20,7 +20,7 @@ class Pengguna_controller extends MX_Controller {
     // debug($deleted_filter);
     $data=$this->data;
     if($json){
-      $data=Users::select('id,grup_id,username,email')
+      $data=Users::select('id,id_grup,username,email')
           ->groups(['select'=>'id,nama_grup'])
           ->table(null,$deleted_filter);
       jsonify($data);

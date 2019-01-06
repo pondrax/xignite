@@ -34,13 +34,13 @@ class Api_controller extends MX_Controller {
   public function module(){
     $token=apache_request_headers()['app_token'];
     $logged=jwt::decode($token,$this->secret_key);
-    d($logged);
+    // d($logged);
     if(!$logged){
       http_response_code(403);
       jsonify(['status'=>'error','message'=>'Token Expired']);
     }else{
       $module=explode('module/',$_SERVER['PHP_SELF'])[1];
-      echo $module;
+      // echo $module;
       echo modules::run($module);
     }
   }

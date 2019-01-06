@@ -1,69 +1,55 @@
-<div class="text-center pt-3">
-  <img src="@asset/img/logo.png" align="center" class="logo shadow-sm px-5 pb-2" style="width:80%">
-  <h3 class="px-3 py-1 shadow-sm">{{APP_NAME}}</h3>
-</div>
-<div class="px-4 pb-2 shadow-sm">
-<select class="form-control" onchange="Module.setYear('@url/set_year/'+this.value)">
-  @foreach($daftar_periode as $p)
-  <option value="{{$p->value}}"  @if($p->value==$logged->id_tahun) selected @endif>Tahun {{$p->text}}</option>
-  @endforeach
-</select>
-</div>
-<ul class="nav flex-column px-4 py-3">
-  <li>
-    <a href="#" data-toggle="collapse" data-target="#laporan">
-      <i class="fas fa-file-contract px-1"></i> Laporan
-    </a>
-  @if(read_modul('media'))
-  <li>
-    <a href="#" data-toggle="collapse" data-target="#modul1">
-      <i class="fas fa-chalkboard-teacher"></i> Pustaka
-    </a>
-    <ul id="modul1" class="collapse pl-4">        
+<div class="d-flex flex-column" style="height:100%">
+  <div class="text-center pt-3">
+    <img src="@asset/img/xignite.png" align="center" class="logo shadow-sm px-5 pb-2" style="width:80%">
+    <h3 class="px-3 py-1 shadow-sm">{{APP_NAME}}</h3>
+  </div>
+  <div  style="flex:1" data-simplebar>
+  
+    <ul class="nav flex-column px-4 pt-0 pb-5">
+      @if(read_modul('media'))
       <li>
-        <a class="add-tab" href="#" data-href="@url/xadmin/media/galeri/view">
-          Galeri
+        <a href="#" data-toggle="collapse" data-target="#pustaka">
+          <i class="fas fa-chalkboard-teacher"></i> Pustaka
         </a>
+        <ul id="pustaka" class="collapse show pl-4">        
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/media/galeri/view">
+              :: Galeri
+            </a>
+          </li>   
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/media/dokumen/view">
+              :: Dokumen
+            </a>
+          </li>
+        </ul>
       </li>
-    </ul>
-  </li>
-  @endif
-  @if(read_modul('master'))    
-  <li>
-    <a href="#" data-toggle="collapse" data-target="#master">
-      <i class="fas fa-cogs"></i> Master
-    </a>
-    <ul id="master" class="collapse pl-4">
+      @endif
+      
+      @if(read_modul('master'))    
       <li>
-        <a class="add-tab" href="#" data-href="@url/xadmin/master/periode/view">
-          Periode
+        <a href="#" data-toggle="collapse" data-target="#master">
+          <i class="fas fa-cogs"></i> Master
         </a>
-      </li> 
-      <li>
-        <a class="add-tab" href="#" data-href="@url/xadmin/master/template/view">
-          Template Laporan
-        </a>
-      </li> 
+        <ul id="master" class="collapse show pl-4">
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/users/pengguna/view">
+              :: Pengguna
+            </a>
+          </li>
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/users/group/view">
+              :: Grup
+            </a>
+          </li>
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/users/akses/view">
+              :: Hak akses
+            </a>
+          </li>
+        </ul>
+      </li>
+      @endif
     </ul>
-  </li>
-  @endif
-  @if(read_modul('master'))
-  <li class="">
-    <a href="#" data-toggle="collapse" data-target="#user">
-      <i class="fas fa-users"></i> Pengguna
-    </a>
-    <ul id="user" class="collapse pl-4">   
-      <li>
-        <a class="add-tab" href="#" data-href="@url/xadmin/users/pengguna/view">
-        Data Pengguna
-        </a>
-      </li> 
-    </ul>
-  </li>
-  @endif
-</ul>
-<br>
-<br>
-<br>
-<br>
-<br>
+  </div>
+</div>

@@ -7,6 +7,7 @@
   <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
   <link type="text/css" rel="stylesheet" href="@css/lib/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="@css/lib/font-awesome.css">
+  <link type="text/css" rel="stylesheet" href="@css/lib/simplebar.min.css">
   <link type="text/css" rel="stylesheet" href="@css/ui.css">
   <script src="@js/lib/head.min.js"></script>
 </head>
@@ -32,6 +33,7 @@
     head.load("@js/lib/jquery.min.js");
     head.load("@js/lib/popper.min.js");
     head.load("@js/lib/bootstrap.min.js");
+    head.load("@js/lib/simplebar.min.js");
     head.load("@js/ui.js?"+Math.random());
     
     head(function(){

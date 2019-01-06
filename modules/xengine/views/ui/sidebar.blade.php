@@ -21,4 +21,123 @@
       </li>   
     </ul>
   </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
+  <li>
+    <a href="#" data-toggle="collapse" data-target="#view-builder">
+      <i class="fas fa-file-contract px-1"></i> View Builder
+    </a>
+    <ul id="view-builder" class="collapse show pl-4">
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
+          Layout Master
+        </a>
+      </li>
+      <li>
+        <a class="add-tab" href="#" data-href="@_modulepath/widgets">
+          Widgets
+        </a>
+      </li>   
+    </ul>
+  </li>   
 </ul>

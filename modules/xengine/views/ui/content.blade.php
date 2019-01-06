@@ -1,4 +1,4 @@
-<div id="main">
+<div id="main" data-simplebar>
   <div id="loader"></div>
   <nav class="navbar navbar-expand-lg mb-2 shadow-sm">
     <button type="button" class="btn btn-danger mr-3" data-toggle="collapse" data-target="#sidebar">
@@ -22,7 +22,7 @@
       </ul>
     </div>
   </nav>
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs nav-main-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
     </li>

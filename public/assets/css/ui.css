@@ -1,11 +1,10 @@
-img.logo {
+ .logo {
   -webkit-filter: drop-shadow(0 0 5px #fff);
   filter: drop-shadow(0 0 5px #fff);
 }
 #sidebar{
-  width:0;
-  overflow-x:hidden;
-    overflow-y: scroll;
+  width:0; 
+  overflow:hidden;
   height:100%;
   width:250px;
 }
@@ -30,19 +29,18 @@ img.logo {
 #content{
   flex:1;
   height:100%;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 #content #main{
   height:100%;
-  overflow-x:hidden;
-  overflow-y:scroll;
+  overflow:hidden;
 }
 #progress-bar{
   height:5px;
 }
 
 ol.breadcrumb {
-  margin-top: -15px;
+  margin-top: 0;
   margin-bottom: 0;
   border: 0;
   padding: 10px 15px;
@@ -135,7 +133,7 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
 }
 input[type="radio"], input[type="checkbox"] {
     margin: 4px 0 0;
-    margin-top: 1px \9;
+    margin-top: 1px;
     line-height: normal;
 }
 input[type="checkbox"], input[type="radio"] {
@@ -195,3 +193,73 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 .grab { cursor: grab; }
 .grabbed { box-shadow: 0 0 13px #000; }
 .grabCursor, .grabCursor * { cursor: grabbing !important; }
+
+
+.code-editor{
+  height: inherit;
+}
+
+
+.widget-items,
+.widget-droparea,
+.widget-preview{
+  min-height: 300px;
+}
+.widget-droparea{
+  min-height: 100vh;
+}
+.widget-items .close,
+.widget-droparea .close{
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.widget-items .draggable,
+.widget-droparea .draggable{
+  border: 1px solid rgb(200,200,200);
+  margin:  0;
+  padding: 15px 10px 12px !important;
+  /*min-height:40px;*/
+  position: relative;
+}
+.widget-group> .draggable{
+  margin-bottom:10px;
+}
+.widget-items .draggable.highlight,
+.widget-droparea .draggable.highlight{
+  border-color: rgb(100,100,255);
+}
+.widget-droparea .handler:hover > .close{
+  display: inline;
+}
+.widget-droparea .draggable{
+  margin:0;
+}
+.main-widget .drop-preview{
+  background: rgb(200,255,255);
+}
+.widget-items .handler,
+.widget-droparea .handler{
+  position:absolute;
+  top:-3px;
+  left:10px;
+  right: 10px;
+}
+.widget-result{
+  width:100%;
+  min-height: 200px;
+}
+.main-widget label.form-label{
+  margin-bottom: 0;
+}
+
+
+
+
+.note-toolbar.card-header {
+    padding: 5px;
+}
+.note-popover.popover{
+    display: none;
+}
