@@ -165,18 +165,37 @@ function access_modul($modul_name=''){
   return implode(',',$akses);
 }
 function read_modul($modul_name=''){
-  return modul($modul_name)->read;
+  if(isset(modul($modul_name)->read)){
+    return modul($modul_name)->read;
+  }else {
+    return false;
+  }
 }
 function write_modul($modul_name=''){
-  return modul($modul_name)->write;
+  if(isset(modul($modul_name)->write)){
+    return modul($modul_name)->write;
+  }else {
+    return false;
+  }
 }
 function delete_modul($modul_name=''){
-  return modul($modul_name)->delete;
+  if(isset(modul($modul_name)->delete)){
+    return modul($modul_name)->delete;
+  }else {
+    return false;
+  }
 }
 function modul($modul_name=''){
   $ci = &get_instance();
-  $ci->load->library('session');
-  $modul=$ci->session->userdata('modules');
+  $secret_key=$ci->config->item('api_secret_key');
+  if(isset(apache_request_headers()['app_token'])){
+    $token=apache_request_headers()['app_token'];
+    $logged=jwt::decode($token,$secret_key);
+    $modul=$logged->modules;
+  }else{
+    $ci->load->library('session');
+    $modul=$ci->session->userdata('modules');
+  }
   return $modul->{$modul_name};
 }
 function forbidden_access(){

@@ -17,16 +17,14 @@ class Pengguna_controller extends MX_Controller {
   }
   
   public function view($json=null,$deleted_filter=false){
-    // debug($deleted_filter);
-    $data=$this->data;
-    if($json){
+    if($json || $this->input->get('json')){
       $data=Users::select('id,id_grup,username,email')
           ->groups(['select'=>'id,nama_grup'])
           ->table(null,$deleted_filter);
       jsonify($data);
     }
     else{
-      $this->load->blade('users/pengguna',$data);
+      $this->load->blade('users/pengguna',$this->data);
     }
   }
   

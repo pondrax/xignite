@@ -6,7 +6,7 @@ class Galeri_controller extends MX_Controller {
     $this->load->model('xadmin/media/media');
     $this->data=[
       'path'=>base_url('xadmin/media/galeri'),
-      // 'access'=>access_modul('users'),
+      'access'=>access_modul('media'),
       'logged'=>logged(true,'xadmin/auth'),
       'upload_config'=>[
         'file_name' => date('YmdHis'),
@@ -25,7 +25,7 @@ class Galeri_controller extends MX_Controller {
   public function view($json=null,$deleted_filter=false){
     // debug($deleted_filter);
     $data=$this->data;
-    if($json){
+    if($json || $this->input->get('json')){
       $data=Media::table(null,$deleted_filter);
       jsonify($data);
     }
