@@ -26,11 +26,21 @@ function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
   $post=$ci->input->post();
   $uploaded=$ci->input->upload_all($config,true);
-  $post=isset($post[0])?$post:[$post];
+  // $post=isset($post[0])?$post:[$post];
+  // d($post);
+  if(!isset($post[0])){
+    foreach ($post as $p=>$v){
+      if(count(explode($prefix,$p))>1){
+        unset($post[$p]);
+      }
+    }
+    $post=[$post];
+  }
   foreach($uploaded as $key=>$name){
     foreach($name as $i=>$value){
       if($value){
         if($remove){
+          d($post[$i]);
           remove_file($post[$i][$prefix.$key]);
         }
         $post[$i][$key]=$value;
@@ -203,6 +213,13 @@ function forbidden_access(){
   <div class="container-fluid py-3">
     <h4>Forbidden. Access is unauthorized.</h4>
   </div>';
+}
+function remap($key,$array){
+  $tmp=[];
+  foreach($array as $i=>$a){
+    $tmp[$a->{$key}]=$array[$i];
+  }
+  return $tmp;
 }
 function get_value($key,$array){
   if(!is_array($key)){

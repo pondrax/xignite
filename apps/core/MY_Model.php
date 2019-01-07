@@ -6,7 +6,7 @@ class MY_Model extends CI_Model{
   protected $table;
   protected $primary_key='id';
   
-  protected static $protected = array();
+  protected $protected = array();
 
   protected $has_one = array();
   protected $has_many = array();
@@ -207,6 +207,7 @@ class MY_Model extends CI_Model{
           }
           // jsonbug(array_keys($related_data));
           // jsonbug($data);
+          // jsonbug(self::_var('protected'));
           $related_keys=array_keys($related_data);
           foreach($data as $i=>$d){
             if(isset($where_exclusive)){
@@ -290,9 +291,29 @@ class MY_Model extends CI_Model{
         }
       }
     }
+    
+    self::recursive_unset($data,self::_var('protected'));
+    
     return $data;
   }
   
+  private static function recursive_unset(&$array, $unwanted_key) {
+    if(!is_array($unwanted_key)){
+      $unwanted_key=[$unwanted_key];
+    }
+    foreach($unwanted_key as $key){
+      if(is_object($array)){
+        unset($array->$key);
+      }elseif(is_array($array)){
+        unset($array[$key]);
+      }
+      foreach ($array as &$value) {
+        if (is_array($value)||is_object($value)) {
+          self::recursive_unset($value, $key);
+        }
+      }
+    }
+  }
   private static function get_related_model($related){
     $foreign=singular(static::class);
     $local_key=self::_var('primary_key');

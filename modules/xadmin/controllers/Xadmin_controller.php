@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Xadmin_controller extends CI_Controller {
   function __construct() {
     parent::__construct();
-    $this->load->model('xadmin/users/users');
-    $this->load->model('xadmin/users/modul');
+    $this->load->model('xadmin/master/pengguna');
+    $this->load->model('xadmin/master/modul');
     $this->load->library('form_validation');
     $this->data=[
       'path'=>base_url('xadmin/auth'),
@@ -39,7 +39,7 @@ class Xadmin_controller extends CI_Controller {
       $this->form_validation->set_rules('username', 'Username', 'required');
       $this->form_validation->set_rules('password', 'Password', 'required');
       if ($this->form_validation->run() === true){
-        $login_id=Users::verify_password($password,['username'=>$username]);
+        $login_id=Pengguna::verify_password($password,['username'=>$username]);
       //debug($data);
         if($login_id){
           $this->set_session($login_id);
@@ -54,7 +54,7 @@ class Xadmin_controller extends CI_Controller {
     $this->load->blade('auth/login',$this->data);
   }
   public function set_session($id){
-    $logged=Users::select('id,id_grup,username')
+    $logged=Pengguna::select('id,id_grup,username')
             ->groups(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
             ->one($id);
     $modules=(object)[];

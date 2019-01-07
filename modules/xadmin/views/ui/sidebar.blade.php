@@ -33,18 +33,18 @@
         </a>
         <ul id="master" class="collapse show pl-4">
           <li>
-            <a class="add-tab" href="#" data-href="@url/xadmin/users/pengguna/view">
+            <a class="add-tab" href="#" data-href="@url/xadmin/master/pengguna/view">
               :: Pengguna
             </a>
           </li>
           <li>
-            <a class="add-tab" href="#" data-href="@url/xadmin/users/group/view">
+            <a class="add-tab" href="#" data-href="@url/xadmin/master/grup/view">
               :: Grup
             </a>
           </li>
           <li>
-            <a class="add-tab" href="#" data-href="@url/xadmin/users/akses/view">
-              :: Hak akses
+            <a class="add-tab" href="#" data-href="@url/xadmin/master/modul/view">
+              :: Modul
             </a>
           </li>
         </ul>

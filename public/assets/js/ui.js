@@ -85,7 +85,7 @@ let UI={
         $(duplicatetab.attr('href')).remove()
         duplicatetab.parent().remove()
       }
-      content.append('<div class="tab-pane p-2" id="'+tab+'"></div>');
+      content.append('<div class="tab-pane py-2 px-3" id="'+tab+'"></div>');
       nav.append(
         '<li class="nav-item">'+
         '  <a class="nav-link" data-toggle="tab" href="#'+tab+'">'+

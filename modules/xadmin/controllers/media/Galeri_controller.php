@@ -23,14 +23,12 @@ class Galeri_controller extends MX_Controller {
   }
   
   public function view($json=null,$deleted_filter=false){
-    // debug($deleted_filter);
-    $data=$this->data;
     if($json || $this->input->get('json')){
-      $data=Media::table(null,$deleted_filter);
-      jsonify($data);
+      $this->data=Media::table(null,$deleted_filter);
+      jsonify($this->data);
     }
     else{
-      $this->load->blade('media/galeri',$data);
+      $this->load->blade('media/galeri',$this->data);
     }
   }
   
