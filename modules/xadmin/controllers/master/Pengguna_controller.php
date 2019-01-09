@@ -18,9 +18,7 @@ class Pengguna_controller extends MX_Controller {
   
   public function view($json=null,$deleted_filter=false){
     if($json || $this->input->get('json')){
-      $data=Pengguna::select('users__groups.id as id_grup,nama_grup,users.*')
-          ->join('grup')
-          // ->grup(['select'=>'id,nama_grup'])
+      $data=Pengguna::join('grup')
           ->table(null,$deleted_filter);
       jsonify($data);
     }

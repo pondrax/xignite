@@ -17,6 +17,8 @@ class MY_Model extends CI_Model{
 
   protected $rules=null;
   
+  protected static $default_select=true;
+  
   protected static $soft_delete = true;
   protected static $deleted_filter = 'default'; //[default,with_deleted,only_deleted]
   
@@ -78,6 +80,7 @@ class MY_Model extends CI_Model{
           self::where("$table.deleted_at",null);
       }
     }
+    
     if(is_array($criteria)){
       if(array_values($criteria)===$criteria){
         self::where_in(self::_var('primary_key'),$criteria);
@@ -379,12 +382,18 @@ class MY_Model extends CI_Model{
       $relatedjoin= (new $model)->_var('has_one')[$value];
       extract(self::get_related_model($relatedjoin));
       self::$db->join($table,"$table.$foreign_key $operator $localtable.$localtable_key",$type);
+      if(self::$default_select){
+        self::$db->select("$table.*, $localtable.*");
+      }
     }
     else{
       $related=self::_var('has_one')[$has_one];
       extract(self::get_related_model($related));
       $localtable=self::_var('table');
       self::$db->join($table,"$table.$foreign_key $operator $localtable.$local_key",$type);
+      if(self::$default_select){
+        self::$db->select("$table.*, $localtable.*");
+      }
     }
     return new static();
 	}
@@ -553,6 +562,7 @@ class MY_Model extends CI_Model{
   
   public static function select($select = '*', $escape = null){
 		static::$db->select($select, $escape);
+    self::$default_select=false;
 		return new static();
 	}
   

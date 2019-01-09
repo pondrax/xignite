@@ -422,6 +422,7 @@ let Module={
           }
         }
       });
+      $('body').append($('.modal'));
       // $('.note-editable').css('font-family','Times New Roman');
       // $('.note-editable').css('font-size','12px');
       
