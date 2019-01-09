@@ -263,3 +263,6 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 .note-popover.popover{
     display: none;
 }
+.form-group{
+  position:relative;
+}

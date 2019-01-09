@@ -40,7 +40,7 @@ class Pengguna extends MY_Model{
   }
   
   public static function verify_password($pass,$where){
-    $data=self::select('id,password')->one($where);
+    $data=self::select('id,password')->with_protected()->one($where);
     // debug($pass);
     if($data){
         if(isset($data->password)&&password_verify($pass,$data->password)){

@@ -7,6 +7,7 @@ class MY_Model extends CI_Model{
   protected $primary_key='id';
   
   protected $protected = array();
+  protected static $protected_filter = false;
 
   protected $has_one = array();
   protected $has_many = array();
@@ -291,26 +292,24 @@ class MY_Model extends CI_Model{
         }
       }
     }
-    
-    self::recursive_unset($data,self::_var('protected'));
-    
+    if(!self::$protected_filter){
+      foreach(self::_var('protected') as $protected){
+        self::recursive_unset($data,$protected);
+      }
+    }
+    // d($data);
     return $data;
   }
   
-  private static function recursive_unset(&$array, $unwanted_key) {
-    if(!is_array($unwanted_key)){
-      $unwanted_key=[$unwanted_key];
+  private static function recursive_unset(&$array, $key) {
+    if(is_object($array)){
+      unset($array->$key);
+    }elseif(is_array($array)){
+      unset($array[$key]);
     }
-    foreach($unwanted_key as $key){
-      if(is_object($array)){
-        unset($array->$key);
-      }elseif(is_array($array)){
-        unset($array[$key]);
-      }
-      foreach ($array as &$value) {
-        if (is_array($value)||is_object($value)) {
-          self::recursive_unset($value, $key);
-        }
+    foreach ($array as &$value) {
+      if (is_array($value)||is_object($value)) {
+        self::recursive_unset($value, $key);
       }
     }
   }
@@ -643,6 +642,10 @@ class MY_Model extends CI_Model{
   }
   public static function only_deleted(){
     self::$deleted_filter='only_deleted';
+    return new static();
+  }
+  public static function with_protected(){
+    self::$protected_filter=true;
     return new static();
   }
   /* ----------------------------------------------------------------------------

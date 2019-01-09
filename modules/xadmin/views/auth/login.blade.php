@@ -32,9 +32,9 @@
   <div class="wrapper">
     <div class="container">
       <form id="login" class="col-12 col-md-6 col-lg-4 shadow px-4" method="post">
-          <img src="@asset/img/logo.png"  style="max-width: 150px;display: block;margin: 20px auto;">
+          <img src="@asset/img/xignite.png"  style="max-width: 150px;display: block;margin: 20px auto;">
           <br>
-        <h3>Sign In</h3>
+        <h3>Harap masuk terlebih dahulu</h3>
         <br>
         <div class="form-group">
           <label>Username</label>
@@ -52,10 +52,10 @@
         </div>
         <br>
         <button type="submit" class="btn btn-block btn-primary">
-          <i class="fas fa-login"></i> Login
+          <i class="fas fa-login"></i> Masuk
         </button>
         <br>
-        <p class="text-muted">LKPJ - V3</p>
+        <p class="text-muted">{{APP_NAME}}</p>
       </form>
     </div>
   </div>

@@ -55,12 +55,12 @@ class Xadmin_controller extends CI_Controller {
   }
   public function set_session($id){
     $logged=Pengguna::select('id,id_grup,username')
-            ->groups(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
+            ->grup(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
             ->one($id);
     $modules=(object)[];
-    $read=explode(',',$logged->groups[0]->modul_read);
-    $write=explode(',',$logged->groups[0]->modul_write);
-    $delete=explode(',',$logged->groups[0]->modul_delete);
+    $read=explode(',',$logged->grup[0]->modul_read);
+    $write=explode(',',$logged->grup[0]->modul_write);
+    $delete=explode(',',$logged->grup[0]->modul_delete);
     foreach(Modul::all() as $m){
       $modul_name=strtolower($m->nama_modul);
       $modul_id=$m->id;
@@ -70,8 +70,8 @@ class Xadmin_controller extends CI_Controller {
         'delete'=>in_array($modul_id,$delete)
       ];
     }
-    $logged->nama_grup=$logged->groups[0]->nama_grup;
-    unset($logged->groups);
+    $logged->nama_grup=$logged->grup[0]->nama_grup;
+    unset($logged->grup);
     $this->session->set_userdata(['logged'=>$logged]);
     $this->session->set_userdata(['modules'=>$modules]);
     $this->set_year();
