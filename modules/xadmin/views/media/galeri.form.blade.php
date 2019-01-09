@@ -1,14 +1,14 @@
 <form action="@_path/update/" method="post" enctype="multipart/form-data" class="py-3 mt-3 border-top" novalidate>
   <div class="row">
     <input name="id" type="hidden" value="{{$data->id|''}}">
-    <div class="col">
+    <div class="form-group col">
       <label>Title</label>
       <input class="form-control" name="title" type="text" placeholder="Title"
         value="{{$data->title|''}}" autofocus>
       <label>Deskripsi</label>
       <textarea class="form-control summernote h-min" name="description" placeholder="Deskripsi">{{$data->description|''}}</textarea>
     </div>
-    <div class="col-4">
+    <div class="form-group col-4">
       <label>Media</label>
       <input name="old_url" type="hidden" value="{{$data->url|''}}">
       <input class="form-control" name="url" type="file" placeholder="Media" onchange="Module.form.read(this,'.preview')">

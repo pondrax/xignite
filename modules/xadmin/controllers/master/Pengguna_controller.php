@@ -18,8 +18,7 @@ class Pengguna_controller extends MX_Controller {
   
   public function view($json=null,$deleted_filter=false){
     if($json || $this->input->get('json')){
-      $data=Pengguna::join('grup')
-          ->table(null,$deleted_filter);
+      $data=Pengguna::join('grup')->table(null,$deleted_filter);
       jsonify($data);
     }
     else{

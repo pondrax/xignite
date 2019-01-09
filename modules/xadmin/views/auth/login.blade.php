@@ -12,12 +12,14 @@
   <script src="@js/lib/popper.min.js"></script>
   <script src="@js/lib/bootstrap.min.js"></script>
   <style>
-  .bg-login{
-    background: linear-gradient(45deg, #dca 12%, transparent 0, transparent 88%, #dca 0),
-    linear-gradient(135deg, transparent 37%, #639aaf 0, #639aaf 63%, transparent 0),
-    linear-gradient(45deg, transparent 37%, #dca 0, #dca 63%, transparent 0) #335877;
-    background-size: 100px 100px;
-    overflow:hidden;
+  .bg-login{background-color:black;
+background-image:
+radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
     }
     #login{
       background:#fff;
@@ -34,7 +36,9 @@
       <form id="login" class="col-12 col-md-6 col-lg-4 shadow px-4" method="post">
           <img src="@asset/img/xignite.png"  style="max-width: 150px;display: block;margin: 20px auto;">
           <br>
-        <h3>Harap masuk terlebih dahulu</h3>
+        <br>
+        <br>
+        <h4>Masuk untuk melanjutkan</h4>
         <br>
         <div class="form-group">
           <label>Username</label>
@@ -51,7 +55,7 @@
           </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-block btn-primary">
+        <button type="submit" class="btn btn-block btn-danger">
           <i class="fas fa-login"></i> Masuk
         </button>
         <br>

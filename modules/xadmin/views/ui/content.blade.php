@@ -1,7 +1,7 @@
 <div id="main" class="d-flex flex-column">
   <div id="loader"></div>
   <nav class="navbar navbar-expand-lg mb-2 shadow-sm">
-    <button type="button" class="btn btn-primary mr-3" data-toggle="collapse" data-target="#sidebar">
+    <button type="button" class="btn btn-danger mr-3" data-toggle="collapse" data-target="#sidebar">
       <i class="fas fa-align-justify"></i>
     </button>
     <h3 class='main-title'>{{APP_NAME}}</h3>

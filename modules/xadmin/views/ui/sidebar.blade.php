@@ -22,6 +22,11 @@
               :: Dokumen
             </a>
           </li>
+          <li>
+            <a class="add-tab" href="#" data-href="@url/xadmin/media/kamera/view">
+              :: Kamera
+            </a>
+          </li>
         </ul>
       </li>
       @endif

@@ -899,3 +899,61 @@ let Module={
     }
   }
 }
+
+
+  Module.camera={
+    video:null,
+    init:function(el){
+      let $el=$(el).closest('.form-group');
+      this.video=$el.find('.video')[0];
+      this.shot=$el.find('.shot')[0];
+      this.canvas=$el.find('canvas')[0];
+      this.start();
+    },
+    start:function(){
+      if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+      }
+
+      if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = function(constraints) {
+          var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+          if (!getUserMedia) {
+            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+          }
+          return new Promise(function(resolve, reject) {
+            getUserMedia.call(navigator, constraints, resolve, reject);
+          });
+        }
+      }
+
+      video=this.video
+      if(window.localStream === undefined){
+        navigator.mediaDevices.getUserMedia({ audio: false, video: {width:320,height:240} })
+        .then(function(stream) {
+          window.localStream=stream;
+          if ("srcObject" in video) {
+            video.srcObject = window.localStream;
+          } else {
+            video.src = window.URL.createObjectURL(window.localStream);
+          }
+          video.onloadedmetadata = function(e) {
+            video.play();
+          };
+        })
+        .catch(function(err) {
+          console.log(err.name + ": " + err.message);
+        });
+      }
+    },
+    snap:function(){
+      this.canvas.getContext('2d').drawImage(this.video, 0, 0);
+      this.shot.src=this.canvas.toDataURL();
+    },
+    stop:function(){
+      window.localStream.getTracks().forEach( (track) => {
+        track.stop();
+      });
+      window.localStream=undefined
+    }
+  };
