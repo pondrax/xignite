@@ -13,11 +13,11 @@
 <table class="table" data-table="@_path" data-get="" data-module="table,form" data-access="@_access">
   <thead>
     <tr>
-      <th data-field="state" data-checkbox="true">
-      <th data-field="id" data-title="ID" data-format="{id}" data-visible="false">
-      <th data-field="title" data-title="Judul" data-format="{title}" data-sortable="true">
-      <th data-field="description" data-title="Deskripsi" data-format="{description}" data-sortable="true">
-      <th data-field="url" data-title="Media" data-format="<embed src=`{url}` class=`w-100`></embed>" data-width="400" data-sortable="true">
+      <th data-field="state" data-checkbox="true"></th>
+      <th data-field="id" data-format="{id}" data-visible="false">ID</th>
+      <th data-field="judul" data-sortable="true">Judul</th>
+      <th data-field="deskripsi" data-sortable="true">Deskripsi</th>
+      <th data-field="kamera" data-format="<img src=`{kamera}` class=`w-100`>" data-width="200">Kamera</th>
       <th data-title="Action" data-events="action" data-formatter='
         <button class="btn btn-sm btn-success writable" data-action="modal"
           data-title="Publikasikan Data"
