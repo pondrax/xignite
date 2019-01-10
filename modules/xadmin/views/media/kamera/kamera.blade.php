@@ -21,7 +21,7 @@
       <th data-title="Action" data-events="action" data-formatter='
         <button class="btn btn-sm btn-success writable" data-action="modal"
           data-title="Publikasikan Data"
-          data-body="Apakah anda yakin ingin mempublikasikan data `<b>{title}</b>`"
+          data-body="Apakah anda yakin ingin mempublikasikan data `<b>{id}</b>`"
           data-footer="<button data-url=`{_path}/update` data-data=`id={id}&status={status}` class=`btn btn-success` type=`submit`>Publikasikan</button>" >
           <i class="fas fa-check"></i>
         </button>
@@ -32,7 +32,7 @@
         </button>
         <button class="btn btn-sm btn-danger deletable" data-action="modal"
           data-title="Hapus Data"
-          data-body="Apakah anda yakin menghapus data `<b>{title}</b>`"
+          data-body="Apakah anda yakin menghapus data `<b>{id}</b>`"
           data-footer="<button data-url=`{_path}/remove` data-data=`id={id}` class=`btn btn-danger` type=`submit`>Delete</button>" >
           <i class="fas fa-times"></i>
         </button>

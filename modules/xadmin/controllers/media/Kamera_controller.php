@@ -59,10 +59,6 @@ class Kamera_controller extends MX_Controller {
   public function remove($force_delete=false){
     $id=explode(',',$this->input->post('id'));
     if($id){
-      $files=Kamera::select('url')->all($id,'only_deleted');
-      if($force_delete){
-        remove_files($files);
-      }
       jsonify(Kamera::delete($id,$force_delete));
     }
   }

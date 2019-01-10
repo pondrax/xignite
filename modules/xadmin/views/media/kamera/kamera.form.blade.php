@@ -9,8 +9,9 @@
       <textarea class="form-control summernote h-min" name="deskripsi" placeholder="Deskripsi">{{$data->deskripsi|''}}</textarea>
     </div>
     <div class="form-group col-4">
+      @define($default=base_url('public/assets/img/xignite.png'))
       <label>Kamera</label>
-      <input type="hidden" name="kamera" class="save" value="{{$data->kamera|''}}">
+      <input type="hidden" name="kamera" class="save" value="{{$data->kamera|$default}}">
       <ul class="nav nav-pills nav-fill pb-1">
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="#" onclick="Module.camera.snap(this)">Ambil Foto</a>
@@ -29,7 +30,7 @@
           </div>
         </div>
         <div class="embed-responsive embed-responsive-4by3">
-          <img class="shot bg-dark embed-responsive-item" src="{{$data->kamera|''}}">
+          <img class="shot bg-dark embed-responsive-item" src="{{$data->kamera|$default}}">
         </div>
       </div>
       <canvas width="320" height="240" style="display:none"></canvas>
