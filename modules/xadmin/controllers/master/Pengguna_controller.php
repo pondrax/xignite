@@ -44,7 +44,7 @@ class Pengguna_controller extends MX_Controller {
   
   public function update(){
     $data=$this->input->post();
-    d($data);
+    
     if(!$data[0]['id']){
       jsonify(Pengguna::insert_batch($data));
     }else{

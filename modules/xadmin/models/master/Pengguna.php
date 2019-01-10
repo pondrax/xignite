@@ -33,8 +33,13 @@ class Pengguna extends MY_Model{
   ];
   
   public static function hash_password($data){
+    // d(isset($data));
     if(isset($data['password'])){
-      $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+      if($data['password'] !=''){
+        $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+      }else{
+        unset($data['password']);
+      }
     }
     return $data;
   }
