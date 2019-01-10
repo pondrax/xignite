@@ -4,7 +4,8 @@
 }
 #sidebar{
   width:0; 
-  overflow:hidden;
+  overflow-x:hidden;
+    overflow-y: scroll;
   height:100%;
   width:250px;
 }
@@ -29,18 +30,19 @@
 #content{
   flex:1;
   height:100%;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 #content #main{
   height:100%;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:scroll;
 }
 #progress-bar{
   height:5px;
 }
 
 ol.breadcrumb {
-  margin-top: 0;
+  margin-top: -15px;
   margin-bottom: 0;
   border: 0;
   padding: 10px 15px;
@@ -252,21 +254,4 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 }
 .main-widget label.form-label{
   margin-bottom: 0;
-}
-
-
-
-
-.note-toolbar.card-header {
-    padding: 5px;
-}
-.note-popover.popover{
-    display: none;
-}
-.form-group{
-  position:relative;
-}
-
-.tab-content>.tab-pane{
-  height:100%;
 }

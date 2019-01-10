@@ -10,7 +10,7 @@ let UI={
         if($(this).data('module')!==undefined){
           let module=$(this).data('module').split(',');
           $.each(module,function(i,v){
-              // console.log(v);
+              console.log(v);
             UI.module.name.push(v);
             eval('Module.'+v+'.load()');
           })
@@ -27,7 +27,7 @@ let UI={
                        '  <div></div><div></div><div></div><div></div>'+
                        '</div>'+
                        '<strong>Loading, please wait...</strong>';
-      let str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; min-height:50px;max-height:300px; max-width:500px; overflow-y:auto">'+
+      let str='<div class="alert '+state+' alert-dismissible alert-autoclose fixed-bottom m-4 w-md-25" style="right:0; left:auto; max-height:300px; max-width:500px; overflow-y:auto">'+
               '  <a href="#" class="close" data-dismiss="alert">&times;</a>'+title+
               '</div>';
               
@@ -74,7 +74,7 @@ let UI={
     },
     load:function(){
       let main=$('#main'),
-          nav=main.find('.app-tabs'),
+          nav=main.find('.nav-main-tabs'),
           content=main.find('.tab-content'),
           tab = 'tab'+UI.string.random(10000),
           href=$(this).data('href'),
@@ -85,7 +85,7 @@ let UI={
         $(duplicatetab.attr('href')).remove()
         duplicatetab.parent().remove()
       }
-      content.append('<div class="tab-pane py-2 px-3" id="'+tab+'"></div>');
+      content.append('<div class="tab-pane" id="'+tab+'" style="height:100%;overflow:auto"></div>');
       nav.append(
         '<li class="nav-item">'+
         '  <a class="nav-link" data-toggle="tab" href="#'+tab+'">'+
@@ -135,7 +135,7 @@ let UI={
     }
   },
   setAccess:function(access){
-    // console.log(access);
+    console.log(access);
     if(access!==''){
       access=access.split(',');
       for (var i in access){
@@ -158,6 +158,7 @@ let Module={
       head.load(path.js+'/lib/bootstrap-table-auto-refresh.js');
       // head.load(path.js+'/lib/bootstrap-table-group-by.js');
       head.load(path.js+'/lib/tableExport.min.js');
+      UI.module.name.push('table');
       head(function(){Module.table.init()});
     },
     find:function(el){
@@ -205,7 +206,7 @@ let Module={
               columns[i].formatter=Module.table.formatter;
             }
           }
-          // console.log(columns)
+          console.log(columns)
           columns[columns.length-1].formatter+=
             '<button class="btn btn-sm btn-success trashed-only"  data-action="modal" data-title="Kembalikan Data" data-body="Apakah anda yakin mengembalikan data terpilih `<b>{id}</b>`" data-footer="<button data-url=`{_path}/restore` data-data=`id={id}` class=`btn btn-success` type=`submit`>Kembalikan</button>" >'+
             '  <i class="fas fa-undo"></i>'+
@@ -330,7 +331,7 @@ let Module={
       this.table.bootstrapTable('resetView',{height: this.getHeight()}); 
     },
     getHeight:function(){
-      return UI.tab.active().closest('.app-content').height()-60;
+      return UI.tab.active().parent().height()-60;
     },
     getSelection:function(){
       return $.map(this.table.bootstrapTable('getSelections'), ({id}) => id);
@@ -370,6 +371,7 @@ let Module={
       head.load(path.js+'/lib/summernote-gallery-extension.js');
       head.load(path.js+'/lib/selectize.min.js');
       
+      UI.module.name.push('form');
       this.selectize=[];
       head(function(){Module.form.init()});
     },
@@ -422,7 +424,6 @@ let Module={
           }
         }
       });
-      $('body').append($('.modal'));
       // $('.note-editable').css('font-family','Times New Roman');
       // $('.note-editable').css('font-size','12px');
       
@@ -626,7 +627,6 @@ let Module={
             Module.table.refresh();
           }            
           UI.message.load('<h6><strong>Success</strong>. Data tersimpan.</h6>','alert-success',true);
-          Module.camera.stop();
         }
       }).fail(function(response){
         var error=response.responseText;
@@ -870,7 +870,7 @@ let Module={
                                     +'<span class="text-info">'+idname+'</span>'
                                     +'<span class="text-danger">'+classname+'</span></small>'
                                     +'<span class="close">&times;</span>');
-          // $handler.popover()
+          $handler.popover()
         })
         return false;
       }).on('dragenter', '.widget-droparea,.droppable',function(e){
@@ -900,65 +900,3 @@ let Module={
     }
   }
 }
-
-
-  Module.camera={
-    video:null,
-    init:function(el){
-      this.video=$(el).closest('[data-form]').find('.video');
-      if (navigator.mediaDevices === undefined) {
-        navigator.mediaDevices = {};
-      }
-
-      if (navigator.mediaDevices.getUserMedia === undefined) {
-        navigator.mediaDevices.getUserMedia = function(constraints) {
-          var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-          if (!getUserMedia) {
-            return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-          }
-          return new Promise(function(resolve, reject) {
-            getUserMedia.call(navigator, constraints, resolve, reject);
-          });
-        }
-      }
-
-      $video=this.video;
-      if(window.localStream === undefined){
-        navigator.mediaDevices.getUserMedia({ audio: false, video: {width:320,height:240} })
-        .then(function(stream) {
-          window.localStream=stream;
-          $video.each(function(i){
-            let video=$video[i];
-            if ("srcObject" in video) {
-              video.srcObject = window.localStream;
-            } else {
-              video.src = window.URL.createObjectURL(window.localStream);
-            }
-            video.onloadedmetadata = function(e) {
-              video.play();
-            };
-          });
-        })
-        .catch(function(err) {
-          console.log(err.name + ": " + err.message);
-        });
-      }
-    },
-    snap:function(el){
-      let $el=$(el).closest('.form-group'),
-          shot=$el.find('.shot')[0],
-          canvas=$el.find('canvas')[0],
-          save=$el.find('.save');
-      canvas.getContext('2d').drawImage(this.video[0], 0, 0);
-      shot.src=canvas.toDataURL();
-      save.val(shot.src)
-    },
-    stop:function(){
-      if(window.localStream !== undefined){
-        window.localStream.getTracks().forEach( (track) => {
-          track.stop();
-        });
-      }
-      window.localStream=undefined
-    }
-  };

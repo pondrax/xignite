@@ -27,9 +27,6 @@
       js   :'@js',
       asset:'@asset',
     }
-    // head.load("@css/lib/bootstrap.min.css");
-    // head.load("@css/lib/font-awesome.css");
-    // head.load("@css/ui.css");
     head.load("@js/lib/jquery.min.js");
     head.load("@js/lib/popper.min.js");
     head.load("@js/lib/bootstrap.min.js");

@@ -293,4 +293,11 @@ function get_satuan($num){
     return '';
   }  
 }
+function clone_array(&$data,$length=0){
+  if($length>0){
+    for ($i = 1; $i < $length; $i++) { 
+      $data[$i]=$data[0]; 
+    }
+  }
+}
 ?>

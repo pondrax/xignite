@@ -1,4 +1,4 @@
-<div class="row no-gutters main-widget" style="height:calc(100vh - 110px)" >
+<div class="row no-gutters main-widget" style="margin:-8px -15px;height:calc(100vh - 110px)" >
   <div class="col-3 widget-items" data-simplebar>
     <div class="widget-group px-1">
       <span class="text-muted">Grid Layout</span>

@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="row no-gutters" style="height:100vh">
-    <div id="sidebar" class="collapse show bg-light shadow" data-simplebar>
+    <div id="sidebar" class="collapse show bg-light shadow">
       @include('code/sidebar')
     </div>
     <div id="content">

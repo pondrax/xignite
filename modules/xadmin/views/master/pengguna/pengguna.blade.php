@@ -6,9 +6,19 @@
   </ol>
 </nav>
 <div data-toolbar>
-  <button type="button" class="btn btn-primary" data-action="form" data-title="Tambah Data" data-url="@_path/form">
-    <i class="fas fa-plus"> </i> Tambah
-  </button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary" data-action="form" data-title="Tambah Data" data-url="@_path/form">
+      <i class="fas fa-plus"> </i> Tambah
+    </button>
+    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+    </button>
+    <div class="dropdown-menu p-0">
+      <a class="dropdown-item py-0" href="#" data-action="form" data-title="Tambah Data" data-url="@_path/form/copy/2">2</a>
+      <a class="dropdown-item py-0" href="#" data-action="form" data-title="Tambah Data" data-url="@_path/form/copy/3">3</a>
+      <a class="dropdown-item py-0" href="#" data-action="form" data-title="Tambah Data" data-url="@_path/form/copy/4">4</a>
+      <a class="dropdown-item py-0" href="#" data-action="form" data-title="Tambah Data" data-url="@_path/form/copy/5">5</a>
+    </div>
+</div>
 </div>
 <div class="card card-body collapse mb-5" data-form></div>
 <table class="table" data-table="@_path" data-get="" data-module="table,form" data-access="@_access">

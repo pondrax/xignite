@@ -22,7 +22,7 @@
       </ul>
     </div>
   </nav>
-  <ul class="nav nav-tabs nav-main-tabs">
+  <ul class="nav nav-tabs app-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
     </li>
