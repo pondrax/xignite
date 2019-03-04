@@ -15,12 +15,13 @@ class Xadmin_controller extends CI_Controller {
   
   public function index(){
     if(logged()){
-      header('Location: '.base_url('home'));
+      header('Location: '.base_url('xadmin/home'));
     }
     $this->auth();
   }
   public function home(){
-    d($_SERVER);
+    //   d($_SERVER);
+    //   d(BASE_URL);
     logged(true,'xadmin/auth');
     $this->load->blade('ui/main',$this->data);    
   }
