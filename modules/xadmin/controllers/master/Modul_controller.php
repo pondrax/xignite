@@ -25,10 +25,11 @@ class Modul_controller extends MX_Controller {
     }
   }
   
-  public function form($mode=''){
+  public function form($mode='',$clone=0){
     $id=$this->input->get('id');
     if(!$id){
       $data=[[]];
+      clone_array($data,$clone);
     }else{
       $data=Modul::all(explode(',',$id));
     }

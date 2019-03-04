@@ -24,6 +24,7 @@ function jsonify($data){
 
 function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
+  $ci->load->library('form_validation');
   $post=$ci->input->post();
   $uploaded=$ci->input->upload_all($config,true);
   // $post=isset($post[0])?$post:[$post];
@@ -36,19 +37,30 @@ function post_upload($config,$remove=false,$prefix="old_"){
     }
     $post=[$post];
   }
+  // d($uploaded);
   foreach($uploaded as $key=>$name){
-    foreach($name as $i=>$value){
-      if($value){
-        if($remove){
-          d($post[$i]);
-          remove_file($post[$i][$prefix.$key]);
+      // dd($name);
+      // dd($key);
+      
+    if(array_key_exists('error',$name)){
+      $ci->form_validation->set_message($key, $name['error']);  
+      // dd($name['error']);
+      // return $uploaded;
+    }
+    else{
+      foreach($name as $i=>$value){
+        if($value){
+          if($remove){
+            // d($post[$i]);
+            remove_file($post[$i][$prefix.$key]);
+          }
+          $post[$i][$key]=$value;
         }
-        $post[$i][$key]=$value;
+        else{
+          $post[$i][$key]=$post[$i][$prefix.$key];
+        }
+        unset($post[$i][$prefix.$key]);
       }
-      else{
-        $post[$i][$key]=$post[$i][$prefix.$key];
-      }
-      unset($post[$i][$prefix.$key]);
     }
   }
   // $data=$post;

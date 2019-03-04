@@ -1,8 +1,8 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Media extends MY_Model{
+class Galeri extends MY_Model{
   
-  public $table = 'media';
+  public $table = 'media__galeri';
   public $primary_key = 'id';
   public $fields = [
     'id' => [
@@ -10,11 +10,11 @@ class Media extends MY_Model{
       'constraint' => '11',
       'auto_increment' => true
     ],
-    'title' => [
+    'judul' => [
       'type' => 'varchar',
       'constraint' => '255'
     ],
-    'description' => [
+    'deskripsi' => [
       'type' => 'varchar',
       'constraint' => '255'
     ],
@@ -40,6 +40,11 @@ class Media extends MY_Model{
       'field' => 'id',
       'label' => 'ID',
       'rules' => 'trim'
+    ],
+    [
+      'field' => 'judul',
+      'label' => 'Judul',
+      'rules' => 'trim|required'
     ]
   ];
   

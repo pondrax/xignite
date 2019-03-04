@@ -1,7 +1,7 @@
 <form action="@_path/update/" method="post" enctype="multipart/form-data" class="py-3 mt-3 border-top" novalidate>
   <div class="row">
     <input name="id" type="hidden" value="{{$data->id|''}}">
-    <div class="form-group col">
+    <div class="form-group col-8">
       <label>Judul</label>
       <input class="form-control" name="judul" type="text" placeholder="Judul"
         value="{{$data->judul|''}}" autofocus>
