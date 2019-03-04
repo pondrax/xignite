@@ -270,3 +270,33 @@ input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-
 .tab-content>.tab-pane{
   height:100%;
 }
+
+
+
+
+
+
+
+/*------- Front Page --------*/
+.nav-link{
+  font-weight:bold;
+}
+a.card-body{
+  text-decoration:none;
+}
+.btn-circle{
+width:90px;
+height:90px;
+border-radius:50%;
+font-size:50px;
+text-align:center;
+text-decoration:none;
+}
+.to-top{
+  position:fixed;
+  bottom:2rem;
+  right:2rem;
+}
+.wizard.nav-tabs .nav-link{
+  border:0;
+}

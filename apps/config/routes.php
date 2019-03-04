@@ -50,9 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$exceptions = array('xadmin','xengine','xweb','welcome','api','pdf','profiler');
 
-$route['default_controller'] = 'xadmin';
-$route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xadmin/$1';
+$exceptions = array('xadmin','xengine','xweb');
+
+$route['default_controller'] = 'xweb';
+$route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xweb/page/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
+
