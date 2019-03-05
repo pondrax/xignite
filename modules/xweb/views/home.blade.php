@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
-          <a class="btn btn-outline-info animated hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
           <a class="btn btn-danger hvr-hang" href="@url/signup">Daftar</a>
         </div>
       </div>
@@ -119,7 +119,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
     <div class="container">
       <div class="row">
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
-          <div class="card shadow flex-fill" data-aos="fade-up">
+          <div class="card shadow flex-fill reveal fadeInLeft">
             <a href="#" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-sitemap"></i>
@@ -130,7 +130,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           </div>
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
-          <div class="card shadow flex-fill" data-aos="fade-up" data-aos-delay="100">
+          <div class="card shadow flex-fill reveal fadeInLeft delay-01s">
             <a href="@url/daftar-informasi/informasi-berkala" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-bullhorn"></i>
@@ -141,7 +141,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           </div>
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
-          <div class="card shadow flex-fill" data-aos="fade-up" data-aos-delay="200">
+          <div class="card shadow flex-fill reveal fadeInLeft delay-02s">
             <a href="@url/daftar-informasi/informasi-serta-merta" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-paper-plane"></i>
@@ -152,7 +152,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           </div>
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
-          <div class="card shadow flex-fill" data-aos="fade-up" data-aos-delay="300">
+          <div class="card shadow flex-fill reveal fadeInLeft delay-03s">
             <a href="@url/daftar-informasi/informasi-setiap-saat" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-atom"></i>
@@ -171,7 +171,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
   <div class="shadow" style="min-height:80vh">
     <div class="container py-3">
       <div class="row py-3">
-        <div class="col-md-4 reveal slideInLeft">
+        <div class="col-md-4 reveal fadeInLeft">
           <h1 class="mt-md-5">Aduan Terkini</h1>
           <hr>
           <h5>
@@ -183,7 +183,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           <a href="@url/galeri" class="btn btn-outline-danger px-3" style="border-radius:20px">Selengkapnya</a>
           <br>
         </div>
-        <div class="col-md-8 reveal fadeInLeft delay-09s">
+        <div class="col-md-8 reveal fadeInLeft delay-02s">
         <div  style="height:80vh" data-simplebar data-simplebar-auto-hide="false">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

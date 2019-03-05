@@ -44,10 +44,11 @@
     
     var mainbar=new SimpleBar($('body')[0],{autoHide:false})
     mainbar.getScrollElement().addEventListener('scroll', function(){
-      $('.reveal').each(function(i,el){
+      var containerHeight=$(this).height()-150;
+      $(this).find('.reveal').each(function(i,el){
         var elTop=$(el).offset().top
           , elHeight=$(el).height();
-        if(elTop-elHeight>0){
+        if(elTop-containerHeight>0){
           $(el).removeClass('show animated')
         }else{
           if(!$(el).hasClass('animated')){
