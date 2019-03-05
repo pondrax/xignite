@@ -4,12 +4,12 @@
     <div class="container">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
-          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-outline-info animated hvr-hang" href="@url/login">Masuk</a> &nbsp;
           <a class="btn btn-danger hvr-hang" href="@url/signup">Daftar</a>
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-2 hover bounce">
           <h1 class="text-center">Aspirasikan dirimu di Wadul Jatim</h1>
           <h2 class="text-center text-muted">Aspirasikan dirimu di Wadul Jatim</h2>
         </div>
@@ -171,7 +171,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
   <div class="shadow" style="min-height:80vh">
     <div class="container py-3">
       <div class="row py-3">
-        <div class="col-md-4" data-aos="fade-right">
+        <div class="col-md-4 reveal slideInLeft">
           <h1 class="mt-md-5">Aduan Terkini</h1>
           <hr>
           <h5>
@@ -183,7 +183,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           <a href="@url/galeri" class="btn btn-outline-danger px-3" style="border-radius:20px">Selengkapnya</a>
           <br>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 reveal fadeInLeft delay-09s">
         <div  style="height:80vh" data-simplebar data-simplebar-auto-hide="false">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

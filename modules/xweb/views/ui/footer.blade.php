@@ -34,50 +34,34 @@
       </div>
     </div>
   </div>
-  </div>
   <script>
   $(()=> {
-    AOS.init({
-      startEvent: 'load',
-    });
     $("[data-scroll]").click(function() {
       $('html, body').animate({
           scrollTop: $($(this).data('scroll')).offset().top
       }, 1000);
     });
+    
+    var mainbar=new SimpleBar($('body')[0],{autoHide:false})
+    mainbar.getScrollElement().addEventListener('scroll', function(){
+      $('.reveal').each(function(i,el){
+        var elTop=$(el).offset().top
+          , elHeight=$(el).height();
+        if(elTop-elHeight>0){
+          $(el).removeClass('show animated')
+        }else{
+          if(!$(el).hasClass('animated')){
+            $(el).addClass('animated')
+            $(el)[0].style.webkitAnimation = 'none';
+            setTimeout(function(){$(el)[0].style.webkitAnimation = ''}, 10);
+          }
+          setTimeout(function(){$(el).addClass('show')}, 100);          
+        }
+      })
+    });
+    
+    
   });
-  
-  
-  
-  
- $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-     var $target = $(e.target);
-
-     if ($target.hasClass('disabled')) {
-         return false;
-     }
- });
-
- $(".next-step").click(function (e) {
-     var $active = $('.wizard.nav-tabs .nav-item .active');
-     var $activeli = $active.parent("li");
-
-     $($activeli).next().find('a[data-toggle="tab"]').removeClass("disabled");
-     $($activeli).next().find('a[data-toggle="tab"]').click();
- });
-
-
- $(".prev-step").click(function (e) {
-
-     var $active = $('.wizard.nav-tabs .nav-item .active');
-     var $activeli = $active.parent("li");
-
-     $($activeli).prev().find('a[data-toggle="tab"]').removeClass("disabled");
-     $($activeli).prev().find('a[data-toggle="tab"]').click();
-
- });
-
   </script>
 </body>
 </html>
