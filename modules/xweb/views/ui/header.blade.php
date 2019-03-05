@@ -8,16 +8,18 @@
   <link rel="stylesheet" href="@css/lib/bootstrap.min.css">
   <link rel="stylesheet" href="@css/lib/font-awesome.css">
   <link rel="stylesheet" href="@css/lib/hover.css">
+  <link rel="stylesheet" href="@css/lib/simplebar.min.css">
   <link rel="stylesheet" href="@css/lib/aos.css">
   <link rel="stylesheet" href="@css/ui.css">
   <script src="@js/lib/jquery.min.js"></script>
   <script src="@js/lib/popper.min.js"></script>
   <script src="@js/lib/bootstrap.min.js"></script>
+  <script src="@js/lib/simplebar.min.js"></script>
   <script src="@js/lib/aos.js"></script>
 </head>
 <body>
 
-
+  <div  style="height:100vh" data-simplebar-auto-hide="false">
   <nav class="navbar navbar-expand-lg navbar-light shadow m-0 bg-white" style=" flex-direction: column;border:0;border-radius:0">
     <div class="container py-1 px-4" id="header">
       <a class="navbar-brand hvr-bounce-in" href="@url">
@@ -37,7 +39,7 @@
           <li class="nav-item">
             <a class="nav-link hvr-underline-from-center" href="@url">Beranda</a>
           </li>
-          <li class="nav-item"><span class="nav-link">/</span></li>
+          <li class="nav-item d-none d-lg-block"><span class="nav-link">/</span></li>
           <li class="nav-item dropdown">
             <a class="nav-link hvr-underline-from-center dropdown-toggle" href="#" data-toggle="dropdown">
               Yuk Wadul
@@ -49,11 +51,11 @@
               <a class="dropdown-item" href="@url/layanan/saran">Saran</a>
             </div>
           </li>
-          <li class="nav-item"><span class="nav-link">/</span></li>
+          <li class="nav-item d-none d-lg-block"><span class="nav-link">/</span></li>
           <li class="nav-item">
             <a class="nav-link hvr-underline-from-center" href="@url/statistik">Statistik</a>
           </li>
-          <li class="nav-item"><span class="nav-link">/</span></li>
+          <li class="nav-item d-none d-lg-block"><span class="nav-link">/</span></li>
           <li class="nav-item">
             <a class="nav-link hvr-underline-from-center" href="@url/tentang">Tentang Wadul</a>
           </li>

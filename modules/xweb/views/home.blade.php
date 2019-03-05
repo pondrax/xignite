@@ -2,18 +2,20 @@
   
   <div style="background:url(@asset/img/bg3.jpg) center;background-size:cover;">
     <div class="container">
-      <div class="col-2 bg-white px-3 py-2 shadow border-bottom">
-        <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
-        <a class="btn btn-danger hvr-hang" href="@url/signup">Daftar</a>
+      <div class="row justify-content-end">
+        <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
+          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-danger hvr-hang" href="@url/signup">Daftar</a>
+        </div>
       </div>
-      </div>
-      <h1 class="text-center">Aspirasikan dirimu di Wadul Jatim</h1>
-      <h2 class="text-center text-muted">Aspirasikan dirimu di Wadul Jatim</h2>
-      <br>
-      <div class="row justify-content-md-center">
-        <div class="col col-lg-8">
+      <div class="row justify-content-center">
+        <div class="col-12 mb-2">
+          <h1 class="text-center">Aspirasikan dirimu di Wadul Jatim</h1>
+          <h2 class="text-center text-muted">Aspirasikan dirimu di Wadul Jatim</h2>
+        </div>
+        <div class="col col-lg-10">
           <div class="jumbotron bg-white p-4">
-            <textarea class="form-control border-0" rows="6" style="resize:none" placeholder="Ketik aduan disini"></textarea>
+            <textarea class="form-control border-0" rows="7" style="resize:none" placeholder="Ketik aduan disini"></textarea>
             <br>
             <select class="form-control mt-1">
               <option>Blabalabla</option>
@@ -110,10 +112,11 @@
     </div>
   </div>
   
+  
+  
   <div class="py-md-3" style="background: rgb(10,85,181);
-background: linear-gradient(-61deg, rgba(10,85,181,1) 35%, rgba(0,212,255,1) 100%);">
+background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
     <div class="container">
-    
       <div class="row">
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
           <div class="card shadow flex-fill" data-aos="fade-up">
@@ -143,8 +146,8 @@ background: linear-gradient(-61deg, rgba(10,85,181,1) 35%, rgba(0,212,255,1) 100
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-paper-plane"></i>
               </span>
-              <h5 class="card-title py-2 border-bottom"><b>Proses Tindak Lanjut</b></h5>
-              <p class="text-muted">Dalam 5 hari, instansi akan menindaklanjuti dan membalas laporan Anda</p>
+              <h5 class="card-title py-2 border-bottom"><b>Mad dog</b></h5>
+              <p class="text-muted">Naise</p>
             </a>
           </div>
         </div>
@@ -162,9 +165,12 @@ background: linear-gradient(-61deg, rgba(10,85,181,1) 35%, rgba(0,212,255,1) 100
       </div>
     </div>
   </div>
+  
+  
+  
   <div class="shadow" style="min-height:80vh">
     <div class="container py-3">
-      <div class="row">
+      <div class="row py-3">
         <div class="col-md-4" data-aos="fade-right">
           <h1 class="mt-md-5">Aduan Terkini</h1>
           <hr>
@@ -177,33 +183,24 @@ background: linear-gradient(-61deg, rgba(10,85,181,1) 35%, rgba(0,212,255,1) 100
           <a href="@url/galeri" class="btn btn-outline-danger px-3" style="border-radius:20px">Selengkapnya</a>
           <br>
         </div>
-        @foreach($media['rows'] as $m)
-        <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-          <div class="card shadow p-1 my-2">
-            <img class="card-img-top" src="{{$m->url}}">
-          </div>
+        <div class="col-md-8">
+        <div  style="height:80vh" data-simplebar data-simplebar-auto-hide="false">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-        @endforeach
+        </div>
       </div>
     </div>
   </div>
   
-  <div id="permohonan" class="bg-secondary py-5" style="min-height:80vh">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 order-md-12" data-aos="zoom-in">
-          <h1 class="mt-md-5">Pengajuan Permohonan</h1>
-          <hr>
-          <p>
-          Ajukan permohonan informasi kepada PPID Dinas Peternakan Provinsi Jawa Timur
-          </p>
-        </div>
-        <div class="col" data-aos="zoom-in" data-aos-delay="100">
-          @include('form_informasi')
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
   
 @include('ui/footer')
