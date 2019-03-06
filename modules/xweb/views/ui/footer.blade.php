@@ -76,11 +76,15 @@
         })
       });
     }else{
+      var containerHeight=$(window).height()-150;
       $(window).on('scroll',function(){
         $('.reveal').each(function(i,el){
           var elTop=$(el).offset().top
-            , elHeight=$(el).height();
-          if(elTop-containerHeight<=0){
+            , elHeight=$(el).height()
+            , scrollTop=$(window).scrollTop();
+          if(elTop-containerHeight-scrollTop>0){
+            $(el).removeClass('show animated')
+          }else{
             if(!$(el).hasClass('animated')){
               $(el).addClass('animated')
               $(el)[0].style.webkitAnimation = 'none';
