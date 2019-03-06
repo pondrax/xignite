@@ -7,8 +7,6 @@
               <div class="card-body">
                 <h5 class="card-title mt-2"><b>Wadul</b></h5>
                 <hr>
-                <p style="font-size:.8rem">
-                </p>
               </div>
             </div>
           </div>
@@ -17,6 +15,10 @@
               <div class="card-body">
                 <h5 class="card-title mt-2"><b>Link Terkait</b></h5>
                 <hr>
+                <a href="http://jatimprov.go.id" target="_blank">Web Pemprov Jatim</a><br>
+                <a href="http://jatimprov.go.id" target="_blank">Web Pemprov Jatim</a><br>
+                <a href="http://jatimprov.go.id" target="_blank">Web Pemprov Jatim</a><br>
+                <a href="http://jatimprov.go.id" target="_blank">Web Pemprov Jatim</a><br>
               </div>
             </div>
           </div>
