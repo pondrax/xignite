@@ -22,6 +22,12 @@ class Xengine_controller extends CI_Controller {
   public function view_builder(){
     $this->load->blade('xengine/ui/view_builder',$this->data);
   }
+  public function view_controller(){
+    $this->load->blade('xengine/ui/view_controller',$this->data);
+  }
+  public function view_model(){
+    $this->load->blade('xengine/ui/view_model',$this->data);
+  }
   public function make_controller(){
     $data=$this->data;
     $post=$this->input->post();
