@@ -82,9 +82,7 @@
           var elTop=$(el).offset().top
             , elHeight=$(el).height()
             , scrollTop=$(window).scrollTop();
-          if(elTop-containerHeight-scrollTop>0){
-            $(el).removeClass('show animated')
-          }else{
+          if(elTop-containerHeight-scrollTop<=0){
             if(!$(el).hasClass('animated')){
               $(el).addClass('animated')
               $(el)[0].style.webkitAnimation = 'none';
