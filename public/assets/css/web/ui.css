@@ -307,3 +307,8 @@ text-decoration:none;
 .reveal.show{
   visibility:visible
 }
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

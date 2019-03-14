@@ -180,47 +180,28 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           <br>
           Aduan yang mau diajukan mungkin sudah ditangani dan diatasi.
           </h5>
-          <a href="@url/galeri" class="btn btn-outline-danger px-3" style="border-radius:20px">Selengkapnya</a>
+          <a href="@url/aduan" class="btn btn-outline-danger px-3" style="border-radius:20px">Selengkapnya</a>
           <br>
         </div>
         <div class="col-md-8 py-3 reveal fadeInLeft delay-02s">
           <div style="height:80vh" data-simplebar>
-            <ul class="list-unstyled py-0">
+            <ul class="list-unstyled py-0">            
+              @foreach($aduan as $a)
               <li class="media py-3 my-4 border-bottom shadow-sm">
-                <img class="mr-3" src="https://via.placeholder.com/150">
+                <div >
+                <img class="mr-3" src="https://via.placeholder.com/120">
+                <br>
+                  <a href="#" class="">
+                  {{($a->pengguna[0]->username)}}
+                  </a>
+                
+                </div>
                 <div class="media-body">
-                  <h5 class="mt-0 mb-1">List-based media object</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  <a href="#"><h5 class="mt-0 mb-1">{{$a->judul}}</h5></a>
+                  {{mb_strimwidth($a->aduan, 0, 300, "...")}}
                 </div>
               </li>
-              <li class="media py-3 my-4 border-bottom shadow-sm">
-                <img class="mr-3" src="https://via.placeholder.com/150">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">List-based media object</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media py-3 my-4 border-bottom shadow-sm">
-                <img class="mr-3" src="https://via.placeholder.com/150">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">List-based media object</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media py-3 my-4 border-bottom shadow-sm">
-                <img class="mr-3" src="https://via.placeholder.com/150">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">List-based media object</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
-              <li class="media py-3 my-4 border-bottom shadow-sm">
-                <img class="mr-3" src="https://via.placeholder.com/150">
-                <div class="media-body">
-                  <h5 class="mt-0 mb-1">List-based media object</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </li>
+              @endforeach
             </ul>
           </div>
         </div>
