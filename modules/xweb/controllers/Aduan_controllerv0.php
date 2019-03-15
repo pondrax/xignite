@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Aduan_controller extends CI_Controller {
+class Aduan_controller extends MX_Controller {
   function __construct() {
     parent::__construct();
-    $this->load->model('xweb/halaman/aduan');
+    $this->load->model('xweb/aduan');
     $this->data=[
-      'path'=>base_url('xweb/halaman/aduan'),
+      'path'=>base_url('xweb/aduan'),
       'access'=>access_modul('users'),
       'logged'=>logged(true,'xadmin/auth'),
       'upload_config'=>[
@@ -30,7 +30,7 @@ class Aduan_controller extends CI_Controller {
       jsonify($data);
     }
     else{
-      $this->load->blade('xweb/halaman/aduan',$data);
+      $this->load->blade('xweb/aduan',$data);
     }
   }
   
@@ -44,7 +44,7 @@ class Aduan_controller extends CI_Controller {
     foreach($data as $i=>$d){
       if($mode=='copy'){unset($d->id);}
       $this->data['data']=$d;
-      $this->load->blade('xweb/halaman/aduan.form',$this->data);
+      $this->load->blade('xweb/aduan.form',$this->data);
     }
   }
   

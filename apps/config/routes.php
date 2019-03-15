@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $exceptions = array('xadmin','xengine');
 
 $route['default_controller'] = 'xweb';
-$route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xweb/aduan/$1';
+$route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xweb/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
 

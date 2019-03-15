@@ -187,18 +187,42 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           <div style="height:80vh" data-simplebar>
             <ul class="list-unstyled py-0">            
               @foreach($aduan as $a)
-              <li class="media py-3 my-4 border-bottom shadow-sm">
-                <div >
-                <img class="mr-3" src="https://via.placeholder.com/120">
-                <br>
-                  <a href="#" class="">
-                  {{($a->pengguna[0]->username)}}
-                  </a>
-                
+              <li class="media pt-3 pb-1 my-4 border-bottom shadow-sm">
+                <div class="text-muted">
+                <img class="mr-3" src="https://via.placeholder.com/100">
+                <br>        
+                <span class="text-info">#{{dechex(strtotime($a->created_at))}}</span>
                 </div>
                 <div class="media-body">
-                  <a href="#"><h5 class="mt-0 mb-1">{{$a->judul}}</h5></a>
-                  {{mb_strimwidth($a->aduan, 0, 300, "...")}}
+                  <a href="#" class="link lead">
+                      {{$a->judul}}
+                  </a>
+                  <p>
+                  {{mb_strimwidth($a->aduan, 0, 200, "...")}}
+                  </p>
+                  <p class="text-muted">
+                  <div class="float-left">
+                    @if($a->anonim)
+                    <span class="">
+                      anonim
+                    </span>
+                    @else
+                    <a href="#" class="link">
+                      {{($a->pengguna[0]->username)}}
+                    </a>
+                    @endif
+                  </div>
+                  <div class="float-right text-muted">
+                  
+                    <span class="px-2" data-toggle="tooltip" title="{{strftime('%A, %d %B %Y %H:%M',strtotime($a->created_at))}}">
+                      {{time_elapsed_string($a->created_at)}}
+                    </span>
+                    &nbsp;
+                    <span class="">Tindak lanjut</span>
+                    &nbsp;
+                    <span class="">Dilihat {{$a->view}} kali</span>
+                  </div>
+                  </p>
                 </div>
               </li>
               @endforeach

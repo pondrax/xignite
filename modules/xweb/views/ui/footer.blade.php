@@ -54,6 +54,7 @@
           scrollTop: $($(this).data('scroll')).offset().top
       }, 1000);
     });
+    $('[data-toggle="tooltip"]').tooltip(); 
     var isMobile=window.mobileAndTabletcheck();
     
     if(!isMobile){
