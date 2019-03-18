@@ -24,7 +24,7 @@ class Aduan_controller extends CI_Controller {
     $data['aduan']=Aduan::pengguna()
                    ->order_by('created_at','desc')
                    ->limit(10)
-                   ->all();
+                   ->table();
     $this->load->blade('xweb/aduan',$data);
   }
 

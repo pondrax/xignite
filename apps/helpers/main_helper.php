@@ -20,7 +20,14 @@ function jsonbug($data){
 function jsonify($data){
   echo json_encode($data,JSON_PRETTY_PRINT);  
 }
-
+function get($var){
+  $ci =& get_instance();
+  return $ci->input->get($var,'');
+}
+function post($var){
+  $ci =& get_instance();
+  return $ci->input->post($var,'');
+}
 
 function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();

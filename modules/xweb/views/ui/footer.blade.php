@@ -61,6 +61,10 @@
       var mainbar=new SimpleBar($('body')[0],{autoHide:false})
       mainbar.getScrollElement().addEventListener('scroll', function(){
         var containerHeight=$(this).height()-150;
+        // $(this).find('.sticky-top').each(function(i,el){
+          // var elTop=$(el).offset().top;
+          // setTimeout(function(){$(el).offset({top:-elTop})},100);
+        // })
         $(this).find('.reveal').each(function(i,el){
           var elTop=$(el).offset().top
             , elHeight=$(el).height();
