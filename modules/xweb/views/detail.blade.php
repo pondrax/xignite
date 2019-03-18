@@ -3,7 +3,7 @@
   <div class="shadow" style="min-height:80vh">
     <div class="container py-3">
       <div class="row">
-        <div class="col-12 col-md-3 py-3 mb-5">
+        <div class="col-md-3 py-3 mb-5">
           <div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb px-0">
@@ -15,9 +15,9 @@
             
           </div>
         </div>
-        <div class="col-12 col-md-9 py-3">
+        <div class="col-md-9 py-3">
           <div class="row jumbotron px-3">
-            <div class="col-auto pr-0">
+            <div class="col-md-auto col-12 pr-0">
               <img class="mr-3" src="https://via.placeholder.com/100">
               <p class="text-info">#{{$aduan->slug}}</p>
             </div>
