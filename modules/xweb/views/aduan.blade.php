@@ -24,7 +24,7 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
     <div class="container py-3">
       <div class="row">
         <div class="col-md-4 py-3 mb-5">
-          <div class="sticky-top">
+          <div class="sticky-top pb-5 mb-5" style="min-height:">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb px-0">
                 <li class="breadcrumb-item"><a href="@url">Beranda</a></li>
@@ -37,6 +37,16 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
             Semua aduan masyarakat Jawa Timur. 
             </h5>
             <br>
+          </div>
+          <div>
+            <h3>Kategori</h3>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
           </div>
         </div>
         <div class="col-md-8 py-3">
@@ -59,12 +69,21 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
               <div class="col-auto">
                 <ul class="pagination m-0 float-right">
                   <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
-                  <li class="page-item"><a class="page-link" href="#">></a></li>
+                  <li class="page-item"><a class="page-link" href="?offset={{get('offset',0)+get('limit',10)}}">></a></li>
                 </ul>
               </div>
             </div>
-            <p class="p-0 text-muted">
-              Menampilkan produk untuk "{{get('search')}}" (1 - 60 dari {{$aduan['total']}})
+            <p class="text-muted">
+              Menampilkan 
+              @if(get('search')!='') 
+                aduan "{{get('search')}}"
+              @else
+                semua aduan
+              @endif
+              
+              ( {{get('offset',0)+1}}
+              - {{min(get('offset',0)+get('limit',10), $aduan['total'])}}
+              dari {{$aduan['total']}} )
             </p>
             <ul class="list-unstyled py-0">  
               @foreach($aduan['rows'] as $a)
@@ -72,14 +91,14 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
                 <div class="text-muted">
                 <img class="mr-3" src="https://via.placeholder.com/100">
                 <br>        
-                <span class="text-info">#{{dechex(strtotime($a->created_at))}}</span>
+                <span class="text-info {{dechex(strtotime($a->created_at))}}">#{{$a->slug}}</span>
                 </div>
                 <div class="media-body">
-                  <a href="#" class="link lead">
+                  <a href="@url/aduan/{{$a->slug}}/{{($a->judul)}}" class="link lead">
                       {{$a->judul}}
                   </a>
                   <p>
-                  {{mb_strimwidth($a->aduan, 0, 200, "...")}}
+                  {{mb_strimwidth(strip_tags($a->aduan), 0, 200, "...")}}
                   </p>
                   <p class="text-muted">
                   <div class="float-left">
@@ -108,6 +127,7 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
               </li>
               @endforeach
             </ul>
+            {{paginate($aduan['total'])}}
           </div>
         </div>
       </div>

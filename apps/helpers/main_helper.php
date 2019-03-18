@@ -20,15 +20,38 @@ function jsonbug($data){
 function jsonify($data){
   echo json_encode($data,JSON_PRETTY_PRINT);  
 }
-function get($var){
+function get($var,$ret=''){
   $ci =& get_instance();
-  return $ci->input->get($var,'');
+  return $ci->input->get($var,$ret);
 }
-function post($var){
+function post($var,$ret=''){
   $ci =& get_instance();
-  return $ci->input->post($var,'');
+  return $ci->input->post($var,$ret);
 }
-
+function paginate($total,$path=''){
+  $get = [
+        'search'=>get('search'),
+        'sort'=>get('sort'),
+        'order'=>get('order'),
+        'offset'=>get('offset',0),
+        'limit'=>get('limit',10),
+        ];  
+  
+  $str='<ul class="pagination">';
+  for($i=1;$i<=ceil($total/$get['limit']);$i++){
+    $get['offset']=($i-1)*$get['limit'];
+    $link=$path.'?'.http_build_query(array_filter($get));
+    $active=$get['offset']==get('offset')?'active disabled':'';
+    $str.="<li class='page-item $active'><a class='page-link' href='$link'>$i</a></li>";
+  }
+  $str.='</ul>';
+  return $str;
+}
+function stats($total){
+  $current=get('offset',0)+1;
+  $pages=$current*get('limit',10);
+  return $current.' - '.$pages;
+}
 function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
   $post=$ci->input->post();

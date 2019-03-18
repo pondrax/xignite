@@ -191,14 +191,13 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
                 <div class="text-muted">
                 <img class="mr-3" src="https://via.placeholder.com/100">
                 <br>        
-                <span class="text-info">#{{dechex(strtotime($a->created_at))}}</span>
+                <span class="text-info">#{{$a->slug}}</span>
                 </div>
-                <div class="media-body">
-                  <a href="#" class="link lead">
+                <div class="media-body"> <a href="@url/aduan/{{$a->slug}}/{{($a->judul)}}" class="link lead">
                       {{$a->judul}}
                   </a>
                   <p>
-                  {{mb_strimwidth($a->aduan, 0, 200, "...")}}
+                  {{mb_strimwidth(strip_tags($a->aduan), 0, 200, "...")}}
                   </p>
                   <p class="text-muted">
                   <div class="float-left">
