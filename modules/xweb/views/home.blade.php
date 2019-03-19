@@ -187,13 +187,13 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
           <div style="height:80vh" data-simplebar>
             <ul class="list-unstyled py-0">            
               @foreach($aduan as $a)
-              <li class="media pt-3 pb-1 my-4 border-bottom shadow-sm">
+              <li class="media p-3 my-4 bg-white border-bottom shadow-sm">
                 <div class="text-muted">
                 <img class="mr-3" src="https://via.placeholder.com/100">
                 <br>        
                 <span class="text-info">#{{$a->slug}}</span>
                 </div>
-                <div class="media-body"> <a href="@url/aduan/{{$a->slug}}/{{($a->judul)}}" class="link lead">
+                <div class="media-body"> <a href="@url/aduan/{{$a->slug}}/{{safeurl($a->judul)}}" class="link lead">
                       {{$a->judul}}
                   </a>
                   <p>

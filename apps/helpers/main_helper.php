@@ -52,6 +52,9 @@ function stats($total){
   $pages=$current*get('limit',10);
   return $current.' - '.$pages;
 }
+function safeurl($string){
+  return preg_replace("/[^A-Za-z0-9]/", '-', strtolower($string));
+}
 function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
   $post=$ci->input->post();

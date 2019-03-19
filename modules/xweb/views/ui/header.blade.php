@@ -5,7 +5,7 @@
   <title>CETTAR Wadul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="@css/web/lib/bootstrap.min.css">
+  <link rel="stylesheet" href="@css/web/lib/bootstrap-sketchy.min.css">
   <link rel="stylesheet" href="@css/web/lib/font-awesome.css">
   <link rel="stylesheet" href="@css/web/lib/animate.css">
   <link rel="stylesheet" href="@css/web/lib/hover.css">
@@ -15,8 +15,13 @@
   <script src="@js/web/lib/popper.min.js"></script>
   <script src="@js/web/lib/bootstrap.min.js"></script>
   <script src="@js/web/lib/simplebar.min.js"></script>
+  <style>
+  body{
+    background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAiADYDAREAAhEBAxEB/8QAGwAAAgMAAwAAAAAAAAAAAAAAAAUCAwQBBgn/xAApEAACAQMCBQQCAwAAAAAAAAABAgMAERIEMQUTIUGBIlFhcRQVMnKR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APUOHhUcThnZpSuWOXYHf780G5VCgAAADoAO1BKgKAoFXFkMriN+ZyGQgcsE+vte1BZw+GZMpZEtzVVnQ7hwLE+QBQMaAoKW1MSBy0iKENmJNrfdBlk4rGkqx2JLNgJOmOR2Hv3Hagr0etkk1csU4wIIRcRdCQOtj52NA0oCgKCubPlPh/PE4/dAjTTPqHZUEpd4wZHlBskqm6nr52+KBhJwxdRKzSu1nAyjB6XHsdx4tQbUjVL4qBc3Nu596CdAUGVtfAquVfm4EBhH6iv3ag50OqXW6dZlti17WN+l6DTQFAUBQFB1nRMfzdz00ht/goGfCUVM8VC+hNh8UDOgKAoMfFGK6ZSCQeYm39hQL5ZX/ZTrm2IVbC/Sg//Z');
+  }
+  </style>
 </head>
-<body style="height:100vh">
+<body style="height:100vh;">
   <nav class="navbar navbar-expand-lg navbar-light shadow m-0 bg-white" style=" flex-direction: column;border:0;border-radius:0">
     <div class="container py-1 px-4" id="header">
       <a class="navbar-brand hvr-bounce-in" href="@url">

@@ -61,10 +61,18 @@
       var mainbar=new SimpleBar($('body')[0],{autoHide:false})
       mainbar.getScrollElement().addEventListener('scroll', function(){
         var containerHeight=$(this).height()-150;
-        // $(this).find('.sticky-top').each(function(i,el){
-          // var elTop=$(el).offset().top;
-          // setTimeout(function(){$(el).offset({top:-elTop})},100);
-        // })
+        $(this).find('.sticky-top').each(function(i,el){
+          if(!$(el).parent().hasClass('parent')){
+            $(el).wrap('<div class="parent"></div>');
+          }
+          var elTop=$(el).parent().offset().top;
+          if(elTop>0){
+            $(el).removeClass('fixed-sticky').width('auto');
+          }else{
+            var elWidth=$(el).width();
+            $(el).addClass('fixed-sticky').width(elWidth);            
+          }
+        })
         $(this).find('.reveal').each(function(i,el){
           var elTop=$(el).offset().top
             , elHeight=$(el).height();

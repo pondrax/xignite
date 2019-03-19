@@ -1,4 +1,5 @@
- .logo {
+
+.logo {
   -webkit-filter: drop-shadow(0 0 5px #fff);
   filter: drop-shadow(0 0 5px #fff);
 }
@@ -320,4 +321,7 @@ a.link{
  .list-group-flush{
    border:none;
    background:#fff;
+ }
+ .fixed-sticky{
+       position: fixed !important;
  }
