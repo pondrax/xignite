@@ -4,8 +4,8 @@
     <div class="container">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
-          <a class="btn btn-outline-info hvr-hang" href="@url/masuk">Masuk</a> &nbsp;
-          <a class="btn btn-danger hvr-hang" href="@url/daftar">Daftar</a>
+          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-danger hvr-hang" href="@url/register">Daftar</a>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -46,11 +46,11 @@
           
           <h5>Lek <span class="text-info">wes tau madul</span>, cek nang kene lo</h5>
           
-          <form action="@url/search">
+          <form action="@url/aduan">
             <div class="form-row justify-content-md-center">
               <div class="col">
                 <div class="input-group py-2">
-                  <input type="text" class="form-control" placeholder="Lacak Aduan Anda">
+                  <input type="text" name="search" class="form-control" placeholder="Lacak Aduan Anda">
                   <div class="input-group-prepend">
                     <button class="btn btn-info" type="submit"><i class="fas fa-search"></i></button>
                   </div>
@@ -63,7 +63,7 @@
           <div class="row">
             <div class="col my-2 reveal fadeInLeft">
               <div class="card hvr-grow-shadow">
-                <a href="@url/layanan/datang-langsung">
+                <a href="#">
                   <img class="card-img-top" src="@asset/img/write.jpg">
                   <div class="card-body p-0">
                     <h4 class="card-title mt-2 text-center"><b>Tulisen wadul e</b></h4>
@@ -73,7 +73,7 @@
             </div>
             <div class="col my-2 reveal fadeInLeft delay-01s">
               <div class="card hvr-grow-shadow">
-                <a href="@url/layanan/form-permintaan">
+                <a href="#">
                   <img class="card-img-top" src="@asset/img/progress.jpg">
                   <div class="card-body p-0">
                     <h4 class="card-title mt-2 text-center"><b>Di proses Instansi e</b></h4>
@@ -88,7 +88,7 @@
           <div class="row">
             <div class="col my-2 reveal fadeInLeft">
               <div class="card hvr-grow-shadow">
-                <a href="@url/informasi/laporan-informasi">
+                <a href="#">
                   <img class="card-img-top" src="@asset/img/response.jpg">
                   <div class="card-body p-0">
                     <h4 class="card-title mt-2 text-center"><b>Takono neh lek drung paham</b></h4>
@@ -98,7 +98,7 @@
             </div>
             <div class="col my-2 reveal fadeInLeft delay-01s">
               <div class="card hvr-grow-shadow">
-                <a href="@url/layanan/pengajuan-keberatan">
+                <a href="#">
                   <img class="card-img-top" src="@asset/img/pengaduan.jpg">
                   <div class="card-body p-0">
                     <h4 class="card-title mt-2 text-center"><b>Lek mari Buyar duduk Bayar</b></h4>
@@ -131,7 +131,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
           <div class="card shadow flex-fill reveal fadeInLeft delay-01s">
-            <a href="@url/daftar-informasi/informasi-berkala" class="card-body text-center text-plain">
+            <a href="#" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-bullhorn"></i>
               </span>
@@ -142,7 +142,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
           <div class="card shadow flex-fill reveal fadeInLeft delay-02s">
-            <a href="@url/daftar-informasi/informasi-serta-merta" class="card-body text-center text-plain">
+            <a href="#" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-paper-plane"></i>
               </span>
@@ -153,7 +153,7 @@ background: linear-gradient(61deg, #8bfdfe 35%, #0399bd 100%);">
         </div>
         <div class="col-md-3 my-2 d-flex hvr-bounce-in">
           <div class="card shadow flex-fill reveal fadeInLeft delay-03s">
-            <a href="@url/daftar-informasi/informasi-setiap-saat" class="card-body text-center text-plain">
+            <a href="#" class="card-body text-center text-plain">
               <span class="btn btn-outline-danger btn-circle btn-xl">
                 <i class="fas fa-atom"></i>
               </span>

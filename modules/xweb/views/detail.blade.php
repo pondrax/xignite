@@ -50,8 +50,8 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
             </div>
           </div>
         </div>
-        <div class="col-md-8 py-3">
-          <div class="shadow ml-3 p-5 bg-white">
+        <div class="col-md-8 py-3 px-0">
+          <div class="shadow ml-md-4 p-4 p-md-5 bg-white">
             <div class="row no-gutters">
               <div class="col-md-auto col-12 mr-3">
                 <img class="" src="https://via.placeholder.com/120">
@@ -72,6 +72,10 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
                 <div class="float-right text-muted">
                   <span class="px-2" data-toggle="tooltip" title="{{strftime('%A, %d %B %Y %H:%M',strtotime($aduan->created_at))}}">
                     {{time_elapsed_string($aduan->created_at)}}
+                  </span>
+                  &nbsp;
+                  <span>
+                    Dilihat {{$aduan->view}} kali
                   </span>
                 </div>
                 <div class="clearfix border-bottom"></div>

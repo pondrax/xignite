@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Aduan_controller extends CI_Controller {
+class Email_controller extends CI_Controller {
   function __construct() {
     parent::__construct();
     setlocale(LC_ALL, 'IND');
-    $this->load->model('xweb/aduan');
+    $this->load->model('xadmin/master/pengguna');
   }
   function _remap($method='',$variable=[]){
     if($method==""){
@@ -21,11 +21,20 @@ class Aduan_controller extends CI_Controller {
     }
   }	
   public function index(){
-    $_GET['limit']=10;
-    $data['aduan']=Aduan::pengguna()
-                   ->order_by('created_at','desc')
-                   ->table();
-    $this->load->blade('xweb/aduan',$data);
+    $this->load->library('email');
+
+    $this->email->from('wadul@jatimprov.go.id', 'Your Name');
+    $this->email->to('pondrax3@gmail.com');
+    // $this->email->cc('another@another-example.com');
+    // $this->email->bcc('them@their-example.com');
+
+    $this->email->subject('Email Test');
+    $this->email->message('Testing the email class.');
+
+    $this->email->send();
+    print_r($this->email->print_debugger(), true);
+
+
   }
 
 	function single($variable=[]){
@@ -39,4 +48,5 @@ class Aduan_controller extends CI_Controller {
       show_404();
     }
   }	
+  
 }

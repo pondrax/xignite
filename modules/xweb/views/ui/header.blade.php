@@ -15,11 +15,6 @@
   <script src="@js/web/lib/popper.min.js"></script>
   <script src="@js/web/lib/bootstrap.min.js"></script>
   <script src="@js/web/lib/simplebar.min.js"></script>
-  <style>
-  body{
-    background:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAiADYDAREAAhEBAxEB/8QAGwAAAgMAAwAAAAAAAAAAAAAAAAUCAwQBBgn/xAApEAACAQMCBQQCAwAAAAAAAAABAgMAERIEMQUTIUGBIlFhcRQVMnKR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APUOHhUcThnZpSuWOXYHf780G5VCgAAADoAO1BKgKAoFXFkMriN+ZyGQgcsE+vte1BZw+GZMpZEtzVVnQ7hwLE+QBQMaAoKW1MSBy0iKENmJNrfdBlk4rGkqx2JLNgJOmOR2Hv3Hagr0etkk1csU4wIIRcRdCQOtj52NA0oCgKCubPlPh/PE4/dAjTTPqHZUEpd4wZHlBskqm6nr52+KBhJwxdRKzSu1nAyjB6XHsdx4tQbUjVL4qBc3Nu596CdAUGVtfAquVfm4EBhH6iv3ag50OqXW6dZlti17WN+l6DTQFAUBQFB1nRMfzdz00ht/goGfCUVM8VC+hNh8UDOgKAoMfFGK6ZSCQeYm39hQL5ZX/ZTrm2IVbC/Sg//Z');
-  }
-  </style>
 </head>
 <body style="height:100vh;">
   <nav class="navbar navbar-expand-lg navbar-light shadow m-0 bg-white" style=" flex-direction: column;border:0;border-radius:0">

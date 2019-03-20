@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Aduan_controller extends CI_Controller {
+class Register_controller extends CI_Controller {
   function __construct() {
     parent::__construct();
     setlocale(LC_ALL, 'IND');
-    $this->load->model('xweb/aduan');
+    $this->load->model('xadmin/master/pengguna');
   }
   function _remap($method='',$variable=[]){
     if($method==""){
@@ -21,11 +21,12 @@ class Aduan_controller extends CI_Controller {
     }
   }	
   public function index(){
-    $_GET['limit']=10;
-    $data['aduan']=Aduan::pengguna()
-                   ->order_by('created_at','desc')
-                   ->table();
-    $this->load->blade('xweb/aduan',$data);
+    // $_GET['limit']=10;
+    // $data['aduan']=Aduan::pengguna()
+                   // ->order_by('created_at','desc')
+                   // ->table();
+                   $data=[];
+    $this->load->blade('xweb/auth/register',$data);
   }
 
 	function single($variable=[]){
@@ -39,4 +40,5 @@ class Aduan_controller extends CI_Controller {
       show_404();
     }
   }	
+  
 }
