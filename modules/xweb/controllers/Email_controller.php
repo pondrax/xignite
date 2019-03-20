@@ -22,18 +22,16 @@ class Email_controller extends CI_Controller {
   }	
   public function index(){
     $this->load->library('email');
-
-    $this->email->from('wadul@jatimprov.go.id', 'Your Name');
+    $this->email->from('wadul@jatimprov.go.id', 'Wadul Jatim');
     $this->email->to('pondrax3@gmail.com');
-    // $this->email->cc('another@another-example.com');
-    // $this->email->bcc('them@their-example.com');
-
-    $this->email->subject('Email Test');
-    $this->email->message('Testing the email class.');
-
-    $this->email->send();
-    print_r($this->email->print_debugger(), true);
-
+    $this->email->subject('Registrasi Cettar WADUL');
+    $this->email->message('Berikut informasi registrasi wadul anda');
+    //Send mail
+    if($this->email->send())
+        echo "Congraulation Email Send Successfully.";
+    else
+        echo "You have encountered an error";
+    var_dump($this->email->print_debugger());
 
   }
 

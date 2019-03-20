@@ -29,7 +29,7 @@
         <hr>
         <div class="form-group">
           <label>Nama Lengkap</label>
-          <input type="text" name="nama" value="{{$nama|''}}" placeholder="Nama Lengkap" class="form-control @if(isset($error->nama)) is-invalid @endif" autofocus>
+          <input type="text" name="nama" value="{{post('nama')}}" placeholder="Nama Lengkap" class="form-control @if(isset($error->nama)) is-invalid @endif" autofocus>
           <div class="invalid-tooltip">
             {{$error->nama|''}}
           </div>

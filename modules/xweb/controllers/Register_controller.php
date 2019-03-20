@@ -21,24 +21,12 @@ class Register_controller extends CI_Controller {
     }
   }	
   public function index(){
-    // $_GET['limit']=10;
-    // $data['aduan']=Aduan::pengguna()
-                   // ->order_by('created_at','desc')
-                   // ->table();
                    $data=[];
     $this->load->blade('xweb/auth/register',$data);
   }
 
-	function single($variable=[]){
-    $slug=$variable[0];
-    $data['aduan']=Aduan::join('pengguna')->one(['slug'=>$slug]);
-    if($data['aduan']){
-      $data['aduan']->view+=1;
-      Aduan::update($data['aduan']->id,['view'=>$data['aduan']->view],false);
-      $this->load->blade('xweb/detail',$data);
-    }else{
-      show_404();
-    }
+	function update(){
+    
   }	
   
 }
