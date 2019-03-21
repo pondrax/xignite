@@ -40,7 +40,7 @@ class Registrasi_controller extends CI_Controller {
   function sukses(){
     $data['email']=get('$email');
     $akun=Pengguna::one(['email'=>$data['email']]);
-    if(count($akun)>0){
+    if($akun){
       $token=$akun->token;
       $encrypted_token=jwt::encode(['email'=>$data['email'],'token'=>$token],$this->secret_key);
       echo $encrypted_token;
