@@ -5,8 +5,8 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
     <div class="container pb-5 text-white">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
-          <a class="btn btn-outline-info hvr-hang" href="@url/masuk">Masuk</a> &nbsp;
-          <a class="btn btn-danger hvr-hang" href="@url/daftar">Daftar</a>
+          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-danger hvr-hang" href="@url/register">Daftar</a>
         </div>
       </div>
       <p>
@@ -51,8 +51,12 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
               </div>
               <div class="col-auto">
                 <ul class="pagination m-0 float-right">
-                  <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
-                  <li class="page-item"><a class="page-link" href="?offset={{get('offset',0)+get('limit',10)}}">></a></li>
+                  <li class="page-item @if(get('offset',0)-get('limit',10))
+                    disabled 
+                  @endif"><a class="page-link" href="?offset={{get('offset',0)-get('limit',10)}}"><</a></li>
+                  <li class="page-item @if(get('offset',0)+get('limit',10)>$aduan['total'])
+                    disabled 
+                  @endif"><a class="page-link" href="?offset={{get('offset',0)+get('limit',10)}}">></a></li>
                 </ul>
               </div>
             </div>

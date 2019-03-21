@@ -5,8 +5,8 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
     <div class="container pb-5 text-white">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
-          <a class="btn btn-outline-info hvr-hang" href="@url/masuk">Masuk</a> &nbsp;
-          <a class="btn btn-danger hvr-hang" href="@url/daftar">Daftar</a>
+          <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
+          <a class="btn btn-danger hvr-hang" href="@url/register">Daftar</a>
         </div>
       </div>
     </div>

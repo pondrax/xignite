@@ -10,49 +10,43 @@
   <link rel="stylesheet" href="@css/web/ui.css">
   <script src="@js/web/lib/jquery.min.js"></script>
   <script src="@js/web/lib/popper.min.js"></script>
-  <script src="@js/web/lib/bootstrap.min.js"></script>
-  <style>
-    #login{
-      background:#fff;
-      overflow-y:auto;
-      height:100vh;
-    }
-  </style>
-  
+  <script src="@js/web/lib/bootstrap.min.js"></script>  
 </head>
 <body class="bg-login">
   <div class="wrapper">
     <div class="container-fluid">
     <div class="row">
-      <form id="login" class="col-12 col-md-8 col-lg-6 shadow p-5" method="post">
+      <div class="col-12 col-md-8 col-lg-7 p-5 bg-white shadow" style="height:100vh">
+      <div class="row justify-content-center">
+      <form class="col-md-8" method="post">
         <h1>Daftar Wadul</h1>
         <hr>
         <div class="form-group">
           <label>Nama Lengkap</label>
-          <input type="text" name="nama" value="{{post('nama')}}" placeholder="Nama Lengkap" class="form-control @if(isset($error->nama)) is-invalid @endif" autofocus>
+          <input type="text" name="name" value="{{post('name')}}" placeholder="Nama Lengkap" class="form-control @if(isset($error['name'])) is-invalid @endif" autofocus>
           <div class="invalid-tooltip">
-            {{$error->nama|''}}
+            {{$error['name']|''}}
           </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" name="email" value="{{$email|''}}" placeholder="Email" class="form-control @if(isset($error->email)) is-invalid @endif" autofocus>
+          <input type="email" name="email" value="{{post('email')}}" placeholder="Email" class="form-control @if(isset($error['email'])) is-invalid @endif" autofocus>
           <div class="invalid-tooltip">
-            {{$error->email|''}}
+            {{$error['email']|''}}
           </div>
         </div>
         <div class="form-group">
           <label>Telepon</label>
-          <input type="text" name="telepon" value="{{$telepon|''}}" placeholder="Telepon" class="form-control @if(isset($error->telepon)) is-invalid @endif" autofocus>
+          <input type="text" name="telepon" value="{{post('telepon')}}" placeholder="Telepon" class="form-control @if(isset($error['telepon'])) is-invalid @endif" autofocus>
           <div class="invalid-tooltip">
-            {{$error->telepon|''}}
+            {{$error['telepon']|''}}
           </div>
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" name="password" value="{{$password|''}}" placeholder="Password" class="form-control @if(isset($error->password)) is-invalid @endif">
+          <input type="password" name="password" value="{{post('password')}}" placeholder="Password" class="form-control @if(isset($error['password'])) is-invalid @endif">
           <div class="invalid-tooltip">
-            {{$error->password|''}}
+            {{$error['password']|''}}
           </div>
         </div>
         <br>
@@ -62,6 +56,8 @@
         <br>
         <p class="text-muted">{{APP_NAME}}</p>
       </form>
+    </div>
+    </div>
     </div>
   </div>
 </body>

@@ -12,13 +12,13 @@ class Pengguna extends MY_Model{
   public $rules=[
     'insert'=>[
       ['field'=>'id_grup','label'=>'Grup','rules'=>'trim|required'],
-      ['field'=>'username','label'=>'Username','rules'=>'trim|alpha_numeric|required'],
+      ['field'=>'name','label'=>'Nama Lengkap','rules'=>'trim|required'],
       ['field'=>'password','label'=>'Password','rules'=>'trim|alpha_numeric|required'],
       ['field'=>'email','label'=>'Email','rules'=>'trim|required|valid_email|is_unique[users.email]']
     ],
     'update'=>[
       ['field'=>'id_grup','label'=>'Grup','rules'=>'trim|required'],
-      ['field'=>'username','label'=>'Username','rules'=>'trim|alpha_numeric|required'],
+      ['field'=>'name','label'=>'Nama Lengkap','rules'=>'trim|required'],
       ['field'=>'password','label'=>'Password','rules'=>'trim|alpha_numeric'],
       ['field'=>'email','label'=>'Email','rules'=>'trim|required|valid_email']
     ]
