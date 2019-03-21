@@ -39,4 +39,14 @@ class Aduan_controller extends CI_Controller {
       show_404();
     }
   }	
+  function lampiran(){
+    $config=[
+        'file_name' => date('YmdHis'),
+        'upload_path' => './public/uploads/',
+        'allowed_types' => 'gif|jpg|jpeg|png|pdf',
+        'max_size' => '2048000',
+        // 'overwrite'=>true
+      ];
+    jsonify($this->input->upload('lampiran',$config,true));
+  }
 }

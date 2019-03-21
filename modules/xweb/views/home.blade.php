@@ -26,15 +26,35 @@
         </div>
         <div class="col col-lg-10">
           <div class="jumbotron bg-white p-4">
-            <textarea class="form-control border-0" rows="7" style="resize:none" placeholder="Ketik aduan disini"></textarea>
-            <br>
-            <select class="form-control mt-1">
-              <option>Blabalabla</option>
-              <option>Blabalabla</option>
-              <option>Blabalabla</option>
-              <option>Blabalabla</option>
-            </select>
-            <input type="submit" class="btn btn-danger mt-1 hvr-grow" value="Ajukan Sekarang!">
+            <form method="post">
+              <textarea name="aduan" class="form-control border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini"></textarea>
+              <div class="row">
+                <div class="col">
+                  <input class="form-control my-2 border" placeholder="Tambahkan hashtag terkait aduan anda">
+                </div>
+                <div class="col-md-2 pl-0">
+                  <select name="kategori" class="form-control my-2 border">
+                    <option value="1">Keluhan</option>
+                    <option value="2">Informasi</option>
+                    <option value="3">Pertanyaan</option>
+                    <option value="4">Saran</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 data-lampiran">
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-sm btn-outline-primary" onclick="$('[name=lampiran]').click()">UPLOAD LAMPIRAN</button>
+                </div>
+                <div class="col-auto">
+                  <input type="submit" class="btn btn-danger mt-1 hvr-grow" value="Ajukan Sekarang!">
+                </div>
+              </div>
+            </form>
+            <form action="@url/aduan/lampiran" method="post" enctype="multipart/form-data">
+              <input type="file" name="lampiran" class="d-none"/>
+            </form>
           </div>
         </div>
       </div>

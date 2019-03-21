@@ -107,7 +107,34 @@
       });
     }
     
+    $('[name=lampiran]').on('change',function(e){
+      e.preventDefault();
+      var form=$(this).closest('form');
+      var formData = new FormData(form[0]);
+      console.log($(form).attr('action'));
+      $.post({
+        url: form.attr('action'),
+        data:formData,
+        dataType:'json',
+        cache:false,
+        contentType: false,
+        processData: false,
+        success:function(data){
+          $('.data-lampiran').append(data+'<br>');
+            // console.log("success");
+            // console.log(data);
+        },
+        error: function(data){
+            // console.log("error");
+            // console.log(data);
+        }
+      });
+
+      // return false;
+    })
+    
   });
+  
   </script>
 </body>
 </html>
