@@ -47,7 +47,7 @@ class Login_controller extends CI_Controller {
     }
   }
   public function set_session($id){
-    $logged=Pengguna::select('id,id_grup,email')
+    $logged=Pengguna::select('id,id_grup,email,aktif')
             ->grup(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
             ->one($id);
     $modules=(object)[];

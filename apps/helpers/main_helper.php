@@ -175,6 +175,9 @@ function logged($redirect=false,$path=''){
     $logged=$ci->session->userdata('logged');
   }
   if($logged){
+    $ci->load->model('xadmin/master/pengguna');
+    Pengguna::update($logged->id,['id'=>$logged->id],false);
+    // d($logged);
     return $logged;
   }
   else if($redirect){

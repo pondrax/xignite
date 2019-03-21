@@ -7,6 +7,7 @@
           @if(logged())
             <span class="text-muted">Selamat datang, </span>
             <span class="text-info"><b>{{logged()->email}}</b></span><br>
+            <div class="alert alert-danger py-0 px-2">Email belum diaktivasi. Harap aktifkan email<br> anda terlebih dahulu dihalaman profil</div>
             <a class="" href="@url/aduanmu">Aduan anda</a>
             &nbsp;
             <a class="" href="@url/profil">Profil</a>
