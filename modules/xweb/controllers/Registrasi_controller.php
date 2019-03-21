@@ -38,12 +38,11 @@ class Registrasi_controller extends CI_Controller {
   }
 
   function sukses(){
-    $data['email']=get('$email');
+    $data['email']=get('email');
     $akun=Pengguna::one(['email'=>$data['email']]);
     if($akun){
       $token=$akun->token;
       $encrypted_token=jwt::encode(['email'=>$data['email'],'token'=>$token],$this->secret_key);
-      echo $encrypted_token;
       $link=base_url("registrasi/aktivasi/$encrypted_token");
       $message="
       Token pendaftaran akun Wadul anda adalah : $token telah dikirimkan melalui email $data[email].<br>
