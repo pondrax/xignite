@@ -31,14 +31,14 @@ class Registrasi_controller extends CI_Controller {
       $data=Pengguna::insert($post);
     }
     if(isset($data['success'])){
-      header('Location:'.base_url('registrasi/sukses/'.urlencode($post['email'])));
+      header('Location:'.base_url('registrasi/sukses/?email='.urlencode($post['email'])));
     }else{
       $this->load->blade('xweb/auth/registrasi',$data);
     }
   }
 
-  function sukses($email){
-    $data['email']=urldecode($email);
+  function sukses(){
+    $data['email']=get('$email');
     $akun=Pengguna::one(['email'=>$data['email']]);
     if(count($akun)>0){
       $token=$akun->token;
