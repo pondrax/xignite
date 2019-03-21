@@ -5,8 +5,18 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
     <div class="container pb-5 text-white">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
+          @if(logged())
+            <span class="text-muted">Selamat datang, </span>
+            <span class="text-info"><b>{{logged()->email}}</b></span><br>
+            <a class="" href="@url/aduanmu">Aduan anda</a>
+            &nbsp;
+            <a class="" href="@url/profil">Profil</a>
+            &nbsp;
+            <a class="text-danger" href="@url/logout">Keluar</a>
+          @else
           <a class="btn btn-outline-info hvr-hang" href="@url/login">Masuk</a> &nbsp;
           <a class="btn btn-danger hvr-hang" href="@url/registrasi">Daftar</a>
+          @endif
         </div>
       </div>
       <p>
@@ -95,7 +105,7 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
                     </span>
                     @else
                     <a href="#" class="link">
-                      {{($a->pengguna[0]->username)}}
+                      {{($a->name)}}
                     </a>
                     @endif
                   </div>

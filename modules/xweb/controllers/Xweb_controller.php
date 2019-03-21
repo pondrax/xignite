@@ -13,10 +13,13 @@ class Xweb_controller extends MX_Controller {
     $this->load->model('xweb/aduan');
     $data['media']=Media::table();
     
-    $data['aduan']=Aduan::pengguna()
-                   ->order_by('created_at','desc')
-                   ->limit(10)
+    $data['aduan']=Aduan::join('pengguna')
+                   ->order_by('aduan.created_at','desc')
                    ->all();
     $this->load->blade('xweb/home',$data);
+  }
+  public function logout(){
+    $this->session->sess_destroy();
+    header('Location: '.base_url());
   }
 }

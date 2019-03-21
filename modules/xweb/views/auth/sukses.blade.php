@@ -21,8 +21,8 @@
           <div class="col-8">
             <h1>Pendaftaran Wadul berhasil dilakukan</h1>
             <hr>
+            <p>Anda dapat masuk sekarang dan menambahkan data aduan.</p> 
             <p>Kode aktivasi telah dikirimkan ke email {{$email}}</p>
-            
             <br>
             <br>
             <a href="@url/login" class="text-info">Masuk sekarang</a> <br><br>

@@ -85,9 +85,9 @@ class Registrasi_controller extends CI_Controller {
       $akun=Pengguna::select('id,token')->one(['email'=>$decode->email]);
       if($decode->token==$akun->token){
         Pengguna::update($akun->id,['aktif'=>1,'token'=>''],false);
-        $data['message']="Akun $decode->email berhasil diaktifkan";
+        $data['message']="Selamat. Akun $decode->email berhasil diaktifkan";
       }else{
-        $data['message']="Token tidak sesuai, pendaftaran gagal dilakukan";
+        $data['message']="Token tidak sesuai atau sudah kadaluarsa, pendaftaran gagal dilakukan";
       }
       $this->load->blade('xweb/auth/aktif',$data);
     }else{

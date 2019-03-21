@@ -22,10 +22,10 @@ class Aduan_controller extends CI_Controller {
   }	
   public function index(){
     $_GET['limit']=10;
-    $data['aduan']=Aduan::pengguna()
-                   ->order_by('created_at','desc')
+    $data['aduan']=Aduan::join('pengguna')
+                   ->order_by('aduan.created_at','desc')
                    ->table();
-    $this->load->blade('xweb/aduan',$data);
+    $this->load->blade('xweb/aduan/aduan',$data);
   }
 
 	function single($variable=[]){
@@ -34,7 +34,7 @@ class Aduan_controller extends CI_Controller {
     if($data['aduan']){
       $data['aduan']->view+=1;
       Aduan::update($data['aduan']->id,['view'=>$data['aduan']->view],false);
-      $this->load->blade('xweb/detail',$data);
+      $this->load->blade('xweb/aduan/detail',$data);
     }else{
       show_404();
     }

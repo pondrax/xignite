@@ -5,53 +5,45 @@
 	<title>{{APP_NAME}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="@css/lib/bootstrap.min.css">
-  <link rel="stylesheet" href="@css/lib/font-awesome.css">
+  <link rel="stylesheet" href="@css/web/lib/bootstrap-sketchy.min.css">
+  <link rel="stylesheet" href="@css/web/lib/font-awesome.css">
   <link rel="stylesheet" href="@css/web/ui.css">
-  <script src="@js/lib/jquery.min.js"></script>
-  <script src="@js/lib/popper.min.js"></script>
-  <script src="@js/lib/bootstrap.min.js"></script>
-  <style>
-    #login{
-      background:#fff;
-      overflow-y:auto;
-      height:100vh;
-      padding-top:5vh;
-    }
-  </style>
-  
+  <script src="@js/web/lib/jquery.min.js"></script>
+  <script src="@js/web/lib/popper.min.js"></script>
+  <script src="@js/web/lib/bootstrap.min.js"></script>  
 </head>
 <body class="bg-login">
   <div class="wrapper">
-    <div class="container">
-      <form id="login" class="col-12 col-md-6 col-lg-4 shadow px-4" method="post">
-          <img src="@asset/img/xignite.png"  style="max-width: 150px;display: block;margin: 20px auto;">
-          <br>
-        <br>
-        <br>
-        <h4>Masuk untuk melanjutkan</h4>
-        <br>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-8 col-lg-7 p-5 bg-white shadow" style="height:100vh">
+      <div class="row justify-content-center">
+      <form class="col-md-8" method="post">
+        <h1>Masuk Wadul</h1>
+        <hr>
         <div class="form-group">
-          <label>Username</label>
-          <input type="text" name="username" value="{{$username|''}}" placeholder="Username" class="form-control @if(isset($error->username)) is-invalid @endif" autofocus>
+          <label>Email</label>
+          <input type="email" name="email" value="{{post('email')}}" placeholder="Email" class="form-control @if(isset($error['email'])) is-invalid @endif" autofocus>
           <div class="invalid-tooltip">
-            {{$error->username|''}}
+            {{$error['email']|''}}
           </div>
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" name="password" value="{{$password|''}}" placeholder="Password" class="form-control @if(isset($error->password)) is-invalid @endif">
+          <input type="password" name="password" value="{{post('password')}}" placeholder="Password" class="form-control @if(isset($error['password'])) is-invalid @endif">
           <div class="invalid-tooltip">
-            {{$error->password|''}}
+            {{$error['password']|''}}
           </div>
         </div>
         <br>
         <button type="submit" class="btn btn-block btn-danger">
-          <i class="fas fa-login"></i> Masuk
+          <i class="fas fa-register"></i> MASUK
         </button>
         <br>
         <p class="text-muted">{{APP_NAME}}</p>
       </form>
+    </div>
+    </div>
     </div>
   </div>
 </body>
