@@ -109,30 +109,69 @@
     
     $('[name=lampiran]').on('change',function(e){
       e.preventDefault();
-      var form=$(this).closest('form');
-      var formData = new FormData(form[0]);
-      console.log($(form).attr('action'));
-      $.post({
-        url: form.attr('action'),
-        data:formData,
-        dataType:'json',
-        cache:false,
-        contentType: false,
-        processData: false,
-        success:function(data){
-          $('.data-lampiran').append(data+'<br>');
-            // console.log("success");
-            // console.log(data);
-        },
-        error: function(data){
-            // console.log("error");
-            // console.log(data);
-        }
-      });
-
+      if(this.files.length>0){
+        var form=$(this).closest('form');
+        var formData = new FormData(form[0]);
+        var lampiran = $('<div class="alert alert-secondary alert-dismissible fade show row no-gutters px-2 py-1 my-1"><div class="col-auto"><a href="#" target="_blank"><img src="" style="width:30px;height:30px"></a></div><div class="col"><input name="filename[]" class="form-control-sm form-control bg-transparent border-0" readonly></div><div class="progress border-0 my-2 mr-5" style="width:20%"><div class="progress-bar bg-info"></div></div><input name="path[]" class="d-none"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>').appendTo('.data-lampiran');
+        readURL(this,lampiran.find('img'));
+        moveprogress(lampiran.find('.progress-bar'));
+        lampiran.find('[name="filename[]"]').val(this.files[0].name);
+        
+        $.post({
+          url: form.attr('action'),
+          data:formData,
+          dataType:'json',
+          cache:false,
+          contentType: false,
+          processData: false,
+          success:function(data){
+            if(!data.error){
+              clearInterval(progress_status);
+              lampiran.find('.progress-bar').width('100%');
+              lampiran.find('[name="path[]"]').val(data);
+              lampiran.find('a').attr('href',data);
+              setTimeout(function(){lampiran.find('.progress').hide()},3000)
+            }else{
+              lampiran.find('.progress').addClass('bg-transparent').html('<a href="#" class="text-danger" data-toggle="tooltip" title="'+data.error+'" data-html="true">Upload gagal</a>');
+              $('[data-toggle="tooltip"]').tooltip(); 
+            }
+          },
+          error: function(data){
+            lampiran.find('.progress').addClass('bg-transparent').html('<span class="text-danger" data-toggle="tooltip" title="Koneksi server gagal" data-html="true">Upload gagal</span>');
+            $('[data-toggle="tooltip"]').tooltip(); 
+          }
+        });
+      }
       // return false;
     })
     
+    var progress_status;
+    function moveprogress(el) {
+      var width = 1;
+      progress_status = setInterval(frame, 10);
+      function frame() {
+        if (width >= 90) {
+          clearInterval(progress_status);
+        } else {
+          width++; 
+          el.width(width+'%');
+        }
+      }
+    }
+    function readURL(input,img) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          // console.log(e.target.result);
+            img.attr('src', e.target.result);
+            return e.target.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
   });
   
   </script>

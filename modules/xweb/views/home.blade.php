@@ -30,9 +30,9 @@
               <textarea name="aduan" class="form-control border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini"></textarea>
               <div class="row">
                 <div class="col">
-                  <input class="form-control my-2 border" placeholder="Tambahkan hashtag terkait aduan anda">
+                  <input class="form-control mt-2 border" placeholder="Tambahkan hashtag terkait aduan anda">
                 </div>
-                <div class="col-md-2 pl-0">
+                <div class="col-md-2 pl-md-0">
                   <select name="kategori" class="form-control my-2 border">
                     <option value="1">Keluhan</option>
                     <option value="2">Informasi</option>
@@ -53,7 +53,7 @@
               </div>
             </form>
             <form action="@url/aduan/lampiran" method="post" enctype="multipart/form-data">
-              <input type="file" name="lampiran" class="d-none"/>
+              <input type="file" name="lampiran" class="d-none" accept="image/*,application/pdf"/>
             </form>
           </div>
         </div>
