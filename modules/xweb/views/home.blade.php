@@ -26,7 +26,7 @@
         </div>
         <div class="col col-lg-10">
           <div class="jumbotron bg-white p-4">
-            <form method="post">
+            <form method="post" action="@url/aduan/tambah">
               <textarea name="aduan" class="form-control border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini"></textarea>
               <div class="row">
                 <div class="col">

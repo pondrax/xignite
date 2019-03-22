@@ -49,4 +49,24 @@ class Aduan_controller extends CI_Controller {
       ];
     jsonify($this->input->upload('lampiran',$config,true));
   }
+  function tambah(){
+    $lampiran=[];
+    if(post('filename')!=''){
+      foreach(post('filename') as $i=>$f){
+        $lampiran[$i]=['filename'=>$f,'path'=>post('path')[$i]];
+      }
+    }
+    if(logged()){
+      echo "logged";
+    }
+    $data=['aduan'=>(object)[
+              'aduan'=>post('aduan'),
+              'tags'=>post('tags'),
+              'kategori'=>post('kategori'),
+              'lampiran'=>$lampiran,
+          ]];
+    $this->session->set_userdata('aduan',$data['aduan']);
+    $this->load->blade('xweb/aduan/tambah',$data);
+    
+  }
 }
