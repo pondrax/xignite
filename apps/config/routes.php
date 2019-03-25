@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 
-$exceptions = array('xadmin','xengine');
+$exceptions = array('api','cron','xadmin','xengine');
 
 $route['default_controller'] = 'xweb';
 $route["^((?!\b".implode('\b|\b', $exceptions)."\b).*)$"] = 'xweb/$1';

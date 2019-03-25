@@ -73,7 +73,7 @@ class Aduan_controller extends CI_Controller {
       $data['aduan']['id_user']=logged()->id;
       $insert_id=Aduan::insert($data['aduan']);
       // d($insert_id);
-      // header('location:'.base_url('aduan/sukses'));
+       header('location:'.base_url('aduan/sukses'));
     }else{
       $this->load->blade('xweb/aduan/tambah_daftar',$data);
     }

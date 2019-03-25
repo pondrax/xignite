@@ -638,6 +638,10 @@ class MY_Model extends CI_Model{
     self::$db->group_by($field);
 		return new static();
 	}
+	public static function count(){
+		$count=self::$db->from(self::_var('table'));
+        return self::$db->count_all_results();
+	}
   
   /* ----------------------------------------------------------------------------
   Delete utilities
@@ -686,10 +690,10 @@ class MY_Model extends CI_Model{
   ---------------------------------------------------------------------------- */
   private static function add_timestamp($row,$method=null){
     if($method){
-      if(!self::$db->field_exists($method,self::_var('table'))){
-        $this->load->dbforge();
-        self::$dbforge->add_column($this->table,[$method => ['type' => 'DATETIME']]);
-      }
+    //   if(!self::$db->field_exists($method,self::_var('table'))){
+    //     $this->load->dbforge();
+    //     self::$dbforge->add_column($this->table,[$method => ['type' => 'DATETIME']]);
+    //   }
       if (is_object($row)){
         $row->{$method} = date('Y-m-d H:i:s');
       }else{
@@ -699,7 +703,9 @@ class MY_Model extends CI_Model{
     return $row;
   }
   private static function created_at($row){
-    $row=self::add_timestamp($row,'created_at');
+    if(!isset($row['created_at'])){
+      $row=self::add_timestamp($row,'created_at');
+    }
     return $row;
   }
   private static function updated_at($row){
