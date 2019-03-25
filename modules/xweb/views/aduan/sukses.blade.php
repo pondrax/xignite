@@ -6,7 +6,7 @@
           <div class="col-md-8 pt-5">
             <h3>Selamat aduan anda telah disimpan</h3>
             <hr>
-            <p>Aduan yang anda laporkan telah disimpan oleh sistem kami dan akan segera diproses oleh instansi terkait. Anda dapat melakukan tracking aduan anda dengan ID <a href="@url/aduan/{{$aduan['slug']}}">#{{$aduan['slug']}}</a> atau pada menu <a href="@url/aduanku">Aduanku</a>
+            <p>Aduan yang anda laporkan telah disimpan oleh sistem kami dan akan segera diproses oleh instansi terkait. Anda dapat melakukan tracking aduan anda dengan ID <a href="@url/aduan/{{$aduan['slug']}}" class="text-info">#{{$aduan['slug']}}</a> atau pada menu <a href="@url/aduanku" class="text-info">Aduanku</a>
             
           </div>
           <div class="col-md-8 pt-2 border-top align-self-end">

@@ -26,6 +26,7 @@ class Registrasi_controller extends CI_Controller {
     $data=[];
     $post=$this->input->post();
     if($post){
+      $post['id']=time();
       $post['id_grup']=3;
       $post['token']=strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 8));
       $data=Pengguna::insert($post);

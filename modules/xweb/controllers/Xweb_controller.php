@@ -14,6 +14,7 @@ class Xweb_controller extends MX_Controller {
     $data['media']=Media::table();
     
     $data['aduan']=Aduan::join('pengguna')
+                   ->where('aktif',1)
                    ->order_by('aduan.created_at','desc')
                    ->all();
     $this->load->blade('xweb/home',$data);

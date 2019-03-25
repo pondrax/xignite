@@ -23,6 +23,7 @@ class Aduan_controller extends CI_Controller {
   public function index(){
     $_GET['limit']=10;
     $data['aduan']=Aduan::join('pengguna')
+                   ->where('aktif',1)
                    ->order_by('aduan.created_at','desc')
                    ->table();
     $this->load->blade('xweb/aduan/aduan',$data);
@@ -60,6 +61,8 @@ class Aduan_controller extends CI_Controller {
               'judul'=>post('judul'),
               'aduan'=>post('aduan'),
               'tags'=>post('tags'),
+              'anonim'=>post('anonim')=="on"?1:0,
+              'rahasia'=>post('rahasia')=="on"?1:0,
               'id_kategori'=>post('kategori'),
               'lampiran'=>json_encode($lampiran),
               'id'=>time(),
@@ -70,7 +73,7 @@ class Aduan_controller extends CI_Controller {
       $data['aduan']['id_user']=logged()->id;
       $insert_id=Aduan::insert($data['aduan']);
       // d($insert_id);
-      header('location:'.base_url('aduan/sukses'));
+      // header('location:'.base_url('aduan/sukses'));
     }else{
       $this->load->blade('xweb/aduan/tambah_daftar',$data);
     }

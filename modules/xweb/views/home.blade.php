@@ -48,8 +48,20 @@
               <div class="data-lampiran">
               </div>
               <div class="row">
-                <div class="col">
+                <div class="col-auto mt-1">
                   <button type="button" class="btn btn-sm btn-outline-primary" onclick="$('[name=lampiran]').click()">UPLOAD LAMPIRAN</button>
+                </div>
+                <div class="form-check col-auto mt-2">
+                  <input class="form-check-input" name="anonim" type="checkbox" id="anonim">
+                  <label class="form-check-label" for="anonim">
+                    Anonim
+                  </label>
+                </div>
+                <div class="form-check col mt-2">
+                  <input class="form-check-input" name="rahasia" type="checkbox" id="rahasia">
+                  <label class="form-check-label" for="rahasia">
+                    Rahasia
+                  </label>
                 </div>
                 <div class="col-auto">
                   <input type="submit" class="btn btn-danger mt-1 hvr-grow" value="Ajukan Sekarang!">
