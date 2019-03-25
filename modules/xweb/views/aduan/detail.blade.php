@@ -1,4 +1,5 @@
 @include('ui/header')
+@include('ui/navbar')
   
   <div class="" style="height:100px;background: rgb(10,85,181);
 background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">

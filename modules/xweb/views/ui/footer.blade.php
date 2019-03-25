@@ -141,6 +141,7 @@
             $('[data-toggle="tooltip"]').tooltip(); 
           }
         });
+        $(this).val('');
       }
       // return false;
     })

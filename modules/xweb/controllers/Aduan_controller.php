@@ -56,17 +56,27 @@ class Aduan_controller extends CI_Controller {
         $lampiran[$i]=['filename'=>$f,'path'=>post('path')[$i]];
       }
     }
-    if(logged()){
-      echo "logged";
-    }
-    $data=['aduan'=>(object)[
+    $data=['aduan'=>[
+              'judul'=>post('judul'),
               'aduan'=>post('aduan'),
               'tags'=>post('tags'),
-              'kategori'=>post('kategori'),
-              'lampiran'=>$lampiran,
+              'id_kategori'=>post('kategori'),
+              'lampiran'=>json_encode($lampiran),
+              'id'=>time(),
+              'slug'=>dechex(time()),
           ]];
     $this->session->set_userdata('aduan',$data['aduan']);
-    $this->load->blade('xweb/aduan/tambah',$data);
-    
+    if(logged()){
+      $data['aduan']['id_user']=logged()->id;
+      $insert_id=Aduan::insert($data['aduan']);
+      // d($insert_id);
+      header('location:'.base_url('aduan/sukses'));
+    }else{
+      $this->load->blade('xweb/aduan/tambah_daftar',$data);
+    }
+  }
+  function sukses(){
+    $data['aduan']=$this->session->userdata('aduan');
+    $this->load->blade('xweb/aduan/sukses',$data);
   }
 }

@@ -1,4 +1,5 @@
 @include('ui/header')
+@include('ui/navbar')
   
   <div style="background:url(@asset/img/bg3.jpg) center;background-size:cover;">
     <div class="container">
@@ -7,8 +8,8 @@
           @if(logged())
             <span class="text-muted">Selamat datang, </span>
             <span class="text-info"><b>{{logged()->email}}</b></span><br>
-            <div class="alert alert-danger py-0 px-2 mb-0">Email belum diaktivasi. Harap aktifkan<br> email anda sekarang dihalaman profil.<br> Email aktif lebih diprioritaskan sistem.</div>
-            <a class="" href="@url/aduanmu">Aduan anda</a>
+            <div class="alert alert-danger py-0 px-2 mb-0">Email belum diaktivasi. Harap aktifkan<br> email anda sekarang dihalaman profil.</div>
+            <a class="" href="@url/aduanku">Aduanku</a>
             &nbsp;
             <a class="" href="@url/profil">Profil</a>
             &nbsp;
@@ -27,13 +28,16 @@
         <div class="col col-lg-10">
           <div class="jumbotron bg-white p-4">
             <form method="post" action="@url/aduan/tambah">
-              <textarea name="aduan" class="form-control border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini"></textarea>
-              <div class="row">
-                <div class="col">
-                  <input class="form-control mt-2 border" placeholder="Tambahkan hashtag terkait aduan anda">
+              <textarea name="aduan" class="form-control mb-1 border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini" ></textarea>
+              <div class="row mb-1">
+                <div class="col pr-md-1">
+                  <input name="judul" class="form-control border" placeholder="Perihal aduan">
                 </div>
-                <div class="col-md-2 pl-md-0">
-                  <select name="kategori" class="form-control my-2 border">
+                <div class="col-md-3 px-md-0">
+                  <input class="form-control border" placeholder="Hashtag aduan">
+                </div>
+                <div class="col-md-2 pl-md-1">
+                  <select name="kategori" class="form-control border">
                     <option value="1">Keluhan</option>
                     <option value="2">Informasi</option>
                     <option value="3">Pertanyaan</option>
@@ -41,9 +45,9 @@
                   </select>
                 </div>
               </div>
+              <div class="data-lampiran">
+              </div>
               <div class="row">
-                <div class="col-12 data-lampiran">
-                </div>
                 <div class="col">
                   <button type="button" class="btn btn-sm btn-outline-primary" onclick="$('[name=lampiran]').click()">UPLOAD LAMPIRAN</button>
                 </div>

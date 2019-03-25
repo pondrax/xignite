@@ -1,44 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>{{APP_NAME}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="@css/web/lib/bootstrap-sketchy.min.css">
-  <link rel="stylesheet" href="@css/web/lib/font-awesome.css">
-  <link rel="stylesheet" href="@css/web/ui.css">
-  <script src="@js/web/lib/jquery.min.js"></script>
-  <script src="@js/web/lib/popper.min.js"></script>
-  <script src="@js/web/lib/bootstrap.min.js"></script>  
-</head>
-<body class="bg-login">
-  <div class="wrapper">
-    <div class="container-fluid">
+@include('ui/header')
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-md-8 col-lg-7 p-5 bg-white shadow" style="height:100vh">
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <h3>Daftar akun untuk melanjutkan</h3>
+      <div class="col-12 col-md-8 col-lg-7 bg-white shadow">
+        <div class="row justify-content-center py-5" style="min-height:100vh">
+          <div class="col-md-8 pt-5">
+            <h3>Simpan atau kirim aduan anda</h3>
             <hr>
-            <div class="">
             <u>Laporan anda :</u>
-            <p class="pl-2">{{$aduan->aduan}}</p>
+            <textarea name="aduan" class="form-control border" rows="4" style="resize:none" readonly>{{$aduan->aduan}}</textarea>
             
-            <div class="row no-gutters">
+            <div class="row no-gutters mt-2">
               @foreach($aduan->lampiran as $l)
-              <div class="col-auto mr-1 mb-1 border" style="width:80px;height:80px;overflow:hidden;position:relative">
+              <a href="{{$l['path']}}" target="_blank" class="col-auto mr-1 mb-1 border" style="width:80px;height:80px;overflow:hidden;position:relative">
                 <embed src="{{$l['path']}}" class="w-100"></embed>
                 <div class="p-1 text-white text-nowrap bg-secondary" style="bottom:0;left:0;right:0;position:absolute;font-size:10px">{{$l['filename']}}</div>
-              </div>
+              </A>
               @endforeach
             </div>
-            </div>
-            <hr>
-            <a href="@url/login" class="text-info">Masuk sekarang</a> <br><br>
-            <a href="@url">Kembali ke halaman awal</a>
+            <input class="form-control mt-2 border" placeholder="Tambahkan hashtag terkait aduan anda">
+            
+            
+          </div>
+          <div class="col-md-8 pt-2 border-top align-self-end">
+            <a href="@url" class="float-right">Kembali ke halaman awal</a>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </body>
