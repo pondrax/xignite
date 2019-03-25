@@ -1,0 +1,23 @@
+http://harianbhirawa.com/?s=
+.type-post a.link_thumbnail
+
+http://harianbhirawa.com/polda-jatim-segera-limpahkan-berkas-kasus-amblesnya-jalan-gubeng/
+.type-post .entry-title
+.type-post .entry-date
+.type-post .entry-content
+
+
+
+https://www.detik.com/search/searchall?query=jatim&siteid=2
+.list-berita a
+
+https://news.detik.com/berita/d-4433970/gempa-59-m-guncang-malang
+.detail_content .jdl
+.detail_content .date
+.detail_content .detail_wrap
+
+
+
+
+https://twitter.com/search?q=lapor%20from%3A%40jatimpemprov&src=typd
+.tweet .js-tweet-text
