@@ -5,6 +5,7 @@ class Aduan_controller extends CI_Controller {
   function __construct() {
     parent::__construct();
     setlocale(LC_ALL, 'IND');
+    setlocale(LC_ALL, 'id_ID');
     $this->load->model('xweb/aduan');
   }
   function _remap($method='',$variable=[]){
@@ -22,16 +23,16 @@ class Aduan_controller extends CI_Controller {
   }	
   public function index(){
     $_GET['limit']=10;
-    $data['aduan']=Aduan::join('pengguna')
-                   ->where('aktif',1)
+    // $data['aduan']=Aduan::join('pengguna')
+    $data['aduan']=Aduan::leftjoin('pengguna')
                    ->order_by('aduan.created_at','desc')
                    ->table();
     $this->load->blade('xweb/aduan/aduan',$data);
   }
 
 	function single($variable=[]){
-    $slug=$variable[0];
-    $data['aduan']=Aduan::join('pengguna')->one(['slug'=>$slug]);
+    $id=hexdec($variable[0]);
+    $data['aduan']=Aduan::leftjoin('pengguna')->one(['aduan.id'=>$id]);
     if($data['aduan']){
       $data['aduan']->view+=1;
       Aduan::update($data['aduan']->id,['view'=>$data['aduan']->view],false);

@@ -64,7 +64,7 @@ class Registrasi_controller extends CI_Controller {
       
       
       $this->load->library('email');
-      $this->email->from('wadul@jatimprov.go.id', 'Wadul Jatim');
+      $this->email->from(MAIL_USERNAME, 'Wadul Jatim');
       $this->email->to($data['email']);
       $this->email->subject('Pendaftaran akun WADUL');
       $this->email->message($message);

@@ -5,7 +5,7 @@
   <title>CETTAR Wadul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="@css/web/lib/bootstrap-sketchy.min.css">
+  <link rel="stylesheet" href="@css/web/lib/bootstrap-minty.min.css">
   <link rel="stylesheet" href="@css/web/lib/font-awesome.css">
   <link rel="stylesheet" href="@css/web/lib/animate.css">
   <link rel="stylesheet" href="@css/web/lib/hover.css">

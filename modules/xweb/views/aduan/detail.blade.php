@@ -1,9 +1,9 @@
 @include('ui/header')
 @include('ui/navbar')
   
-  <div class="" style="height:100px;background: rgb(10,85,181);
+  <div class="" style="min-height:100px;background: rgb(10,85,181);
 background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
-    <div class="container pb-5 text-white">
+    <div class="container p2-5 text-white">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
           @if(logged())
@@ -66,8 +66,8 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
           <div class="shadow ml-md-4 p-4 p-md-5 bg-white">
             <div class="row no-gutters">
               <div class="col-md-auto col-12 mr-3">
-                <img class="" src="https://via.placeholder.com/120">
-                <p class="text-info">#{{$aduan->slug}}</p>
+                <img class="" src="https://via.placeholder.com/100">
+                <p class="text-info">#{{dechex($aduan->id)}}</p>
               </div>
               <div class="col">
                 <div class="float-left">
@@ -94,7 +94,7 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
                 <h3>{{$aduan->judul}}</h3>
               </div>
             </div>
-            <article class="mt-3 text-justify">
+            <article class="my-2 mb-5 text-justify">
               {{$aduan->aduan}}
             </article>
             

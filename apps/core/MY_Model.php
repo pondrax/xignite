@@ -365,9 +365,11 @@ class MY_Model extends CI_Model{
   ---------------------------------------------------------------------------- */
 	public static function leftjoin($has_one,$operator='='){
     self::join($has_one,$operator,'LEFT');
+    return new static();
   }
   public static function rightjoin($has_one,$operator='='){
     self::join($has_one,$operator,'RIGHT');
+    return new static();
   }
 	public static function join($has_one,$operator='=',$type='ON'){
     if(is_array($has_one)){

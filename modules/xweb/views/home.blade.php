@@ -1,7 +1,7 @@
 @include('ui/header')
 @include('ui/navbar')
   
-  <div style="background:url(@asset/img/bg3.jpg) center;background-size:cover;">
+  <div style="background:url(@asset/img/gubernur-wagub-jatim.jpg) center;background-size:cover;">
     <div class="container">
       <div class="row justify-content-end">
         <div class="col-auto align-self-end bg-white px-3 py-2  mb-2 shadow border-bottom">
@@ -21,14 +21,32 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-12 mb-2 hover bounce">
-          <h1 class="text-center">Aspirasikan dirimu di Wadul Jatim</h1>
-          <h2 class="text-center text-muted">Aspirasikan dirimu di Wadul Jatim</h2>
+        <div class="col-12 col-lg-6 mb-2">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div class="card bg-info">
+              <div class="card-body py-2" >
+              <h3 class="text-center card-title text-white m-0 ">Aspirasikan dirimu di Wadul Jatim</h3>
+              </div>
+          </div>
+          
         </div>
         <div class="col col-lg-10">
-          <div class="jumbotron bg-white p-4">
+          <div class="jumbotron bg-white pt-4 pb-2 px-4">
             <form method="post" action="@url/aduan/tambah">
-              <textarea name="aduan" class="form-control mb-1 border" rows="7" style="resize:none" placeholder="Ketik aduan anda disini" ></textarea>
+              <textarea name="aduan" class="form-control mb-1 border" rows="6" style="resize:none" placeholder="Ketik aduan anda disini" ></textarea>
               <div class="row mb-1">
                 <div class="col pr-md-1">
                   <input name="judul" class="form-control border" placeholder="Perihal aduan">
@@ -51,13 +69,13 @@
                 <div class="col-auto mt-1">
                   <button type="button" class="btn btn-sm btn-outline-primary" onclick="$('[name=lampiran]').click()">UPLOAD LAMPIRAN</button>
                 </div>
-                <div class="form-check col-auto mt-2">
+                <div class="form-check col-6 col-md-auto mt-2">
                   <input class="form-check-input" name="anonim" type="checkbox" id="anonim">
                   <label class="form-check-label" for="anonim">
                     Anonim
                   </label>
                 </div>
-                <div class="form-check col mt-2">
+                <div class="form-check col-6 col-md-auto mt-2 mr-auto">
                   <input class="form-check-input" name="rahasia" type="checkbox" id="rahasia">
                   <label class="form-check-label" for="rahasia">
                     Rahasia

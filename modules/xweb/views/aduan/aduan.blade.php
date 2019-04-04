@@ -86,27 +86,38 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
             </p>
             <ul class="list-unstyled py-0">  
               @foreach($aduan['rows'] as $a)
+                @define($link_aduan=base_url('aduan/'.dechex($a->id).'/'.safeurl($a->judul)))
               <li class="media p-3 my-4 bg-white border-bottom shadow-sm">
                 <div class="text-muted">
+                    <a href="{{$link_aduan}}" class="link">
+                        
                 <img class="mr-3" src="https://via.placeholder.com/100">
                 <br>        
-                <span class="text-info {{dechex(strtotime($a->created_at))}}">#{{$a->slug}}</span>
+                <span class="text-info {{dechex($a->id)}}">#{{dechex($a->id)}}</span>
+                    </a> 
                 </div>
                 <div class="media-body">
-                  <a href="@url/aduan/{{$a->slug}}/{{safeurl($a->judul)}}" class="link lead">
-                      {{$a->judul}}
+                  <a href="{{$link_aduan}}" class="link lead">
+                      {{$a->judul}} &nbsp;
                   </a>
                   <p>
-                  {{mb_strimwidth(strip_tags($a->aduan), 0, 200, "...")}}
+                  {{mb_strimwidth(preg_replace('#<[^>]+>#', ' ', $a->aduan), 0, 200, " <a href='$link_aduan'>selengkapnya</a>")}}
                   </p>
                   <p class="text-muted">
                   <div class="float-left">
-                    @if($a->anonim)
-                    <span class="">
+                    @if($a->source!='')
+                    <small class="badge badge-info p-1">twitter</small>
+                    <a href="#" class="text-secondary">
+                      {{($a->source)}} 
+                    </a>
+                    @elseif($a->anonim)
+                    <small class="badge badge-secondary p-1">website</small>
+                    <span class="text-secondary">
                       anonim
                     </span>
                     @else
-                    <a href="#" class="link">
+                    <small class="badge badge-danger p-1">website</small>
+                    <a href="#" class="text-secondary">
                       {{($a->name)}}
                     </a>
                     @endif
