@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CETTAR Wadul</title>
+  <title>CETTAR Jatim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="@url/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="@css/web/lib/bootstrap-minty.min.css">

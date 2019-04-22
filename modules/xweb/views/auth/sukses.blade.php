@@ -1,21 +1,22 @@
 @include('ui/header')
-  <div class="wrapper">
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-md-8 col-lg-7 p-5 bg-white shadow" style="height:100vh">
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <h1>Pendaftaran Wadul berhasil dilakukan</h1>
+      <div class="col-12 col-md-8 col-lg-7 bg-white shadow">
+        <div class="row justify-content-center py-5" style="min-height:100vh">
+          <div class="col-md-8 pt-5">
+            <h3>Pendaftaran Cettar berhasil dilakukan</h3>
             <hr>
-            <p>Anda dapat masuk sekarang dan menambahkan data aduan.</p> 
-            <p>Kode aktivasi telah dikirimkan ke email {{$email}}</p>
+            <p>Anda telah masuk sistem, sekarang anda dapat menambahkan data aduan.</p> 
+            <p>Kode aktivasi telah dikirimkan ke email <span class="text-info">{{$email}}</span></p>
             <br>
             <br>
-            <a href="@url/login" class="text-info">Masuk sekarang</a> <br><br>
-            <a href="@url/aduan">Kembali ke halaman awal</a>
+          </div>
+          <div class="col-md-8 pt-2 border-top align-self-end">
+            <a href="@url" class="float-right">Kembali ke halaman awal</a><br>
           </div>
         </div>
+      </div>
     </div>
   </div>
-
-@include('ui/footer')
+</body>
+</html>

@@ -1,7 +1,7 @@
 @include('ui/header')
 @include('ui/navbar')
   
-  <div class="" style="min-height:200px;background: rgb(10,85,181);
+  <div class="" style="min-height:100px;background: rgb(10,85,181);
 background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
     <div class="container pb-5 text-white">
       <div class="row justify-content-end">
@@ -16,36 +16,41 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
   <div class="shadow" style="min-height:80vh">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 py-3 bg-white shadow">
-          <div class="sticky-top px-2 pb-5 mb-5 bg-white">
+        <div class="col-md-4 py-3 bg-white shadow"  style="min-height:80vh">
+          <div class="sticky-top px-3 pb-5 mb-5 bg-white">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb mt-2">
                 <li class="breadcrumb-item"><a href="@url">Beranda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Aduan</li>
+                <li class="breadcrumb-item active" aria-current="page">Aduanku</li>
               </ol>
             </nav>
-            <h3 class="mt-3 px-2">Aduan Masyarakat</h3>
-            <h6 class="text-muted px-2">
-            Telusuri semua aduan masyarakat yang ada di Jawa Timur. 
-            </h6>
-            <br>
+            <h3>
+            Semua aduan anda. 
+            </h3>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a href='@url/aduan'>Semua aduan
-                <span class="badge badge-secondary float-right">{{$count_status['all']}}</span>
+                <span class="badge badge-secondary float-right">{{$aduan['total']}}</span>
               </a></li>
               @foreach($status as $s)
-                  <li class="list-group-item"><a href='@url/aduan?status={{$s->id_status_pengaduan}}'>{{$s->status_pengaduan}}
+                  @if(logged()&&logged()->id_grup==1&&$s->id_status_pengaduan==0)
+                  <li class="list-group-item"><a href='@url/aduan?filter={"id_status":{{$s->id_status_pengaduan}}}'>{{$s->status_pengaduan}}
                     <span class="badge badge-secondary float-right">{{$count_status[$s->id_status_pengaduan]}}</span>
                   </a></li>
+                  @else
+                  <li class="list-group-item"><a href='@url/aduan?filter={"id_status":{{$s->id_status_pengaduan}}}'>{{$s->status_pengaduan}}
+                    <span class="badge badge-secondary float-right">{{$count_status[$s->id_status_pengaduan]}}</span>
+                  </a></li>
+                  @endif
               @endforeach
             </ul>
+            <br>
           </div>
         </div>
         <div class="col-md-8 py-3">
           <div>
             <div class="row justify-content-between">
               <div class="col">
-                <form action="@url/aduan/" method="get">
+                <form action="@url/aduanku/" method="get">
                   <div class="form-row">
                     <div class="col">
                       <div class="input-group">
@@ -70,44 +75,30 @@ background: linear-gradient(61deg, #ff4c79 35%, #0399bd 100%);">
               </div>
             </div>
             <p class="text-muted">
-              @if($aduan['total']>0)
-                  Menampilkan 
-                  @if(get('search')!='') 
-                    aduan "{{get('search')}}"
-                  @else
-                    semua aduan
-                  @endif
-                  
-                  ( {{get('offset',0)+1}}
-                  - {{min(get('offset',0)+get('limit',10), $aduan['total'])}}
-                  dari {{$aduan['total']}} )
+              Menampilkan 
+              @if(get('search')!='') 
+                aduan "{{get('search')}}"
               @else
-                  Data aduan tidak ditemukan
+                semua aduan
               @endif
+              
+              ( {{get('offset',0)+1}}
+              - {{min(get('offset',0)+get('limit',10), $aduan['total'])}}
+              dari {{$aduan['total']}} )
             </p>
-            <ul class="list-unstyled py-0" style="min-height:80vh">  
+            <ul class="list-unstyled py-0">  
               @foreach($aduan['rows'] as $a)
                 @define($link_aduan=base_url('aduan/'.$a->slug.'/'.safeurl($a->judul)))
               <li class="media p-3 my-4 bg-white border-bottom shadow-sm">
-                <div class="text-muted pr-3">
+                <div class="text-muted">
                     <a href="{{$link_aduan}}" class="link">
                     @define($img=json_decode($a->lampiran))
                     @if(isset($img[0]))
-                        <img class="" src="{{$img[0]->url}}" style="width:100px;height:100px;object-fit: cover;margin-left:5px">
+                        <img class="mr-3" src="{{$img[0]->url}}" style="width:100px;height:100px;object-fit: cover;">
                     @else
-                        <img class="" src="@asset/img/logo.png" style="width:100px;height:100px;object-fit: contain;margin-left:5px">
+                        <img class="mr-3" src="@asset/img/logo.png" style="width:100px;height:100px;object-fit: cover;">
                     @endif
                     <br>        
-                    @if($a->id_status==0)
-                        @define($status_color="btn-secondary")
-                    @elseif($a->id_status==1)
-                        @define($status_color="btn-warning")
-                    @elseif($a->id_status==2)
-                        @define($status_color="btn-info")
-                    @else
-                        @define($status_color="btn-success")
-                    @endif
-                      <span class="badge {{$status_color}} rounded-0 w-100">{{$a->status_pengaduan}}</span><br>
                     <span class="text-info {{$a->slug}}">#{{$a->slug}}</span>
                     </a> 
                 </div>

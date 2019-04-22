@@ -14,7 +14,7 @@ class Pengguna extends MY_Model{
       ['field'=>'id_grup','label'=>'Grup','rules'=>'trim|required'],
       ['field'=>'name','label'=>'Nama Lengkap','rules'=>'trim|required'],
       ['field'=>'password','label'=>'Password','rules'=>'trim|alpha_numeric|required'],
-      ['field'=>'email','label'=>'Email','rules'=>'trim|required|valid_email|is_unique[users.email]']
+    //   ['field'=>'email','label'=>'Email','rules'=>'trim|required|valid_email|is_unique[users.email]']
     ],
     'update'=>[
       ['field'=>'id_grup','label'=>'Grup','rules'=>'trim|required'],

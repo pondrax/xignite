@@ -1,8 +1,8 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Aduan extends MY_Model{
+class Tindak_lanjut extends MY_Model{
   
-  public $table = 'aduan';
+  public $table = 'aduan__tindak_lanjut';
   public $primary_key = 'id';
   public $fields = [
     'id' => [
@@ -10,28 +10,16 @@ class Aduan extends MY_Model{
       'constraint' => '11',
       'auto_increment' => true
     ],
+    'id_aduan' => [
+      'type' => 'int',
+      'constraint' => 11
+    ],
     'id_user' => [
       'type' => 'int',
       'constraint' => 11
     ],
-    'id_kategori' => [
-      'type' => 'int',
-      'constraint' => 11
-    ],
-    'judul' => [
+    'tindakan' => [
       'type' => 'varchar',
-      'constraint' => 11
-    ],
-    'aduan' => [
-      'type' => 'text',
-      'constraint' => 11
-    ],
-    'status' => [
-      'type' => 'varchar',
-      'constraint' => 11
-    ],
-    'view' => [
-      'type' => 'int',
       'constraint' => 11
     ],
     'created_at' => [
@@ -51,17 +39,22 @@ class Aduan extends MY_Model{
     [
       'field' => 'id',
       'label' => 'ID',
-      'rules' => 'trim|required'
+      'rules' => 'trim'
+    ],
+    [
+      'field' => 'id_aduan',
+      'label' => 'Aduan',
+      'rules' => 'trim'
     ],
     [
       'field' => 'id_user',
-      'label' => 'User ID',
-      'rules' => 'trim|required'
+      'label' => 'Pengguna',
+      'rules' => 'trim'
     ],
     [
-      'field' => 'id_kategori',
-      'label' => 'Kategori ID',
-      'rules' => 'trim|required'
+      'field' => 'tindakan',
+      'label' => 'Tindakan',
+      'rules' => 'trim'
     ]
   ];
   
@@ -81,20 +74,6 @@ class Aduan extends MY_Model{
       'model' => 'xadmin/master/pengguna',
       'foreign_key' => 'id',
       'local_key' => 'id_user'
-    ],
-    'status' => [
-      'model' => 'xweb/status',
-      'foreign_key' => 'id_status_pengaduan',
-      'local_key' => 'id_status'
     ]
   ];
-  public $has_many = [
-    'tindak_lanjut' => [
-      'model' => 'xweb/tindak_lanjut',
-      'foreign_key' => 'id_aduan',
-      'local_key' => 'id'
-    ]
-  ];
-  
-  
 }

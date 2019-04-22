@@ -9,14 +9,15 @@ class Xweb_controller extends MX_Controller {
   }
   
   public function index(){
-    $this->load->model('xweb/media/media');
     $this->load->model('xweb/aduan');
-    $data['media']=Media::table();
+    $this->load->model('xweb/kategori');
     
-    $data['aduan']=Aduan::join('pengguna')
-                   ->where('aktif',1)
-                   ->order_by('aduan.created_at','desc')
-                   ->all();
+    $where=['id_status>'=>1,'rahasia'=>0];
+    $data['aduan']=Aduan::leftjoin('pengguna')
+                        ->tindak_lanjut()
+                        ->order_by('aduan.created_at','desc')
+                        ->all($where);
+    $data['kategori']=Kategori::select("id as value, kategori as text")->all();
     $this->load->blade('xweb/home',$data);
   }
   public function logout(){

@@ -8,6 +8,7 @@ class Registrasi_controller extends CI_Controller {
     $this->secret_key=$this->config->item('api_secret_key');
     setlocale(LC_ALL, 'IND');
     $this->load->model('xadmin/master/pengguna');
+    $this->load->model('xadmin/master/modul');
   }
   function _remap($method='',$variable=[]){
     if($method==""){
@@ -32,12 +33,36 @@ class Registrasi_controller extends CI_Controller {
       $data=Pengguna::insert($post);
     }
     if(isset($data['success'])){
+      $this->auto_login($data['success']);
       header('Location:'.base_url('registrasi/sukses/?email='.urlencode($post['email'])));
     }else{
       $this->load->blade('xweb/auth/registrasi',$data);
     }
   }
-
+ 
+  function auto_login($id){
+      
+    $logged=Pengguna::select('id,id_grup,email,aktif')
+            ->grup(['select'=>'id,nama_grup,modul_read,modul_write,modul_delete'])
+            ->one($id);
+    $modules=(object)[];
+    $read=explode(',',$logged->grup[0]->modul_read);
+    $write=explode(',',$logged->grup[0]->modul_write);
+    $delete=explode(',',$logged->grup[0]->modul_delete);
+    foreach(Modul::all() as $m){
+      $modul_name=strtolower($m->nama_modul);
+      $modul_id=$m->id;
+      $modules->{$modul_name}=(object)[
+        'read'=>in_array($modul_id,$read),
+        'write'=>in_array($modul_id,$write),
+        'delete'=>in_array($modul_id,$delete)
+      ];
+    }
+    $logged->nama_grup=$logged->grup[0]->nama_grup;
+    unset($logged->grup);
+    $this->session->set_userdata(['logged'=>$logged]);
+    $this->session->set_userdata(['modules'=>$modules]);
+  }
   function sukses(){
     $data['email']=get('email');
     $akun=Pengguna::one(['email'=>$data['email']]);

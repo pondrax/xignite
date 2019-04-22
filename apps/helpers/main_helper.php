@@ -1,5 +1,4 @@
 <?php
-
 function d($data){
   highlight_string("<?php\n " . var_export($data, true) . "?>");
   echo '<script>document.getElementsByTagName("code")[0].getElementsByTagName("span")[1].remove() ;document.getElementsByTagName("code")[0].getElementsByTagName("span")[document.getElementsByTagName("code")[0].getElementsByTagName("span").length - 1].remove() ; </script>';
@@ -30,17 +29,18 @@ function post($var,$ret=''){
 }
 function paginate($total,$path=''){
   $get = [
+        'filter'=>get('filter'),
         'search'=>get('search'),
         'sort'=>get('sort'),
         'order'=>get('order'),
         'offset'=>get('offset',0),
         'limit'=>get('limit',10),
         ];  
-  
+//   d($get);
   $str='<ul class="pagination">';
   for($i=1;$i<=ceil($total/$get['limit']);$i++){
     $get['offset']=($i-1)*$get['limit'];
-    $link=$path.'?'.http_build_query(array_filter($get));
+    $link=$path.'?'.urldecode(http_build_query(array_filter($get)));
     $active=$get['offset']==get('offset')?'active disabled':'';
     $str.="<li class='page-item $active'><a class='page-link' href='$link'>$i</a></li>";
   }

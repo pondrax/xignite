@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light shadow m-0 bg-white" style=" flex-direction: column;border:0;border-radius:0">
   <div class="container py-1 px-4" id="header">
     <a class="navbar-brand hvr-bounce-in" href="@url">
-      <img src="@url/favicon.ico" style="float:left;height:3.4rem;padding:0 .3rem 0 0">
+      <img src="@asset/img/logo.png" style="float:left;height:3.4rem;padding:0 .5rem 0 0">
       <div style="float:right; padding:.3rem 0">
-        CETTAR <span class="text-danger">WADUL</span>
+        CETTAR <span class="text-danger">JATIM</span>
         <div class="text-muted" style="font-size:.8rem;font-weight:400">Wadulo nang kene Cak
         </div>
       </div>

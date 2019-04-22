@@ -55,6 +55,8 @@
       }, 1000);
     });
     $('[data-toggle="tooltip"]').tooltip(); 
+    setTimeout(function(){$('.get-location').click();}, 3000); 
+    // $('.get-location').click();
     var isMobile=window.mobileAndTabletcheck();
     
     if(!isMobile){
@@ -107,12 +109,37 @@
       });
     }
     
+    
+    
+    
+    $('.get-location').on('click',function(e){
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        $('.data-map').html("Geolocation is not supported by this browser.");
+      }
+            
+    })
+    
+    
+
+    function showPosition(position) {
+        var latlon=position.coords.latitude + "," + position.coords.longitude;
+        $('[name=latitude]').val(position.coords.latitude);
+        $('[name=longitude]').val(position.coords.longitude);
+        $('.data-map').html('<iframe src="https://maps.google.com/maps?q='+latlon+'&z=15&output=embed" width="800" height="160" frameborder="0" style="border:0;width:100%"></iframe>')
+    
+    }
+            
+    
+            
+            
     $('[name=lampiran]').on('change',function(e){
       e.preventDefault();
       if(this.files.length>0){
         var form=$(this).closest('form');
         var formData = new FormData(form[0]);
-        var lampiran = $('<div class="alert alert-secondary alert-dismissible fade show row no-gutters px-2 py-1 my-1"><div class="col-auto"><a href="#" target="_blank"><img src="" style="width:30px;height:30px"></a></div><div class="col"><input name="filename[]" class="form-control-sm form-control bg-transparent border-0" readonly></div><div class="progress border-0 my-2 mr-5" style="width:20%"><div class="progress-bar bg-info"></div></div><input name="path[]" class="d-none"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>').appendTo('.data-lampiran');
+        var lampiran = $('<div class="alert alert-secondary alert-dismissible fade show row no-gutters px-2 py-1 my-1"><div class="col-auto"><a href="#" target="_blank"><img src="" style="width:30px;height:30px"></a></div><div class="col"><input name="filename[]" class="form-control-sm form-control bg-transparent border-0" readonly></div><div class="progress border-0 my-2 mr-5" style="width:20%"><div class="progress-bar bg-info"></div></div><input name="path[]" class="d-none"><button type="button" class="close pt-1" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>').appendTo('.data-lampiran');
         readURL(this,lampiran.find('img'));
         moveprogress(lampiran.find('.progress-bar'));
         lampiran.find('[name="filename[]"]').val(this.files[0].name);

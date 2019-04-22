@@ -65,6 +65,65 @@ class MY_Model extends CI_Model{
   }
   
   public static function fetch($criteria=null,$one=false,$deleted_filter='default'){
+    // self::from();
+    
+    // $ci=&get_instance();
+    // $limit =$ci->input->get('limit');
+    // $offset=$ci->input->get('offset');
+    // $sort  =$ci->input->get('sort');
+    // $order =$ci->input->get('order');
+    // $search=$ci->input->get('search');
+    // $filter_where=$ci->input->get('filter');
+    
+    // $table=self::_var('table');
+    // self::$deleted_filter=$deleted_filter;
+    // if(self::$soft_delete){
+    //   switch(self::$deleted_filter){
+    //     case 'with_deleted':
+    //       break;
+    //     case 'only_deleted':
+    //       self::where("$table.deleted_at!=",null);
+    //       break;
+    //     default:
+    //       self::where("$table.deleted_at",null);
+    //   }
+    // }
+    // if(is_array($criteria)){
+    //   if(array_values($criteria)===$criteria){
+    //     self::where_in(self::_var('primary_key'),$criteria);
+    //   }else{
+    //     self::where($criteria);
+    //   }
+    // }else{
+    //   if($criteria){
+    //     self::where(self::_var('primary_key'),$criteria);
+    //   }
+    // }
+    // if($search_fields){
+    //   self::search($search,$search_fields);
+    // }else{
+    //   self::search($search);
+    // }
+    // if($filter_where){
+    //     self::where(json_decode($filter_where,true));
+    // }
+    // $total=self::$db->count_all_results('',false);
+    // // debug($sort);
+    // if($sort){
+    // // self::order_by($table.'.'.$sort,$order);
+    // self::order_by($sort,$order);
+    // }
+    // if($limit){
+    //   self::limit($limit,$offset);
+    // }    
+    
+    // $data=self::get_join_result(self::get());
+    
+    // $output=[
+    //   'total'=>$total,
+    //   'rows'=>$data
+    // ];
+    // return $output;
     self::from();
     
     $table=self::_var('table');
@@ -111,7 +170,7 @@ class MY_Model extends CI_Model{
     $sort  =$ci->input->get('sort');
     $order =$ci->input->get('order');
     $search=$ci->input->get('search');
-    $filter=$ci->input->get('filter');
+    $filter_where=$ci->input->get('filter');
     
     $table=self::_var('table');
     self::$deleted_filter=$deleted_filter;
@@ -137,13 +196,14 @@ class MY_Model extends CI_Model{
         self::where(self::_var('primary_key'),$criteria);
       }
     }
-    
     if($search_fields){
       self::search($search,$search_fields);
     }else{
       self::search($search);
     }
-    
+    if($filter_where){
+        self::where(json_decode($filter_where,true));
+    }
     $total=self::$db->count_all_results('',false);
     // debug($sort);
     if($sort){
@@ -319,7 +379,6 @@ class MY_Model extends CI_Model{
   private static function get_related_model($related){
     $foreign=singular(static::class);
     $local_key=self::_var('primary_key');
-
     if(!is_array($related)){
       $model=$related;
       $local_key=$local_key;
@@ -338,6 +397,7 @@ class MY_Model extends CI_Model{
     $model=basename($model);
     $table=(new $model)->table;
 
+    // d($related);
     $pivot_table=isset($related['pivot_table'])?$related['pivot_table']:null;
     $pivot_foreign_key=$pivot_table?$model::_var('primary_key'):null;
     $pivot_local_key=$pivot_table?self::_var('primary_key'):null;
@@ -383,6 +443,7 @@ class MY_Model extends CI_Model{
       $localtable_key=$local_key;
       $relatedjoin= (new $model)->_var('has_one')[$value];
       extract(self::get_related_model($relatedjoin));
+    //   d("$table.$foreign_key $operator $localtable.$localtable_key");
       self::$db->join($table,"$table.$foreign_key $operator $localtable.$localtable_key",$type);
       if(self::$default_select){
         self::$db->select("$table.*, $localtable.*");
@@ -392,6 +453,7 @@ class MY_Model extends CI_Model{
       $related=self::_var('has_one')[$has_one];
       extract(self::get_related_model($related));
       $localtable=self::_var('table');
+    //   d(self::get_related_model($related));
       self::$db->join($table,"$table.$foreign_key $operator $localtable.$local_key",$type);
       if(self::$default_select){
         self::$db->select("$table.*, $localtable.*");
