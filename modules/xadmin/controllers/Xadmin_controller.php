@@ -20,7 +20,7 @@ class Xadmin_controller extends CI_Controller {
     $this->auth();
   }
   public function home(){
-    d($_SERVER);
+    // d($_SERVER);
     logged(true,'xadmin/auth');
     $this->load->blade('ui/main',$this->data);    
   }

@@ -1,5 +1,4 @@
 <?php
-
 function d($data){
   highlight_string("<?php\n " . var_export($data, true) . "?>");
   echo '<script>document.getElementsByTagName("code")[0].getElementsByTagName("span")[1].remove() ;document.getElementsByTagName("code")[0].getElementsByTagName("span")[document.getElementsByTagName("code")[0].getElementsByTagName("span").length - 1].remove() ; </script>';
@@ -20,11 +19,57 @@ function jsonbug($data){
 function jsonify($data){
   echo json_encode($data,JSON_PRETTY_PRINT);  
 }
-
-
+function get($var=null,$ret=''){
+  $ci =& get_instance();
+	if($var){
+		return $ci->input->get($var,$ret);
+	}else{
+		return $ci->input->get();
+	}
+}
+function post($var=null,$ret=''){
+  $ci =& get_instance();
+	if($var){
+		return $ci->input->post($var,$ret);
+	}else{
+		return $ci->input->post();
+	}
+}
+function paginate($total,$path=''){
+  $get = [
+        'filter'=>get('filter'),
+        'search'=>get('search'),
+        'sort'=>get('sort'),
+        'order'=>get('order'),
+        'offset'=>get('offset',0),
+        'limit'=>get('limit',10),
+        ];  
+//   d($get);
+  $str='<ul class="pagination">';
+  for($i=1;$i<=ceil($total/$get['limit']);$i++){
+    $get['offset']=($i-1)*$get['limit'];
+    $link=$path.'?'.urldecode(http_build_query(array_filter($get)));
+    $active=$get['offset']==get('offset')?'active disabled':'';
+    // if($i<=5){
+        $str.="<li class='page-item $active'><a class='page-link' href='$link'>$i</a></li>";
+    // }elseif($i==ceil($total/$get['limit'])){
+    //     $str.="<li class='page-item $active'><a class='page-link' href='$link'>last</a></li>";
+        
+    // }
+  }
+  $str.='</ul>';
+  return $str;
+}
+function stats($total){
+  $current=get('offset',0)+1;
+  $pages=$current*get('limit',10);
+  return $current.' - '.$pages;
+}
+function safeurl($string){
+  return preg_replace("/[^A-Za-z0-9]/", '-', strtolower($string));
+}
 function post_upload($config,$remove=false,$prefix="old_"){
   $ci =& get_instance();
-  $ci->load->library('form_validation');
   $post=$ci->input->post();
   $uploaded=$ci->input->upload_all($config,true);
   // $post=isset($post[0])?$post:[$post];
@@ -37,30 +82,19 @@ function post_upload($config,$remove=false,$prefix="old_"){
     }
     $post=[$post];
   }
-  // d($uploaded);
   foreach($uploaded as $key=>$name){
-      // dd($name);
-      // dd($key);
-      
-    if(array_key_exists('error',$name)){
-      $ci->form_validation->set_message($key, $name['error']);  
-      // dd($name['error']);
-      // return $uploaded;
-    }
-    else{
-      foreach($name as $i=>$value){
-        if($value){
-          if($remove){
-            // d($post[$i]);
-            remove_file($post[$i][$prefix.$key]);
-          }
-          $post[$i][$key]=$value;
+    foreach($name as $i=>$value){
+      if($value){
+        if($remove){
+          d($post[$i]);
+          remove_file($post[$i][$prefix.$key]);
         }
-        else{
-          $post[$i][$key]=$post[$i][$prefix.$key];
-        }
-        unset($post[$i][$prefix.$key]);
+        $post[$i][$key]=$value;
       }
+      else{
+        $post[$i][$key]=$post[$i][$prefix.$key];
+      }
+      unset($post[$i][$prefix.$key]);
     }
   }
   // $data=$post;
@@ -154,6 +188,9 @@ function logged($redirect=false,$path=''){
     $logged=$ci->session->userdata('logged');
   }
   if($logged){
+    $ci->load->model('xadmin/master/pengguna');
+    Pengguna::update($logged->id,['id'=>$logged->id],false);
+    // d($logged);
     return $logged;
   }
   else if($redirect){
@@ -311,5 +348,58 @@ function clone_array(&$data,$length=0){
       $data[$i]=$data[0]; 
     }
   }
+}
+
+
+
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'tahun',
+        'm' => 'bulan',
+        'w' => 'minggu',
+        'd' => 'hari',
+        'h' => 'jam',
+        'i' => 'menit',
+        's' => 'detik',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? '' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' lalu' : 'baru saja';
+}
+
+
+if (!is_callable('getallheaders')) {
+    # Convert a string to mixed-case on word boundaries.
+    function uc_all($string) {
+        $temp = preg_split('/(\W)/', str_replace("_", "-", $string), -1, PREG_SPLIT_DELIM_CAPTURE);
+        foreach ($temp as $key=>$word) {
+            $temp[$key] = ucfirst(strtolower($word));
+        }
+        return join ('', $temp);
+    }
+
+    function getallheaders() {
+        $headers = array();
+        foreach ($_SERVER as $h => $v)
+            if (preg_match('/HTTP_(.+)/', $h, $hp))
+                $headers[str_replace("_", "-", uc_all($hp[1]))] = $v;
+        return $headers;
+    }
+
+    function apache_request_headers() { return getallheaders(); }
 }
 ?>
