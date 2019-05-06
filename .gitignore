@@ -1,3 +1,11 @@
+.DS_Store
+
 .env
-/apps/cache/.*
-/apps/logs/.*
+
+apps/cache/*
+!apps/cache/index.html
+
+apps/logs/*
+!apps/logs/index.html
+
+!apps/*/.htaccess
