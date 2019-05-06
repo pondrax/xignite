@@ -165,7 +165,7 @@ class Develbar
         }
 
         // if ($this->CI->input->is_cli_request()) {
-            $this->CI->output->_display();
+            // $this->CI->output->_display();
 
             // return;
         // }
