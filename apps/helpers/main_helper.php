@@ -189,26 +189,17 @@ function logged($redirect=false,$path=''){
   }
   if($logged){
     $ci->load->model('xadmin/master/pengguna');
-    Pengguna::update($logged->id,['id'=>$logged->id],false);
+		if($redirect=='update'){
+			Pengguna::update($logged->id,['id'=>$logged->id],false);
+		}
     // d($logged);
     return $logged;
   }
-  else if($redirect){
+  else if($redirect==true){
     header('Location: '.base_url($path));
   }
 }
-function where_logged(){
-  $logged=logged();
-  return ['id_user'=>$logged->id,'id_tahun'=>$logged->id_tahun];
-}
-function pengisi_logged(){
-  $logged=logged();
-  return ['id_user'=>$logged->id,'id_tahun'=>$logged->id_tahun];
-}
-function admin_logged(){
-  $logged=logged();
-  return ['id_user'=>$logged->id,'id_tahun'=>$logged->id_tahun];
-}
+
 function access_modul($modul_name=''){
   $modul=modul($modul_name);
   $akses=[];
