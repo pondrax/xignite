@@ -521,7 +521,7 @@ $config['compress_output'] = FALSE;
 | helper' page of the user guide for information regarding date handling.
 |
 */
-$config['time_reference'] = APP_TIMEZONE;
+$config['time_reference'] = (APP_TIMEZONE=='')?'local':APP_TIMEZONE;
 
 /*
 |--------------------------------------------------------------------------

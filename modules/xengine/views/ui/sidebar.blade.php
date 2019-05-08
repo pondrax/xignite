@@ -26,17 +26,17 @@
       </li>   
       <li>
         <a href="#" data-toggle="collapse" data-target="#view-builder">
-          <i class="fas fa-file-contract px-1"></i> View Builder
+          <i class="fas fa-file-contract px-1"></i> Generator
         </a>
         <ul id="view-builder" class="collapse show pl-4">
           <li>
-            <a class="add-tab" href="#" data-href="@_modulepath/view_builder">
-              Layout Master
+            <a class="add-tab" href="#" data-href="@_modulepath/view_controller">
+              Controller
             </a>
           </li>
           <li>
-            <a class="add-tab" href="#" data-href="@_modulepath/widgets">
-              Widgets
+            <a class="add-tab" href="#" data-href="@_modulepath/view_model">
+              Model
             </a>
           </li>   
         </ul>

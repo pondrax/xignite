@@ -32,9 +32,9 @@ class Base_controller extends CI_Controller {
     foreach($files as $file) {
       $file=basename($file);
       echo "- $file : ";
-      echo "<a href='$url/xengine/base/import/$file'>import</a> / ";
+      echo "<a href='$url/xengine/base/import/?file=$file'>import</a> / ";
       echo "<a href='$url/backup/$file'>download</a> / ";
-      echo "<a href='$url/xengine/base/remove/$file'>delete</a> <br>";
+      echo "<a href='$url/xengine/base/remove/?file=$file'>delete</a> <br>";
     }
   }
   public function export(){
@@ -55,9 +55,10 @@ class Base_controller extends CI_Controller {
     - Download : <a href='$url/$save'>$db_name</a>" ;
   }
   
-  public function import($file){
+  public function import(){
     $url=rtrim(base_url(),'/');
     echo "<h2>### <a href='$url/xengine/base'>XBASE</a> :: Database Import</h2>";
+    $file=$this->input->get('file');
     $file='backup/'.$file;
     if (file_exists($file)){
       // $this->empty_all();
@@ -78,9 +79,10 @@ class Base_controller extends CI_Controller {
     }
   }
   
-  public function remove($file){
+  public function remove(){
     $url=rtrim(base_url(),'/');
     echo "<h2>### <a href='$url/xengine/base'>XBASE</a> :: Database Remove</h2>";
+    $file=$this->input->get('file');
     $file='backup/'.$file;
     if (file_exists($file)){
       unlink($file);
